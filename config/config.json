@@ -1,0 +1,22 @@
+{
+  "port": "3000",
+  "mongoose": {
+    "uri": "mongodb://localhost/TaskManager",
+    "options": {
+      "server": {
+        "socketOptions": {
+          "keepAlive": 1
+        }
+      }
+    }
+  },
+  "session":{
+    "secret": "WomboCombo",
+    "key":"sid",
+    "cookie":{
+      "path": "/",
+      "httpOnly":true,
+      "maxAge":null
+    }
+  }
+}

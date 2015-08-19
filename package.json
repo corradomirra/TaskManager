@@ -1,0 +1,32 @@
+{
+  "name": "TaskManager",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "body-parser": "*",
+    "cookie-parser": "*",
+    "debug": "*",
+    "express": "*",
+    "ejs": "*",
+    "serve-favicon": "~2.2.0",
+    "mongoose": "*",
+    "crypto":"*",
+    "mongoose-auto-increment": "*",
+    "nconf":"*",
+    "path":"*",
+    "express-session":"*",
+    "connect-mongo":"*",
+    "jsx-loader": "*",
+    "node-jsx": "*",
+    "react": "*",
+    "react-router": "*",
+    "react-bootstrap": "*",
+    "react-router-bootstrap": "*",
+    "reflux":"*",
+    "jquery":"*",
+    "async": "*"
+  }
+}
