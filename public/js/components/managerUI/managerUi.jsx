@@ -9,8 +9,9 @@ var Col = ReactBootstrap.Col;
 var UI = React.createClass({
     render(){
         return(
-            <Row className='show-grid'>
-                <Col md={4}><ProjectList/></Col>
+            <Row>
+                <Col md={1} ></Col>
+                <Col md={3}><ProjectList/></Col>
                 <Col md={8} ><RouteHandler/></Col>
             </Row>
         )

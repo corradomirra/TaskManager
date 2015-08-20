@@ -51,8 +51,8 @@ var Login = React.createClass({
     render(){
         return(
         <Row className='show-grid'>
-            <Col md={4} ></Col>
-            <Col md={4}>
+            <Col md={5} ></Col>
+            <Col md={2}>
             <form>
                 <h4>{this.state.errorText}</h4>
                 <Input type="text"
@@ -69,7 +69,7 @@ var Login = React.createClass({
                     onChange={this.passChange}/>
                 <Button bsStyle='primary' onClick={this.onLogin}>Login</Button>
             </form></Col>
-            <Col md={4}></Col>
+            <Col md={5}></Col>
         </Row>
         )
     }

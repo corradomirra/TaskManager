@@ -8,9 +8,7 @@ var { Route, DefaultRoute, RouteHandler, Link } = Router;
 var App = React.createClass({
     render() {
         return (
-            <Grid>
                 <RouteHandler/>
-            </Grid>
         );
     }
 });

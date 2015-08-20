@@ -49,6 +49,7 @@
 	var Login = __webpack_require__(342);
 	var Search = __webpack_require__(366);
 	var ManagerUI = __webpack_require__(367);
+	var AddProject = __webpack_require__(381);
 	var Router = __webpack_require__(158);
 	var $__0=       Router,Route=$__0.Route,DefaultRoute=$__0.DefaultRoute,RouteHandler=$__0.RouteHandler,Link=$__0.Link;
 
@@ -56,7 +57,8 @@
 	    React.createElement(Route, {handler: App}, 
 	        React.createElement(DefaultRoute, {name: "login", handler: Login}), 
 	        React.createElement(Route, {name: "manager", path: "/manager", handler: ManagerUI}, 
-	            React.createElement(Route, {name: "project", path: "project/:name", handler: Search})
+	            React.createElement(Route, {name: "project", path: "project/:name", handler: Search}), 
+	            React.createElement(Route, {name: "addProject", path: "addProject", handler: AddProject})
 	        )
 	    )
 	);
@@ -20458,9 +20460,7 @@
 	var App = React.createClass({displayName: "App",
 	    render:function() {
 	        return (
-	            React.createElement(Grid, null, 
 	                React.createElement(RouteHandler, null)
-	            )
 	        );
 	    }
 	});
@@ -35091,8 +35091,8 @@
 	    render:function(){
 	        return(
 	        React.createElement(Row, {className: "show-grid"}, 
-	            React.createElement(Col, {md: 4}), 
-	            React.createElement(Col, {md: 4}, 
+	            React.createElement(Col, {md: 5}), 
+	            React.createElement(Col, {md: 2}, 
 	            React.createElement("form", null, 
 	                React.createElement("h4", null, this.state.errorText), 
 	                React.createElement(Input, {type: "text", 
@@ -35109,7 +35109,7 @@
 	                    onChange: this.passChange}), 
 	                React.createElement(Button, {bsStyle: "primary", onClick: this.onLogin}, "Login")
 	            )), 
-	            React.createElement(Col, {md: 4})
+	            React.createElement(Col, {md: 5})
 	        )
 	        )
 	    }
@@ -46045,8 +46045,9 @@
 	var UI = React.createClass({displayName: "UI",
 	    render:function(){
 	        return(
-	            React.createElement(Row, {className: "show-grid"}, 
-	                React.createElement(Col, {md: 4}, React.createElement(ProjectList, null)), 
+	            React.createElement(Row, null, 
+	                React.createElement(Col, {md: 1}), 
+	                React.createElement(Col, {md: 3}, React.createElement(ProjectList, null)), 
 	                React.createElement(Col, {md: 8}, React.createElement(RouteHandler, null))
 	            )
 	        )
@@ -46063,14 +46064,15 @@
 	var Reflux = __webpack_require__(343);
 	var ReactBootstrap = __webpack_require__(197);
 	var Project = __webpack_require__(369);
-	var ProjectAction = __webpack_require__(370);
-	var ProjectStore = __webpack_require__(371);
+	var ProjectAction = __webpack_require__(379);
+	var ProjectStore = __webpack_require__(380);
+	var Router = __webpack_require__(158);
 	var Row = ReactBootstrap.Row;
 	var Button = ReactBootstrap.Button;
 	var Panel = ReactBootstrap.Panel;
 	var ListGroup = ReactBootstrap.ListGroup;
 	var List = React.createClass({displayName: "List",
-	    mixins:[Reflux.ListenerMixin],
+	    mixins:[Reflux.ListenerMixin,Router.Navigation],
 	    getInitialState:function(){
 	        return {
 	            nameOfProjects:[]
@@ -46082,6 +46084,10 @@
 	    },
 	    onLoad:function(data){
 	        this.setState({nameOfProjects:data.names});
+	    },
+	    onCreate:function(e){
+	        e.preventDefault();
+	        this.transitionTo('addProject');
 	    },
 	    render:function() {
 	        var projects = this.state.nameOfProjects.map(function(name){
@@ -46097,7 +46103,7 @@
 	                    React.createElement(ListGroup, {fill: true}, 
 	                        projects
 	                    ), 
-	                    React.createElement(Button, {bsStyle: "primary", bsSize: "small"}, "Add Project")
+	                    React.createElement(Button, {bsStyle: "primary", bsSize: "small", onClick: this.onCreate}, "Add Project")
 	                )
 	            )
 	        );
@@ -46110,7 +46116,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
-	var ReactRouterBootstrap = __webpack_require__(372);
+	var ReactRouterBootstrap = __webpack_require__(370);
 	var Link = __webpack_require__(158).Link;
 	var ListGroupItemLink = ReactRouterBootstrap.ListGroupItemLink;
 	var Project = React.createClass({displayName: "Project",
@@ -46135,51 +46141,6 @@
 /* 370 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Reflux=__webpack_require__(343);
-
-	var ProjectActions = Reflux.createActions([
-	    "load",
-	    "update",
-	    "add",
-	    "delete"
-	]);
-
-	module.exports = ProjectActions;
-
-
-/***/ },
-/* 371 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var projectAction = __webpack_require__(370);
-	var Reflux = __webpack_require__(343);
-	var $ = __webpack_require__(365);
-
-	var ProjectStore = Reflux.createStore({
-	    init: function(){
-	        this.listenTo(projectAction.load,this.onLoad)
-	    },
-	    onLoad: function () {
-	        var self = this;
-	        $.ajax({
-	            url:"project",
-	            method:"GET",
-	            dataType:"json",
-	            success:function(data){
-	                self.trigger(data);
-	            }
-	        });
-	    }
-
-	});
-	module.exports = ProjectStore;
-
-
-
-/***/ },
-/* 372 */
-/***/ function(module, exports, __webpack_require__) {
-
 	'use strict';
 
 	Object.defineProperty(exports, '__esModule', {
@@ -46188,50 +46149,50 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _ButtonLink2 = __webpack_require__(373);
+	var _ButtonLink2 = __webpack_require__(371);
 
 	var _ButtonLink3 = _interopRequireDefault(_ButtonLink2);
 
 	exports.ButtonLink = _ButtonLink3['default'];
 
-	var _ListGroupItemLink2 = __webpack_require__(375);
+	var _ListGroupItemLink2 = __webpack_require__(373);
 
 	var _ListGroupItemLink3 = _interopRequireDefault(_ListGroupItemLink2);
 
 	exports.ListGroupItemLink = _ListGroupItemLink3['default'];
 
-	var _MenuItemLink2 = __webpack_require__(376);
+	var _MenuItemLink2 = __webpack_require__(374);
 
 	var _MenuItemLink3 = _interopRequireDefault(_MenuItemLink2);
 
 	exports.MenuItemLink = _MenuItemLink3['default'];
 
-	var _NavItemLink2 = __webpack_require__(377);
+	var _NavItemLink2 = __webpack_require__(375);
 
 	var _NavItemLink3 = _interopRequireDefault(_NavItemLink2);
 
 	exports.NavItemLink = _NavItemLink3['default'];
 
-	var _PageItemLink2 = __webpack_require__(378);
+	var _PageItemLink2 = __webpack_require__(376);
 
 	var _PageItemLink3 = _interopRequireDefault(_PageItemLink2);
 
 	exports.PageItemLink = _PageItemLink3['default'];
 
-	var _RouterOverlayTrigger2 = __webpack_require__(379);
+	var _RouterOverlayTrigger2 = __webpack_require__(377);
 
 	var _RouterOverlayTrigger3 = _interopRequireDefault(_RouterOverlayTrigger2);
 
 	exports.RouterOverlayTrigger = _RouterOverlayTrigger3['default'];
 
-	var _ThumbnailLink2 = __webpack_require__(380);
+	var _ThumbnailLink2 = __webpack_require__(378);
 
 	var _ThumbnailLink3 = _interopRequireDefault(_ThumbnailLink2);
 
 	exports.ThumbnailLink = _ThumbnailLink3['default'];
 
 /***/ },
-/* 373 */
+/* 371 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -46252,7 +46213,7 @@
 
 	var _reactBootstrapLibButton2 = _interopRequireDefault(_reactBootstrapLibButton);
 
-	var _LinkMixin = __webpack_require__(374);
+	var _LinkMixin = __webpack_require__(372);
 
 	var _LinkMixin2 = _interopRequireDefault(_LinkMixin);
 
@@ -46274,7 +46235,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 374 */
+/* 372 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -46375,7 +46336,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 375 */
+/* 373 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -46396,7 +46357,7 @@
 
 	var _reactBootstrapLibListGroupItem2 = _interopRequireDefault(_reactBootstrapLibListGroupItem);
 
-	var _LinkMixin = __webpack_require__(374);
+	var _LinkMixin = __webpack_require__(372);
 
 	var _LinkMixin2 = _interopRequireDefault(_LinkMixin);
 
@@ -46418,7 +46379,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 376 */
+/* 374 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -46439,7 +46400,7 @@
 
 	var _reactBootstrapLibMenuItem2 = _interopRequireDefault(_reactBootstrapLibMenuItem);
 
-	var _LinkMixin = __webpack_require__(374);
+	var _LinkMixin = __webpack_require__(372);
 
 	var _LinkMixin2 = _interopRequireDefault(_LinkMixin);
 
@@ -46464,7 +46425,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 377 */
+/* 375 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -46485,7 +46446,7 @@
 
 	var _reactBootstrapLibNavItem2 = _interopRequireDefault(_reactBootstrapLibNavItem);
 
-	var _LinkMixin = __webpack_require__(374);
+	var _LinkMixin = __webpack_require__(372);
 
 	var _LinkMixin2 = _interopRequireDefault(_LinkMixin);
 
@@ -46507,7 +46468,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 378 */
+/* 376 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -46528,7 +46489,7 @@
 
 	var _reactBootstrapLibPageItem2 = _interopRequireDefault(_reactBootstrapLibPageItem);
 
-	var _LinkMixin = __webpack_require__(374);
+	var _LinkMixin = __webpack_require__(372);
 
 	var _LinkMixin2 = _interopRequireDefault(_LinkMixin);
 
@@ -46550,7 +46511,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 379 */
+/* 377 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -46575,7 +46536,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 380 */
+/* 378 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -46596,7 +46557,7 @@
 
 	var _reactBootstrapLibThumbnail2 = _interopRequireDefault(_reactBootstrapLibThumbnail);
 
-	var _LinkMixin = __webpack_require__(374);
+	var _LinkMixin = __webpack_require__(372);
 
 	var _LinkMixin2 = _interopRequireDefault(_LinkMixin);
 
@@ -46616,6 +46577,138 @@
 
 	exports['default'] = ThumbnailLink;
 	module.exports = exports['default'];
+
+/***/ },
+/* 379 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var Reflux=__webpack_require__(343);
+
+	var ProjectActions = Reflux.createActions([
+	    "load",
+	    "update",
+	    "create",
+	    "delete"
+	]);
+
+	module.exports = ProjectActions;
+
+
+/***/ },
+/* 380 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var projectAction = __webpack_require__(379);
+	var Reflux = __webpack_require__(343);
+	var $ = __webpack_require__(365);
+
+	var ProjectStore = Reflux.createStore({
+	    init: function(){
+	        this.listenTo(projectAction.load,this.onLoad);
+	        this.listenTo(projectAction.create,this.onCreate);
+	    },
+	    onCreate:function(project){
+	        var self = this;
+	        $.ajax({
+	            url:"project",
+	            method:"POST",
+	            dataType:"json",
+	            data:project,
+	            success:function(data){
+	                self.trigger(data);
+	            }
+	        });
+
+	    },
+	    onLoad: function () {
+	        var self = this;
+	        $.ajax({
+	            url:"project",
+	            method:"GET",
+	            dataType:"json",
+	            success:function(data){
+	                self.trigger(data);
+	            }
+	        });
+	    }
+
+	});
+	module.exports = ProjectStore;
+
+
+
+/***/ },
+/* 381 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var ReactBootstrap = __webpack_require__(197);
+	var Input = ReactBootstrap.Input;
+	var Button = ReactBootstrap.Button;
+	var Row = ReactBootstrap.Row;
+	var Col = ReactBootstrap.Col;
+	var Router = __webpack_require__(158);
+	var ProjectAction = __webpack_require__(379);
+	var addProjectForm = React.createClass({displayName: "addProjectForm",
+	    mixins:[Router.Navigation],
+	    getInitialState:function(){
+	        return{
+	            name:"",
+	            descr:"",
+	            errorText:""
+	        }
+	    },
+	    nameChange:function(){
+	        this.setState({name:this.refs.name.getValue()});
+	    },
+	    descrChange:function(){
+	        this.setState({descr:this.refs.descr.getValue()})
+	    },
+	    onClose:function(){
+	        this.transitionTo('manager');
+	    },
+	    onCreate:function(e){
+	        e.preventDefault();
+	        if(this.state.name.length == 0){
+	            this.setState({errorText:"Name input is empty"});
+	            return;
+	        }
+	        if(this.state.descr.length == 0){
+	            this.setState({errorText:"Description input is empty"});
+	            return;
+	        }
+	        ProjectAction.create({name:this.state.name,descr:this.state.descr});
+	        this.transitionTo('manager');
+	    },
+	    render:function(){
+	        return(
+	            React.createElement(Row, null, 
+	                React.createElement(Col, {md: 4, xsOffset: 1}, 
+	                    React.createElement("form", null, 
+	                        React.createElement("h4", null, this.state.errorText), 
+	                        React.createElement(Input, {type: "text", 
+	                            value: this.state.name, 
+	                            label: "Name of Project", 
+	                            placeholder: "Enter name", 
+	                            ref: "name", 
+	                            onChange: this.nameChange}), 
+	                        React.createElement(Input, {type: "textarea", 
+	                            value: this.state.descr, 
+	                            label: "Description", 
+	                            placeholder: "Enter description", 
+	                            ref: "descr", 
+	                            onChange: this.descrChange}), 
+	                        React.createElement(Button, {bsStyle: "success", onClick: this.onCreate}, "save"), 
+	                        React.createElement(Button, {bsStyle: "danger", onClick: this.onClose}, "close")
+	                    )
+	                ), 
+	                React.createElement(Col, {md: 7})
+	            )
+	        )
+	    }
+	});
+
+	module.exports = addProjectForm;
 
 /***/ }
 /******/ ]);
