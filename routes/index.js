@@ -21,8 +21,11 @@ router.post('/login',function(req,res,next){
         } else res.send({text:"login or password is invalid"});
 
     });
-
-
 });
 
+router.get('/project',function(req,res,next){
+    var names = ["a","a1","a2","a3","a4","a5","a6"];
+    res.send({names:names});
+
+});
 module.exports = router;

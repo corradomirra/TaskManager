@@ -1,6 +1,7 @@
 var React = require('react');
-var ReactBootstrap = require('react-bootstrap');
+var ReactRouterBootstrap = require('react-router-bootstrap');
 var Link = require('react-router').Link;
+var ListGroupItemLink = ReactRouterBootstrap.ListGroupItemLink;
 var Project = React.createClass({
     getInitialState() {
         return {
@@ -12,7 +13,8 @@ var Project = React.createClass({
     },
     render() {
         return (
-            <li><Link to="project" params={{name:this.state.name}}>{this.state.name}</Link></li>
+            <ListGroupItemLink to="project" params={{name:this.state.name}}>{this.state.name}</ListGroupItemLink>
         );
     }
 });
+module.exports = Project;

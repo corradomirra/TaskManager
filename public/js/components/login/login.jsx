@@ -33,7 +33,7 @@ var Login = React.createClass({
     },
     onResponse(data){
         if(data.text == ''){
-            this.transitionTo('home');
+            this.transitionTo('manager');
         } else this.setState({errorText:data.text});
     },
     onLogin(e){

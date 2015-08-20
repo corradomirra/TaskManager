@@ -48,12 +48,16 @@
 	var App = __webpack_require__(157);
 	var Login = __webpack_require__(342);
 	var Search = __webpack_require__(366);
+	var ManagerUI = __webpack_require__(367);
 	var Router = __webpack_require__(158);
 	var $__0=       Router,Route=$__0.Route,DefaultRoute=$__0.DefaultRoute,RouteHandler=$__0.RouteHandler,Link=$__0.Link;
+
 	var routes = (
 	    React.createElement(Route, {handler: App}, 
 	        React.createElement(DefaultRoute, {name: "login", handler: Login}), 
-	        React.createElement(Route, {name: "home", path: "/home", handler: Search})
+	        React.createElement(Route, {name: "manager", path: "/manager", handler: ManagerUI}, 
+	            React.createElement(Route, {name: "project", path: "project/:name", handler: Search})
+	        )
 	    )
 	);
 
@@ -35069,7 +35073,7 @@
 	    },
 	    onResponse:function(data){
 	        if(data.text == ''){
-	            this.transitionTo('home');
+	            this.transitionTo('manager');
 	        } else this.setState({errorText:data.text});
 	    },
 	    onLogin:function(e){
@@ -46000,6 +46004,9 @@
 	            search: ""
 	        };
 	    },
+	    componentWillReceiveProps:function(nextProps){
+	      this.setState({search:nextProps.params.name});
+	    },
 	    render:function() {
 	        return (
 	            React.createElement("div", {className: "search-component"}, 
@@ -46007,6 +46014,10 @@
 	                React.createElement("p", null, React.createElement("span", null, "You are searching for: ", this.state.search))
 	            )
 	        );
+	    },
+	    componentWillMount:function(){
+	        this.setState({search: this.props.params.name});
+
 	    },
 	    changeSearch:function(event) {
 	        var text = event.target.value;
@@ -46018,6 +46029,593 @@
 	});
 
 	module.exports = Search;
+
+/***/ },
+/* 367 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var ReactRouter = __webpack_require__(158);
+	var ReactBootstrap = __webpack_require__(197);
+	var RouteHandler = ReactRouter.RouteHandler;
+	var ProjectList = __webpack_require__(368);
+	var Row = ReactBootstrap.Row;
+	var Col = ReactBootstrap.Col;
+
+	var UI = React.createClass({displayName: "UI",
+	    render:function(){
+	        return(
+	            React.createElement(Row, {className: "show-grid"}, 
+	                React.createElement(Col, {md: 4}, React.createElement(ProjectList, null)), 
+	                React.createElement(Col, {md: 8}, React.createElement(RouteHandler, null))
+	            )
+	        )
+	    }
+	});
+
+	module.exports = UI;
+
+/***/ },
+/* 368 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var Reflux = __webpack_require__(343);
+	var ReactBootstrap = __webpack_require__(197);
+	var Project = __webpack_require__(369);
+	var ProjectAction = __webpack_require__(370);
+	var ProjectStore = __webpack_require__(371);
+	var Row = ReactBootstrap.Row;
+	var Button = ReactBootstrap.Button;
+	var Panel = ReactBootstrap.Panel;
+	var ListGroup = ReactBootstrap.ListGroup;
+	var List = React.createClass({displayName: "List",
+	    mixins:[Reflux.ListenerMixin],
+	    getInitialState:function(){
+	        return {
+	            nameOfProjects:[]
+	        }
+	    },
+	    componentWillMount:function(){
+	        this.listenTo(ProjectStore,this.onLoad);
+	        ProjectAction.load();
+	    },
+	    onLoad:function(data){
+	        this.setState({nameOfProjects:data.names});
+	    },
+	    render:function() {
+	        var projects = this.state.nameOfProjects.map(function(name){
+	                return (
+	                    React.createElement(Project, {
+	                        nameOfProject: name}
+	                    )
+	                );
+	        });
+	        return (
+	            React.createElement(Row, {className: "show-grid"}, 
+	                React.createElement(Panel, {collapsible: true, defaultExpanded: true, header: "Projects"}, 
+	                    React.createElement(ListGroup, {fill: true}, 
+	                        projects
+	                    ), 
+	                    React.createElement(Button, {bsStyle: "primary", bsSize: "small"}, "Add Project")
+	                )
+	            )
+	        );
+	    }
+	});
+	module.exports = List;
+
+/***/ },
+/* 369 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var ReactRouterBootstrap = __webpack_require__(372);
+	var Link = __webpack_require__(158).Link;
+	var ListGroupItemLink = ReactRouterBootstrap.ListGroupItemLink;
+	var Project = React.createClass({displayName: "Project",
+	    getInitialState:function() {
+	        return {
+	            name: ""
+	        };
+	    },
+	    componentWillMount:function(){
+	        this.setState({name:this.props.nameOfProject});
+	    },
+	    render:function() {
+	        return (
+	            React.createElement(ListGroupItemLink, {to: "project", params: {name:this.state.name}}, this.state.name)
+	        );
+	    }
+	});
+	module.exports = Project;
+
+
+/***/ },
+/* 370 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var Reflux=__webpack_require__(343);
+
+	var ProjectActions = Reflux.createActions([
+	    "load",
+	    "update",
+	    "add",
+	    "delete"
+	]);
+
+	module.exports = ProjectActions;
+
+
+/***/ },
+/* 371 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var projectAction = __webpack_require__(370);
+	var Reflux = __webpack_require__(343);
+	var $ = __webpack_require__(365);
+
+	var ProjectStore = Reflux.createStore({
+	    init: function(){
+	        this.listenTo(projectAction.load,this.onLoad)
+	    },
+	    onLoad: function () {
+	        var self = this;
+	        $.ajax({
+	            url:"project",
+	            method:"GET",
+	            dataType:"json",
+	            success:function(data){
+	                self.trigger(data);
+	            }
+	        });
+	    }
+
+	});
+	module.exports = ProjectStore;
+
+
+
+/***/ },
+/* 372 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	var _ButtonLink2 = __webpack_require__(373);
+
+	var _ButtonLink3 = _interopRequireDefault(_ButtonLink2);
+
+	exports.ButtonLink = _ButtonLink3['default'];
+
+	var _ListGroupItemLink2 = __webpack_require__(375);
+
+	var _ListGroupItemLink3 = _interopRequireDefault(_ListGroupItemLink2);
+
+	exports.ListGroupItemLink = _ListGroupItemLink3['default'];
+
+	var _MenuItemLink2 = __webpack_require__(376);
+
+	var _MenuItemLink3 = _interopRequireDefault(_MenuItemLink2);
+
+	exports.MenuItemLink = _MenuItemLink3['default'];
+
+	var _NavItemLink2 = __webpack_require__(377);
+
+	var _NavItemLink3 = _interopRequireDefault(_NavItemLink2);
+
+	exports.NavItemLink = _NavItemLink3['default'];
+
+	var _PageItemLink2 = __webpack_require__(378);
+
+	var _PageItemLink3 = _interopRequireDefault(_PageItemLink2);
+
+	exports.PageItemLink = _PageItemLink3['default'];
+
+	var _RouterOverlayTrigger2 = __webpack_require__(379);
+
+	var _RouterOverlayTrigger3 = _interopRequireDefault(_RouterOverlayTrigger2);
+
+	exports.RouterOverlayTrigger = _RouterOverlayTrigger3['default'];
+
+	var _ThumbnailLink2 = __webpack_require__(380);
+
+	var _ThumbnailLink3 = _interopRequireDefault(_ThumbnailLink2);
+
+	exports.ThumbnailLink = _ThumbnailLink3['default'];
+
+/***/ },
+/* 373 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactBootstrapLibButton = __webpack_require__(232);
+
+	var _reactBootstrapLibButton2 = _interopRequireDefault(_reactBootstrapLibButton);
+
+	var _LinkMixin = __webpack_require__(374);
+
+	var _LinkMixin2 = _interopRequireDefault(_LinkMixin);
+
+	var ButtonLink = _react2['default'].createClass({
+	  displayName: 'ButtonLink',
+
+	  mixins: [_LinkMixin2['default']],
+
+	  render: function render() {
+	    return _react2['default'].createElement(
+	      _reactBootstrapLibButton2['default'],
+	      _extends({}, this.getLinkProps(), { ref: 'button' }),
+	      this.props.children
+	    );
+	  }
+	});
+
+	exports['default'] = ButtonLink;
+	module.exports = exports['default'];
+
+/***/ },
+/* 374 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function isLeftClickEvent(event) {
+	  return event.button === 0;
+	}
+
+	function isModifiedEvent(event) {
+	  return !!(event.metaKey || event.altKey || event.ctrlKey || event.shiftKey);
+	}
+
+	exports['default'] = {
+	  propTypes: {
+	    active: _react2['default'].PropTypes.bool,
+	    activeClassName: _react2['default'].PropTypes.string.isRequired,
+	    disabled: _react2['default'].PropTypes.bool,
+	    to: _react2['default'].PropTypes.string.isRequired,
+	    params: _react2['default'].PropTypes.object,
+	    query: _react2['default'].PropTypes.object,
+	    onClick: _react2['default'].PropTypes.func
+	  },
+	  contextTypes: {
+	    router: _react2['default'].PropTypes.func.isRequired
+	  },
+
+	  getDefaultProps: function getDefaultProps() {
+	    return {
+	      activeClassName: 'active'
+	    };
+	  },
+
+	  /**
+	   * Returns props except those used by this Mixin
+	   * Gets "active" from router if needed.
+	   * Gets the value of the "href" attribute to use on the DOM element.
+	   * Sets "onClick" to "handleRouteTo".
+	   */
+	  getLinkProps: function getLinkProps() {
+	    var _props = this.props;
+	    var to = _props.to;
+	    var params = _props.params;
+	    var query = _props.query;
+
+	    var props = _objectWithoutProperties(_props, ['to', 'params', 'query']);
+
+	    if (this.props.active === undefined) {
+	      props.active = this.context.router.isActive(to, params, query);
+	    }
+
+	    props.href = this.context.router.makeHref(to, params, query);
+
+	    props.onClick = this.handleRouteTo;
+
+	    return props;
+	  },
+
+	  handleRouteTo: function handleRouteTo(event) {
+	    var allowTransition = true;
+	    var clickResult = undefined;
+
+	    if (this.props.disabled) {
+	      event.preventDefault();
+	      return;
+	    }
+
+	    if (this.props.onClick) {
+	      clickResult = this.props.onClick(event);
+	    }
+
+	    if (isModifiedEvent(event) || !isLeftClickEvent(event)) {
+	      return;
+	    }
+
+	    if (clickResult === false || event.defaultPrevented === true) {
+	      allowTransition = false;
+	    }
+
+	    event.preventDefault();
+
+	    if (allowTransition) {
+	      this.context.router.transitionTo(this.props.to, this.props.params, this.props.query);
+	    }
+	  }
+	};
+	module.exports = exports['default'];
+
+/***/ },
+/* 375 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactBootstrapLibListGroupItem = __webpack_require__(275);
+
+	var _reactBootstrapLibListGroupItem2 = _interopRequireDefault(_reactBootstrapLibListGroupItem);
+
+	var _LinkMixin = __webpack_require__(374);
+
+	var _LinkMixin2 = _interopRequireDefault(_LinkMixin);
+
+	var LinkGroupItemLink = _react2['default'].createClass({
+	  displayName: 'LinkGroupItemLink',
+
+	  mixins: [_LinkMixin2['default']],
+
+	  render: function render() {
+	    return _react2['default'].createElement(
+	      _reactBootstrapLibListGroupItem2['default'],
+	      _extends({}, this.getLinkProps(), { ref: 'listGroupItem' }),
+	      this.props.children
+	    );
+	  }
+	});
+
+	exports['default'] = LinkGroupItemLink;
+	module.exports = exports['default'];
+
+/***/ },
+/* 376 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactBootstrapLibMenuItem = __webpack_require__(277);
+
+	var _reactBootstrapLibMenuItem2 = _interopRequireDefault(_reactBootstrapLibMenuItem);
+
+	var _LinkMixin = __webpack_require__(374);
+
+	var _LinkMixin2 = _interopRequireDefault(_LinkMixin);
+
+	var MenuItemLink = _react2['default'].createClass({
+	  displayName: 'MenuItemLink',
+
+	  mixins: [_LinkMixin2['default']],
+
+	  render: function render() {
+	    var props = this.getLinkProps();
+	    delete props.onSelect; // this is done on the copy of this.props
+
+	    return _react2['default'].createElement(
+	      _reactBootstrapLibMenuItem2['default'],
+	      _extends({}, props, { ref: 'menuItem' }),
+	      this.props.children
+	    );
+	  }
+	});
+
+	exports['default'] = MenuItemLink;
+	module.exports = exports['default'];
+
+/***/ },
+/* 377 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactBootstrapLibNavItem = __webpack_require__(291);
+
+	var _reactBootstrapLibNavItem2 = _interopRequireDefault(_reactBootstrapLibNavItem);
+
+	var _LinkMixin = __webpack_require__(374);
+
+	var _LinkMixin2 = _interopRequireDefault(_LinkMixin);
+
+	var NavItemLink = _react2['default'].createClass({
+	  displayName: 'NavItemLink',
+
+	  mixins: [_LinkMixin2['default']],
+
+	  render: function render() {
+	    return _react2['default'].createElement(
+	      _reactBootstrapLibNavItem2['default'],
+	      _extends({}, this.getLinkProps(), { ref: 'navItem' }),
+	      this.props.children
+	    );
+	  }
+	});
+
+	exports['default'] = NavItemLink;
+	module.exports = exports['default'];
+
+/***/ },
+/* 378 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactBootstrapLibPageItem = __webpack_require__(324);
+
+	var _reactBootstrapLibPageItem2 = _interopRequireDefault(_reactBootstrapLibPageItem);
+
+	var _LinkMixin = __webpack_require__(374);
+
+	var _LinkMixin2 = _interopRequireDefault(_LinkMixin);
+
+	var PageItemLink = _react2['default'].createClass({
+	  displayName: 'PageItemLink',
+
+	  mixins: [_LinkMixin2['default']],
+
+	  render: function render() {
+	    return _react2['default'].createElement(
+	      _reactBootstrapLibPageItem2['default'],
+	      _extends({}, this.getLinkProps(), { ref: 'pageItem' }),
+	      this.props.children
+	    );
+	  }
+	});
+
+	exports['default'] = PageItemLink;
+	module.exports = exports['default'];
+
+/***/ },
+/* 379 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactBootstrapLibOverlayTrigger = __webpack_require__(296);
+
+	var _reactBootstrapLibOverlayTrigger2 = _interopRequireDefault(_reactBootstrapLibOverlayTrigger);
+
+	exports['default'] = _reactBootstrapLibOverlayTrigger2['default'].withContext({
+	  router: _react2['default'].PropTypes.func
+	});
+	module.exports = exports['default'];
+
+/***/ },
+/* 380 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactBootstrapLibThumbnail = __webpack_require__(338);
+
+	var _reactBootstrapLibThumbnail2 = _interopRequireDefault(_reactBootstrapLibThumbnail);
+
+	var _LinkMixin = __webpack_require__(374);
+
+	var _LinkMixin2 = _interopRequireDefault(_LinkMixin);
+
+	var ThumbnailLink = _react2['default'].createClass({
+	  displayName: 'ThumbnailLink',
+
+	  mixins: [_LinkMixin2['default']],
+
+	  render: function render() {
+	    return _react2['default'].createElement(
+	      _reactBootstrapLibThumbnail2['default'],
+	      _extends({}, this.getLinkProps(), { ref: 'thumbnail' }),
+	      this.props.children
+	    );
+	  }
+	});
+
+	exports['default'] = ThumbnailLink;
+	module.exports = exports['default'];
 
 /***/ }
 /******/ ]);
