@@ -5,7 +5,7 @@ var Button = ReactBootstrap.Button;
 var Row = ReactBootstrap.Row;
 var Col = ReactBootstrap.Col;
 var Router = require('react-router');
-var ProjectAction = require('../../actions/projectsAction');
+var ProjectAction = require('../../actions/projectsListAction');
 var addProjectForm = React.createClass({
     mixins:[Router.Navigation],
     getInitialState(){
@@ -34,7 +34,7 @@ var addProjectForm = React.createClass({
             this.setState({errorText:"Description input is empty"});
             return;
         }
-        ProjectAction.create({name:this.state.name,descr:this.state.descr});
+        ProjectAction.create({name:this.state.name,description:this.state.descr});
         this.transitionTo('manager');
     },
     render(){

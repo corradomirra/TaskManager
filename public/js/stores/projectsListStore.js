@@ -1,4 +1,4 @@
-var projectAction = require('../actions/projectsAction');
+var projectAction = require('../actions/projectsListAction');
 var Reflux = require('reflux');
 var $ = require('jquery');
 

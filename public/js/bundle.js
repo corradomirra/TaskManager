@@ -46083,20 +46083,28 @@
 	        ProjectAction.load();
 	    },
 	    onLoad:function(data){
-	        this.setState({nameOfProjects:data.names});
+	        var mas = this.state.nameOfProjects;
+	        if(!this.state.nameOfProjects.length) {
+	            this.setState({nameOfProjects: data.names});
+	        } else {
+	            mas.push(data.names);
+	            this.setState({nameOfProjects: mas});
+	        }
 	    },
 	    onCreate:function(e){
 	        e.preventDefault();
 	        this.transitionTo('addProject');
 	    },
 	    render:function() {
-	        var projects = this.state.nameOfProjects.map(function(name){
+	        if(this.state.nameOfProjects.length) {
+	            var projects = this.state.nameOfProjects.map(function (name) {
 	                return (
 	                    React.createElement(Project, {
 	                        nameOfProject: name}
-	                    )
+	                        )
 	                );
-	        });
+	            });
+	        }
 	        return (
 	            React.createElement(Row, {className: "show-grid"}, 
 	                React.createElement(Panel, {collapsible: true, defaultExpanded: true, header: "Projects"}, 
@@ -46677,7 +46685,7 @@
 	            this.setState({errorText:"Description input is empty"});
 	            return;
 	        }
-	        ProjectAction.create({name:this.state.name,descr:this.state.descr});
+	        ProjectAction.create({name:this.state.name,description:this.state.descr});
 	        this.transitionTo('manager');
 	    },
 	    render:function(){

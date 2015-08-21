@@ -1,9 +1,9 @@
 var React = require('react');
 var Reflux = require('reflux');
 var ReactBootstrap = require('react-bootstrap');
-var Project = require('./project.jsx');
-var ProjectAction = require('../../actions/projectsAction');
-var ProjectStore = require('../../stores/projectsStore');
+var Project = require('./projectItem');
+var ProjectAction = require('../../actions/projectsListAction');
+var ProjectStore = require('../../stores/projectsListStore');
 var Router = require('react-router');
 var Row = ReactBootstrap.Row;
 var Button = ReactBootstrap.Button;
@@ -21,20 +21,28 @@ var List = React.createClass({
         ProjectAction.load();
     },
     onLoad(data){
-        this.setState({nameOfProjects:data.names});
+        var mas = this.state.nameOfProjects;
+        if(!this.state.nameOfProjects.length) {
+            this.setState({nameOfProjects: data.names});
+        } else {
+            mas.push(data.names);
+            this.setState({nameOfProjects: mas});
+        }
     },
     onCreate(e){
         e.preventDefault();
         this.transitionTo('addProject');
     },
     render() {
-        var projects = this.state.nameOfProjects.map(function(name){
+        if(this.state.nameOfProjects.length) {
+            var projects = this.state.nameOfProjects.map(function (name) {
                 return (
                     <Project
-                        nameOfProject = {name}
-                    />
+                        nameOfProject={name}
+                        />
                 );
-        });
+            });
+        }
         return (
             <Row className='show-grid'>
                 <Panel collapsible defaultExpanded header='Projects'>
