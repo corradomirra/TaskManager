@@ -12,6 +12,7 @@ var Col = ReactBootstrap.Col;
 var RouteHandler = Router.RouteHandler;
 var Panel = ReactBootstrap.Panel;
 var ListGroup = ReactBootstrap.ListGroup;
+var ListGroupLink = ReactRouterBootstrap.ListGroupItemLink;
 var Button = ReactBootstrap.Button;
 
 
@@ -51,26 +52,27 @@ var UI = React.createClass({
         if(this.state.nameOfTasks.length) {
             var tasks = this.state.nameOfTasks.map(function (name) {
                 return (
-                    <TaskItem
-                        nameOfProject={name}
-                        to ={"task"}/>
+                    <ListGroupItemLink params={{taskName:name, name:this.state.name}} to ={"task"}>
+                        {name}
+                    </ListGroupItemLink>
                 );
-            });
+            }.bind(this));
         }
         if(this.state.nameOfDevelopers.length) {
             var developers = this.state.nameOfDevelopers.map(function (name) {
                 return (
-                    <TaskItem
-                        nameOfProject={name}
-                        to ={"developer"}/>
+                    <ListGroupItemLink params={{devName:name, name:this.state.name}} to ={"developer"}>
+                        {name}
+                    </ListGroupItemLink>
                 );
-            });
+            }.bind(this));
         }
         return(
             <Row>
                 <Col md={6}>
-                    <Panel header={this.state.name} bsStyle='info'>
-                        {this.state.description}
+                    <Panel header={"Project: " + this.state.name} bsStyle='info'>
+
+                        {"Description: " + this.state.description}
                     </Panel>
                     <RouteHandler/>
                 </Col>

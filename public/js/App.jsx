@@ -13,8 +13,8 @@ var routes = (
         <DefaultRoute name="login" handler={Login}/>
         <Route name="manager" path="/manager" handler={ManagerUI}>
             <Route name="project" path="project/:name" handler = {ProjectUI}>
-                <Route name = "task" path="task/:name" handler = {Search}/>
-                <Route name = "developer" path="developer/:name" handler = {Search}/>
+                <Route name = "task" path="task/:taskName" handler = {Search}/>
+                <Route name = "developer" path="developer/:devName" handler = {Search}/>
             </Route>
             <Route name = "addProject" path = "addProject" handler = {AddProject}/>
         </Route>

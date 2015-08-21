@@ -59,8 +59,8 @@
 	        React.createElement(DefaultRoute, {name: "login", handler: Login}), 
 	        React.createElement(Route, {name: "manager", path: "/manager", handler: ManagerUI}, 
 	            React.createElement(Route, {name: "project", path: "project/:name", handler: ProjectUI}, 
-	                React.createElement(Route, {name: "task", path: "task/:name", handler: Search}), 
-	                React.createElement(Route, {name: "developer", path: "developer/:name", handler: Search})
+	                React.createElement(Route, {name: "task", path: "task/:taskName", handler: Search}), 
+	                React.createElement(Route, {name: "developer", path: "developer/:devName", handler: Search})
 	            ), 
 	            React.createElement(Route, {name: "addProject", path: "addProject", handler: AddProject})
 	        )
@@ -46745,6 +46745,7 @@
 	var RouteHandler = Router.RouteHandler;
 	var Panel = ReactBootstrap.Panel;
 	var ListGroup = ReactBootstrap.ListGroup;
+	var ListGroupLink = ReactRouterBootstrap.ListGroupItemLink;
 	var Button = ReactBootstrap.Button;
 
 
@@ -46784,26 +46785,27 @@
 	        if(this.state.nameOfTasks.length) {
 	            var tasks = this.state.nameOfTasks.map(function (name) {
 	                return (
-	                    React.createElement(TaskItem, {
-	                        nameOfProject: name, 
-	                        to: "task"})
+	                    React.createElement(ListGroupItemLink, {params: {taskName:name, name:this.state.name}, to: "task"}, 
+	                        name
+	                    )
 	                );
-	            });
+	            }.bind(this));
 	        }
 	        if(this.state.nameOfDevelopers.length) {
 	            var developers = this.state.nameOfDevelopers.map(function (name) {
 	                return (
-	                    React.createElement(TaskItem, {
-	                        nameOfProject: name, 
-	                        to: "developer"})
+	                    React.createElement(ListGroupItemLink, {params: {devName:name, name:this.state.name}, to: "developer"}, 
+	                        name
+	                    )
 	                );
-	            });
+	            }.bind(this));
 	        }
 	        return(
 	            React.createElement(Row, null, 
 	                React.createElement(Col, {md: 6}, 
-	                    React.createElement(Panel, {header: this.state.name, bsStyle: "info"}, 
-	                        this.state.description
+	                    React.createElement(Panel, {header: "Project: " + this.state.name, bsStyle: "info"}, 
+
+	                        "Description: " + this.state.description
 	                    ), 
 	                    React.createElement(RouteHandler, null)
 	                ), 
