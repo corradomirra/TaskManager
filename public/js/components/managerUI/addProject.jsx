@@ -22,7 +22,7 @@ var addProjectForm = React.createClass({
         this.setState({descr:this.refs.descr.getValue()})
     },
     onClose(){
-        this.transitionTo('manager');
+        this.goBack();
     },
     onCreate(e){
         e.preventDefault();

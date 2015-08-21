@@ -39,6 +39,7 @@ var List = React.createClass({
                 return (
                     <Project
                         nameOfProject={name}
+                        to ={"project"}
                         />
                 );
             });

@@ -32,7 +32,6 @@ router.get('/project',function(req,res,next){
         if(!projects.length){
             res.send({names:[]});
         } else{
-            console.log(projects);
             for(var i = 0; i<projects.length; i++){
                 names.push(projects[i].name);
             }
@@ -55,6 +54,23 @@ router.post('/project',function(req,res,next){
     });
 
 });
+
+router.get('/project/:name',function(req,res,next){
+    Projects.findOne({name:req.params.name},function(err,data){
+       if(err) console.log(err);
+        var name = data.name;
+        var descr = data.description;
+        res.send({
+            name:name,
+            description:descr,
+            tasks:["asdasd","asdad1","ae23","qwefaf"],
+            developers:["Mike","Tedd","Barny","Marshal"]
+        });
+    });
+
+});
+
+
 
 
 module.exports = router;

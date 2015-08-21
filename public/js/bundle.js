@@ -47,9 +47,10 @@
 	var React = __webpack_require__(1);
 	var App = __webpack_require__(157);
 	var Login = __webpack_require__(342);
-	var Search = __webpack_require__(366);
+	var ProjectUI = __webpack_require__(382);
 	var ManagerUI = __webpack_require__(367);
 	var AddProject = __webpack_require__(381);
+	var Search = __webpack_require__(366);
 	var Router = __webpack_require__(158);
 	var $__0=       Router,Route=$__0.Route,DefaultRoute=$__0.DefaultRoute,RouteHandler=$__0.RouteHandler,Link=$__0.Link;
 
@@ -57,12 +58,14 @@
 	    React.createElement(Route, {handler: App}, 
 	        React.createElement(DefaultRoute, {name: "login", handler: Login}), 
 	        React.createElement(Route, {name: "manager", path: "/manager", handler: ManagerUI}, 
-	            React.createElement(Route, {name: "project", path: "project/:name", handler: Search}), 
+	            React.createElement(Route, {name: "project", path: "project/:name", handler: ProjectUI}, 
+	                React.createElement(Route, {name: "task", path: "task/:name", handler: Search}), 
+	                React.createElement(Route, {name: "developer", path: "developer/:name", handler: Search})
+	            ), 
 	            React.createElement(Route, {name: "addProject", path: "addProject", handler: AddProject})
 	        )
 	    )
 	);
-
 	if (typeof window !== "undefined") {
 	    window.onload = function() {
 	        Router.run(routes, function (Handler) {
@@ -46100,7 +46103,8 @@
 	            var projects = this.state.nameOfProjects.map(function (name) {
 	                return (
 	                    React.createElement(Project, {
-	                        nameOfProject: name}
+	                        nameOfProject: name, 
+	                        to: "project"}
 	                        )
 	                );
 	            });
@@ -46137,8 +46141,13 @@
 	        this.setState({name:this.props.nameOfProject});
 	    },
 	    render:function() {
+	        var bsStyle = "primary";
+	        if(this.props.style == "success"){
+	            bsStyle = "success";
+	        }
+
 	        return (
-	            React.createElement(ListGroupItemLink, {to: "project", params: {name:this.state.name}}, this.state.name)
+	            React.createElement(ListGroupItemLink, {to: this.props.to, params: {name:this.state.name}}, this.state.name)
 	        );
 	    }
 	});
@@ -46673,7 +46682,7 @@
 	        this.setState({descr:this.refs.descr.getValue()})
 	    },
 	    onClose:function(){
-	        this.transitionTo('manager');
+	        this.goBack();
 	    },
 	    onCreate:function(e){
 	        e.preventDefault();
@@ -46717,6 +46726,153 @@
 	});
 
 	module.exports = addProjectForm;
+
+/***/ },
+/* 382 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var Reflux = __webpack_require__(343);
+	var ReactBootstrap = __webpack_require__(197);
+	var ReactRouterBootstrap = __webpack_require__(370);
+	var ProjectUIAction = __webpack_require__(383);
+	var ProjectUIStore = __webpack_require__(384);
+	var ListGroupItemLink = ReactRouterBootstrap.ListGroupItemLink;
+	var Router = __webpack_require__(158);
+	var TaskItem = __webpack_require__(369);
+	var Row = ReactBootstrap.Row;
+	var Col = ReactBootstrap.Col;
+	var RouteHandler = Router.RouteHandler;
+	var Panel = ReactBootstrap.Panel;
+	var ListGroup = ReactBootstrap.ListGroup;
+	var Button = ReactBootstrap.Button;
+
+
+	var UI = React.createClass({displayName: "UI",
+	    mixins:[Router.Navigation,Reflux.ListenerMixin],
+	    getInitialState:function(){
+	        return{
+	            nameOfTasks:[],
+	            nameOfDevelopers:[],
+	            description:"",
+	            name:""
+	        }
+	    },
+	    componentWillMount:function(){
+	        this.listenTo(ProjectUIStore,this.onLoad);
+	        ProjectUIAction.load(this.props.params.name);
+	    },
+	    componentWillReceiveProps:function(nextProps){
+	        ProjectUIAction.load(nextProps.params.name);
+	    },
+	    onLoad:function(data){
+	        this.setState({nameOfTasks:data.tasks,
+	            nameOfDevelopers:data.developers,
+	            description:data.description,
+	            name:data.name
+	        });
+
+	    },
+	    onCreateDeveloper:function(){
+	        this.transitionTo('developer');
+
+	    },
+	    onCreateTask:function(){
+	        this.transitionTo('task');
+	    },
+	    render:function(){
+	        if(this.state.nameOfTasks.length) {
+	            var tasks = this.state.nameOfTasks.map(function (name) {
+	                return (
+	                    React.createElement(TaskItem, {
+	                        nameOfProject: name, 
+	                        to: "task"})
+	                );
+	            });
+	        }
+	        if(this.state.nameOfDevelopers.length) {
+	            var developers = this.state.nameOfDevelopers.map(function (name) {
+	                return (
+	                    React.createElement(TaskItem, {
+	                        nameOfProject: name, 
+	                        to: "developer"})
+	                );
+	            });
+	        }
+	        return(
+	            React.createElement(Row, null, 
+	                React.createElement(Col, {md: 6}, 
+	                    React.createElement(Panel, {header: this.state.name, bsStyle: "info"}, 
+	                        this.state.description
+	                    ), 
+	                    React.createElement(RouteHandler, null)
+	                ), 
+	                React.createElement(Col, {md: 3}, 
+	                    React.createElement(Panel, {collapsible: true, defaultExpanded: true, bsStyle: "success", header: "Tasks"}, 
+	                        React.createElement(ListGroup, {fill: true}, 
+	                            tasks
+	                        ), 
+	                        React.createElement(Button, {bsStyle: "primary", bsSize: "small", onClick: this.onCreateTask}, "add Task")
+	                    )
+	                ), 
+	                React.createElement(Col, {md: 3}, 
+	                    React.createElement(Panel, {collapsible: true, defaultExpanded: true, bsStyle: "success", header: "Developers"}, 
+	                        React.createElement(ListGroup, {fill: true}, 
+	                            developers
+	                        ), 
+	                        React.createElement(Button, {bsStyle: "primary", bsSize: "small", onClick: this.onCreateDeveloper}, "add Developer")
+	                    )
+	                )
+	            )
+	        )
+	    }
+	});
+	module.exports = UI;
+
+/***/ },
+/* 383 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var Reflux=__webpack_require__(343);
+
+	var ProjectUIActions = Reflux.createActions([
+	    "load",
+	    "update",
+	    "create",
+	    "delete"
+	]);
+
+	module.exports = ProjectUIActions;
+
+
+/***/ },
+/* 384 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var projectUIAction = __webpack_require__(383);
+	var Reflux = __webpack_require__(343);
+	var $ = __webpack_require__(365);
+
+	var ProjectUIStore = Reflux.createStore({
+	    init: function(){
+	        this.listenTo(projectUIAction.load,this.onLoad);
+	    },
+	    onLoad: function (name) {
+	        var url = "/project/" + name;
+	        var self = this;
+	        $.ajax({
+	            url:url,
+	            method:"GET",
+	            dataType:"json",
+	            success:function(data){
+	                self.trigger(data);
+	            }
+	        });
+	    }
+
+	});
+	module.exports = ProjectUIStore;
+
 
 /***/ }
 /******/ ]);
