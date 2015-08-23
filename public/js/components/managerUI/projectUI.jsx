@@ -52,7 +52,7 @@ var UI = React.createClass({
         if(this.state.nameOfTasks.length) {
             var tasks = this.state.nameOfTasks.map(function (name) {
                 return (
-                    <ListGroupItemLink params={{taskName:name, name:this.state.name}} to ={"task"}>
+                    <ListGroupItemLink bsStyle="success" params={{taskName:name, name:this.state.name}}  to ={"task"}>
                         {name}
                     </ListGroupItemLink>
                 );
@@ -61,35 +61,35 @@ var UI = React.createClass({
         if(this.state.nameOfDevelopers.length) {
             var developers = this.state.nameOfDevelopers.map(function (name) {
                 return (
-                    <ListGroupItemLink params={{devName:name, name:this.state.name}} to ={"developer"}>
+                    <ListGroupItemLink bsStyle="success" params={{devName:name, name:this.state.name}} to ={"developer"}>
                         {name}
                     </ListGroupItemLink>
                 );
             }.bind(this));
         }
+
         return(
             <Row>
                 <Col md={6}>
-                    <Panel header={"Project: " + this.state.name} bsStyle='info'>
-
-                        {"Description: " + this.state.description}
+                    <Panel header={<h2><strong>Project:   </strong> {this.state.name}</h2>} bsStyle='info'>
+                        <strong>Description:   </strong> {this.state.description}
                     </Panel>
                     <RouteHandler/>
                 </Col>
                 <Col md={3}>
-                    <Panel collapsible defaultExpanded bsStyle='success' header='Tasks'>
+                    <Panel collapsible defaultExpanded bsStyle='info' header='Tasks'>
                         <ListGroup fill>
                             {tasks}
                         </ListGroup>
-                        <Button bsStyle='primary' bsSize="small" onClick={this.onCreateTask}>add Task</Button>
+                        <Button  bsSize="small" onClick={this.onCreateTask}>add Task</Button>
                     </Panel>
                 </Col>
                 <Col md={3}>
-                    <Panel collapsible defaultExpanded  bsStyle='success' header='Developers'>
+                    <Panel collapsible defaultExpanded  bsStyle='info' header='Developers'>
                         <ListGroup fill>
                             {developers}
                         </ListGroup>
-                        <Button bsStyle='primary' bsSize="small" onClick={this.onCreateDeveloper}>add Developer</Button>
+                        <Button  bsSize="small" onClick={this.onCreateDeveloper}>add Developer</Button>
                     </Panel>
                 </Col>
             </Row>

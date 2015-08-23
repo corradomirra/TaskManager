@@ -1,11 +1,16 @@
 var Managers = require("./models/managers");
 var Projects = require("./models/projects");
+Projects.remove({},function(err,data){
+    console.log(err);
+    console.log(data);
 
-var proj = [{name:"simple life",description:"project in medical sphere"},
-    {name:"Stalker",description:"game in Chernobil"},{name:"World of Warcraft",description:"fantasy game. MMORPG"}];
-for(var i = 0; i< proj.length;i++){
+});
 
-}
+//var proj = [{name:"simple life",description:"project in medical sphere"},
+//    {name:"Stalker",description:"game in Chernobil"},{name:"World of Warcraft",description:"fantasy game. MMORPG"}];
+//for(var i = 0; i< proj.length;i++){
+//
+//}
 
 //var user = {
 //    username:"manager",
@@ -17,4 +22,5 @@ for(var i = 0; i< proj.length;i++){
 //   console.log(newManager);
 //
 //});
+
 

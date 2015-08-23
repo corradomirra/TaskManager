@@ -1,8 +1,7 @@
 var mongoose = require('../libs/mongoose'),
     Schema = mongoose.Schema,
     autoIncrement = require('mongoose-auto-increment'),
-    tasks = require('./tasks'),
-    developers = require('./developers');
+    comments = require('./comments');
 
 var schema = new Schema({
     name: {
@@ -14,11 +13,11 @@ var schema = new Schema({
         type: String,
         required: true
     },
-    tasks:[tasks],
-    developers:[developers]
+    comments:[comments]
 });
 
 
-schema.plugin(autoIncrement.plugin, 'Projects');
+schema.plugin(autoIncrement.plugin, 'Tasks');
 
-module.exports = mongoose.model('Projects', schema);
+module.exports = mongoose.model('Tasks', schema);
+

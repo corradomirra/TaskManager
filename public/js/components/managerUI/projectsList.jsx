@@ -21,13 +21,13 @@ var List = React.createClass({
         ProjectAction.load();
     },
     onLoad(data){
-        var mas = this.state.nameOfProjects;
-        if(!this.state.nameOfProjects.length) {
-            this.setState({nameOfProjects: data.names});
-        } else {
-            mas.push(data.names);
-            this.setState({nameOfProjects: mas});
-        }
+            var mas = this.state.nameOfProjects;
+            if(typeof data.names == "string"){
+                mas.push(data.names);
+                this.setState({nameOfProjects: mas});
+            }
+            else
+                this.setState({nameOfProjects: data.names});
     },
     onCreate(e){
         e.preventDefault();

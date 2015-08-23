@@ -42,8 +42,8 @@ router.get('/project',function(req,res,next){
 });
 router.post('/project',function(req,res,next){
     var project = {};
-    project.tasks = [{}];
-    project.developers = [{}];
+    project.tasks = undefined;
+    project.developers = undefined;
     project.name = req.body.name;
     project.description = req.body.description;
     var newProject = new Projects(project);

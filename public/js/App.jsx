@@ -3,7 +3,7 @@ var App = require("components/app");
 var Login = require("components/login/login");
 var ProjectUI = require("components/managerUI/projectUI");
 var ManagerUI = require('components/managerUI/managerUI');
-var AddProject = require('components/managerUI/addProject');
+var AddEntity = require('components/managerUI/addEntity');
 var Search = require('components/search');
 var Router = require('react-router');
 var { Route, DefaultRoute, RouteHandler, Link } = Router;
@@ -16,7 +16,7 @@ var routes = (
                 <Route name = "task" path="task/:taskName" handler = {Search}/>
                 <Route name = "developer" path="developer/:devName" handler = {Search}/>
             </Route>
-            <Route name = "addProject" path = "addProject" handler = {AddProject}/>
+            <Route name = "addProject" path = "addProject" handler = {AddEntity}/>
         </Route>
     </Route>
 );

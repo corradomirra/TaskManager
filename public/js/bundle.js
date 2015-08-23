@@ -47,10 +47,10 @@
 	var React = __webpack_require__(1);
 	var App = __webpack_require__(157);
 	var Login = __webpack_require__(342);
-	var ProjectUI = __webpack_require__(382);
-	var ManagerUI = __webpack_require__(367);
-	var AddProject = __webpack_require__(381);
-	var Search = __webpack_require__(366);
+	var ProjectUI = __webpack_require__(366);
+	var ManagerUI = __webpack_require__(379);
+	var AddEntity = __webpack_require__(383);
+	var Search = __webpack_require__(384);
 	var Router = __webpack_require__(158);
 	var $__0=       Router,Route=$__0.Route,DefaultRoute=$__0.DefaultRoute,RouteHandler=$__0.RouteHandler,Link=$__0.Link;
 
@@ -62,7 +62,7 @@
 	                React.createElement(Route, {name: "task", path: "task/:taskName", handler: Search}), 
 	                React.createElement(Route, {name: "developer", path: "developer/:devName", handler: Search})
 	            ), 
-	            React.createElement(Route, {name: "addProject", path: "addProject", handler: AddProject})
+	            React.createElement(Route, {name: "addProject", path: "addProject", handler: AddEntity})
 	        )
 	    )
 	);
@@ -46000,162 +46000,107 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
-
-	var Search = React.createClass({displayName: "Search",
-	    getInitialState:function() {
-	        return {
-	            search: ""
-	        };
-	    },
-	    componentWillReceiveProps:function(nextProps){
-	      this.setState({search:nextProps.params.name});
-	    },
-	    render:function() {
-	        return (
-	            React.createElement("div", {className: "search-component"}, 
-	                React.createElement("input", {type: "text", onChange: this.changeSearch}), 
-	                React.createElement("p", null, React.createElement("span", null, "You are searching for: ", this.state.search))
-	            )
-	        );
-	    },
-	    componentWillMount:function(){
-	        this.setState({search: this.props.params.name});
-
-	    },
-	    changeSearch:function(event) {
-	        var text = event.target.value;
-
-	        this.setState({
-	            search: text
-	        });
-	    }
-	});
-
-	module.exports = Search;
-
-/***/ },
-/* 367 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var React = __webpack_require__(1);
-	var ReactRouter = __webpack_require__(158);
+	var Reflux = __webpack_require__(343);
 	var ReactBootstrap = __webpack_require__(197);
-	var RouteHandler = ReactRouter.RouteHandler;
-	var ProjectList = __webpack_require__(368);
+	var ReactRouterBootstrap = __webpack_require__(367);
+	var ProjectUIAction = __webpack_require__(376);
+	var ProjectUIStore = __webpack_require__(377);
+	var ListGroupItemLink = ReactRouterBootstrap.ListGroupItemLink;
+	var Router = __webpack_require__(158);
+	var TaskItem = __webpack_require__(378);
 	var Row = ReactBootstrap.Row;
 	var Col = ReactBootstrap.Col;
+	var RouteHandler = Router.RouteHandler;
+	var Panel = ReactBootstrap.Panel;
+	var ListGroup = ReactBootstrap.ListGroup;
+	var ListGroupLink = ReactRouterBootstrap.ListGroupItemLink;
+	var Button = ReactBootstrap.Button;
+
 
 	var UI = React.createClass({displayName: "UI",
+	    mixins:[Router.Navigation,Reflux.ListenerMixin],
+	    getInitialState:function(){
+	        return{
+	            nameOfTasks:[],
+	            nameOfDevelopers:[],
+	            description:"",
+	            name:""
+	        }
+	    },
+	    componentWillMount:function(){
+	        this.listenTo(ProjectUIStore,this.onLoad);
+	        ProjectUIAction.load(this.props.params.name);
+	    },
+	    componentWillReceiveProps:function(nextProps){
+	        ProjectUIAction.load(nextProps.params.name);
+	    },
+	    onLoad:function(data){
+	        this.setState({nameOfTasks:data.tasks,
+	            nameOfDevelopers:data.developers,
+	            description:data.description,
+	            name:data.name
+	        });
+
+	    },
+	    onCreateDeveloper:function(){
+	        this.transitionTo('developer');
+
+	    },
+	    onCreateTask:function(){
+	        this.transitionTo('task');
+	    },
 	    render:function(){
+	        if(this.state.nameOfTasks.length) {
+	            var tasks = this.state.nameOfTasks.map(function (name) {
+	                return (
+	                    React.createElement(ListGroupItemLink, {bsStyle: "success", params: {taskName:name, name:this.state.name}, to: "task"}, 
+	                        name
+	                    )
+	                );
+	            }.bind(this));
+	        }
+	        if(this.state.nameOfDevelopers.length) {
+	            var developers = this.state.nameOfDevelopers.map(function (name) {
+	                return (
+	                    React.createElement(ListGroupItemLink, {bsStyle: "success", params: {devName:name, name:this.state.name}, to: "developer"}, 
+	                        name
+	                    )
+	                );
+	            }.bind(this));
+	        }
+
 	        return(
 	            React.createElement(Row, null, 
-	                React.createElement(Col, {md: 1}), 
-	                React.createElement(Col, {md: 3}, React.createElement(ProjectList, null)), 
-	                React.createElement(Col, {md: 8}, React.createElement(RouteHandler, null))
+	                React.createElement(Col, {md: 6}, 
+	                    React.createElement(Panel, {header: React.createElement("h2", null, React.createElement("strong", null, "Project:   "), " ", this.state.name), bsStyle: "info"}, 
+	                        React.createElement("strong", null, "Description:   "), " ", this.state.description
+	                    ), 
+	                    React.createElement(RouteHandler, null)
+	                ), 
+	                React.createElement(Col, {md: 3}, 
+	                    React.createElement(Panel, {collapsible: true, defaultExpanded: true, bsStyle: "info", header: "Tasks"}, 
+	                        React.createElement(ListGroup, {fill: true}, 
+	                            tasks
+	                        ), 
+	                        React.createElement(Button, {bsSize: "small", onClick: this.onCreateTask}, "add Task")
+	                    )
+	                ), 
+	                React.createElement(Col, {md: 3}, 
+	                    React.createElement(Panel, {collapsible: true, defaultExpanded: true, bsStyle: "info", header: "Developers"}, 
+	                        React.createElement(ListGroup, {fill: true}, 
+	                            developers
+	                        ), 
+	                        React.createElement(Button, {bsSize: "small", onClick: this.onCreateDeveloper}, "add Developer")
+	                    )
+	                )
 	            )
 	        )
 	    }
 	});
-
 	module.exports = UI;
 
 /***/ },
-/* 368 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var React = __webpack_require__(1);
-	var Reflux = __webpack_require__(343);
-	var ReactBootstrap = __webpack_require__(197);
-	var Project = __webpack_require__(369);
-	var ProjectAction = __webpack_require__(379);
-	var ProjectStore = __webpack_require__(380);
-	var Router = __webpack_require__(158);
-	var Row = ReactBootstrap.Row;
-	var Button = ReactBootstrap.Button;
-	var Panel = ReactBootstrap.Panel;
-	var ListGroup = ReactBootstrap.ListGroup;
-	var List = React.createClass({displayName: "List",
-	    mixins:[Reflux.ListenerMixin,Router.Navigation],
-	    getInitialState:function(){
-	        return {
-	            nameOfProjects:[]
-	        }
-	    },
-	    componentWillMount:function(){
-	        this.listenTo(ProjectStore,this.onLoad);
-	        ProjectAction.load();
-	    },
-	    onLoad:function(data){
-	        var mas = this.state.nameOfProjects;
-	        if(!this.state.nameOfProjects.length) {
-	            this.setState({nameOfProjects: data.names});
-	        } else {
-	            mas.push(data.names);
-	            this.setState({nameOfProjects: mas});
-	        }
-	    },
-	    onCreate:function(e){
-	        e.preventDefault();
-	        this.transitionTo('addProject');
-	    },
-	    render:function() {
-	        if(this.state.nameOfProjects.length) {
-	            var projects = this.state.nameOfProjects.map(function (name) {
-	                return (
-	                    React.createElement(Project, {
-	                        nameOfProject: name, 
-	                        to: "project"}
-	                        )
-	                );
-	            });
-	        }
-	        return (
-	            React.createElement(Row, {className: "show-grid"}, 
-	                React.createElement(Panel, {collapsible: true, defaultExpanded: true, header: "Projects"}, 
-	                    React.createElement(ListGroup, {fill: true}, 
-	                        projects
-	                    ), 
-	                    React.createElement(Button, {bsStyle: "primary", bsSize: "small", onClick: this.onCreate}, "Add Project")
-	                )
-	            )
-	        );
-	    }
-	});
-	module.exports = List;
-
-/***/ },
-/* 369 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var React = __webpack_require__(1);
-	var ReactRouterBootstrap = __webpack_require__(370);
-	var Link = __webpack_require__(158).Link;
-	var ListGroupItemLink = ReactRouterBootstrap.ListGroupItemLink;
-	var Project = React.createClass({displayName: "Project",
-	    getInitialState:function() {
-	        return {
-	            name: ""
-	        };
-	    },
-	    componentWillMount:function(){
-	        this.setState({name:this.props.nameOfProject});
-	    },
-	    render:function() {
-	        var bsStyle = "primary";
-	        if(this.props.style == "success"){
-	            bsStyle = "success";
-	        }
-
-	        return (
-	            React.createElement(ListGroupItemLink, {to: this.props.to, params: {name:this.state.name}}, this.state.name)
-	        );
-	    }
-	});
-	module.exports = Project;
-
-
-/***/ },
-/* 370 */
+/* 367 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -46166,50 +46111,50 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _ButtonLink2 = __webpack_require__(371);
+	var _ButtonLink2 = __webpack_require__(368);
 
 	var _ButtonLink3 = _interopRequireDefault(_ButtonLink2);
 
 	exports.ButtonLink = _ButtonLink3['default'];
 
-	var _ListGroupItemLink2 = __webpack_require__(373);
+	var _ListGroupItemLink2 = __webpack_require__(370);
 
 	var _ListGroupItemLink3 = _interopRequireDefault(_ListGroupItemLink2);
 
 	exports.ListGroupItemLink = _ListGroupItemLink3['default'];
 
-	var _MenuItemLink2 = __webpack_require__(374);
+	var _MenuItemLink2 = __webpack_require__(371);
 
 	var _MenuItemLink3 = _interopRequireDefault(_MenuItemLink2);
 
 	exports.MenuItemLink = _MenuItemLink3['default'];
 
-	var _NavItemLink2 = __webpack_require__(375);
+	var _NavItemLink2 = __webpack_require__(372);
 
 	var _NavItemLink3 = _interopRequireDefault(_NavItemLink2);
 
 	exports.NavItemLink = _NavItemLink3['default'];
 
-	var _PageItemLink2 = __webpack_require__(376);
+	var _PageItemLink2 = __webpack_require__(373);
 
 	var _PageItemLink3 = _interopRequireDefault(_PageItemLink2);
 
 	exports.PageItemLink = _PageItemLink3['default'];
 
-	var _RouterOverlayTrigger2 = __webpack_require__(377);
+	var _RouterOverlayTrigger2 = __webpack_require__(374);
 
 	var _RouterOverlayTrigger3 = _interopRequireDefault(_RouterOverlayTrigger2);
 
 	exports.RouterOverlayTrigger = _RouterOverlayTrigger3['default'];
 
-	var _ThumbnailLink2 = __webpack_require__(378);
+	var _ThumbnailLink2 = __webpack_require__(375);
 
 	var _ThumbnailLink3 = _interopRequireDefault(_ThumbnailLink2);
 
 	exports.ThumbnailLink = _ThumbnailLink3['default'];
 
 /***/ },
-/* 371 */
+/* 368 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -46230,7 +46175,7 @@
 
 	var _reactBootstrapLibButton2 = _interopRequireDefault(_reactBootstrapLibButton);
 
-	var _LinkMixin = __webpack_require__(372);
+	var _LinkMixin = __webpack_require__(369);
 
 	var _LinkMixin2 = _interopRequireDefault(_LinkMixin);
 
@@ -46252,7 +46197,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 372 */
+/* 369 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -46353,7 +46298,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 373 */
+/* 370 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -46374,7 +46319,7 @@
 
 	var _reactBootstrapLibListGroupItem2 = _interopRequireDefault(_reactBootstrapLibListGroupItem);
 
-	var _LinkMixin = __webpack_require__(372);
+	var _LinkMixin = __webpack_require__(369);
 
 	var _LinkMixin2 = _interopRequireDefault(_LinkMixin);
 
@@ -46396,7 +46341,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 374 */
+/* 371 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -46417,7 +46362,7 @@
 
 	var _reactBootstrapLibMenuItem2 = _interopRequireDefault(_reactBootstrapLibMenuItem);
 
-	var _LinkMixin = __webpack_require__(372);
+	var _LinkMixin = __webpack_require__(369);
 
 	var _LinkMixin2 = _interopRequireDefault(_LinkMixin);
 
@@ -46442,7 +46387,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 375 */
+/* 372 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -46463,7 +46408,7 @@
 
 	var _reactBootstrapLibNavItem2 = _interopRequireDefault(_reactBootstrapLibNavItem);
 
-	var _LinkMixin = __webpack_require__(372);
+	var _LinkMixin = __webpack_require__(369);
 
 	var _LinkMixin2 = _interopRequireDefault(_LinkMixin);
 
@@ -46485,7 +46430,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 376 */
+/* 373 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -46506,7 +46451,7 @@
 
 	var _reactBootstrapLibPageItem2 = _interopRequireDefault(_reactBootstrapLibPageItem);
 
-	var _LinkMixin = __webpack_require__(372);
+	var _LinkMixin = __webpack_require__(369);
 
 	var _LinkMixin2 = _interopRequireDefault(_LinkMixin);
 
@@ -46528,7 +46473,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 377 */
+/* 374 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -46553,7 +46498,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 378 */
+/* 375 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -46574,7 +46519,7 @@
 
 	var _reactBootstrapLibThumbnail2 = _interopRequireDefault(_reactBootstrapLibThumbnail);
 
-	var _LinkMixin = __webpack_require__(372);
+	var _LinkMixin = __webpack_require__(369);
 
 	var _LinkMixin2 = _interopRequireDefault(_LinkMixin);
 
@@ -46596,7 +46541,175 @@
 	module.exports = exports['default'];
 
 /***/ },
+/* 376 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var Reflux=__webpack_require__(343);
+
+	var ProjectUIActions = Reflux.createActions([
+	    "load",
+	    "update",
+	    "create",
+	    "delete"
+	]);
+
+	module.exports = ProjectUIActions;
+
+
+/***/ },
+/* 377 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var projectUIAction = __webpack_require__(376);
+	var Reflux = __webpack_require__(343);
+	var $ = __webpack_require__(365);
+
+	var ProjectUIStore = Reflux.createStore({
+	    init: function(){
+	        this.listenTo(projectUIAction.load,this.onLoad);
+	    },
+	    onLoad: function (name) {
+	        var url = "/project/" + name;
+	        var self = this;
+	        $.ajax({
+	            url:url,
+	            method:"GET",
+	            dataType:"json",
+	            success:function(data){
+	                self.trigger(data);
+	            }
+	        });
+	    }
+
+	});
+	module.exports = ProjectUIStore;
+
+
+/***/ },
+/* 378 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var ReactRouterBootstrap = __webpack_require__(367);
+	var Link = __webpack_require__(158).Link;
+	var ListGroupItemLink = ReactRouterBootstrap.ListGroupItemLink;
+	var Project = React.createClass({displayName: "Project",
+	    getInitialState:function() {
+	        return {
+	            name: ""
+	        };
+	    },
+	    componentWillMount:function(){
+	        this.setState({name:this.props.nameOfProject});
+	    },
+	    render:function() {
+	        var bsStyle = "primary";
+	        if(this.props.style == "success"){
+	            bsStyle = "success";
+	        }
+
+	        return (
+	            React.createElement(ListGroupItemLink, {to: this.props.to, params: {name:this.state.name}}, this.state.name)
+	        );
+	    }
+	});
+	module.exports = Project;
+
+
+/***/ },
 /* 379 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var ReactRouter = __webpack_require__(158);
+	var ReactBootstrap = __webpack_require__(197);
+	var RouteHandler = ReactRouter.RouteHandler;
+
+	var ProjectList = __webpack_require__(380);
+	var Row = ReactBootstrap.Row;
+	var Col = ReactBootstrap.Col;
+
+	var UI = React.createClass({displayName: "UI",
+	    render:function(){
+	        return(
+
+	            React.createElement(Row, null, 
+	                React.createElement(Col, {md: 1}), 
+	                React.createElement(Col, {md: 3}, React.createElement(ProjectList, null)), 
+	                React.createElement(Col, {md: 8}, React.createElement(RouteHandler, {target: "addProject"}))
+	            )
+	        )
+	    }
+	});
+
+	module.exports = UI;
+
+/***/ },
+/* 380 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var Reflux = __webpack_require__(343);
+	var ReactBootstrap = __webpack_require__(197);
+	var Project = __webpack_require__(378);
+	var ProjectAction = __webpack_require__(381);
+	var ProjectStore = __webpack_require__(382);
+	var Router = __webpack_require__(158);
+	var Row = ReactBootstrap.Row;
+	var Button = ReactBootstrap.Button;
+	var Panel = ReactBootstrap.Panel;
+	var ListGroup = ReactBootstrap.ListGroup;
+	var List = React.createClass({displayName: "List",
+	    mixins:[Reflux.ListenerMixin,Router.Navigation],
+	    getInitialState:function(){
+	        return {
+	            nameOfProjects:[]
+	        }
+	    },
+	    componentWillMount:function(){
+	        this.listenTo(ProjectStore,this.onLoad);
+	        ProjectAction.load();
+	    },
+	    onLoad:function(data){
+	            var mas = this.state.nameOfProjects;
+	            if(typeof data.names == "string"){
+	                mas.push(data.names);
+	                this.setState({nameOfProjects: mas});
+	            }
+	            else
+	                this.setState({nameOfProjects: data.names});
+	    },
+	    onCreate:function(e){
+	        e.preventDefault();
+	        this.transitionTo('addProject');
+	    },
+	    render:function() {
+	        if(this.state.nameOfProjects.length) {
+	            var projects = this.state.nameOfProjects.map(function (name) {
+	                return (
+	                    React.createElement(Project, {
+	                        nameOfProject: name, 
+	                        to: "project"}
+	                        )
+	                );
+	            });
+	        }
+	        return (
+	            React.createElement(Row, {className: "show-grid"}, 
+	                React.createElement(Panel, {collapsible: true, defaultExpanded: true, header: "Projects"}, 
+	                    React.createElement(ListGroup, {fill: true}, 
+	                        projects
+	                    ), 
+	                    React.createElement(Button, {bsStyle: "primary", bsSize: "small", onClick: this.onCreate}, "Add Project")
+	                )
+	            )
+	        );
+	    }
+	});
+	module.exports = List;
+
+/***/ },
+/* 381 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Reflux=__webpack_require__(343);
@@ -46612,10 +46725,10 @@
 
 
 /***/ },
-/* 380 */
+/* 382 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var projectAction = __webpack_require__(379);
+	var projectAction = __webpack_require__(381);
 	var Reflux = __webpack_require__(343);
 	var $ = __webpack_require__(365);
 
@@ -46655,7 +46768,7 @@
 
 
 /***/ },
-/* 381 */
+/* 383 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -46665,14 +46778,17 @@
 	var Row = ReactBootstrap.Row;
 	var Col = ReactBootstrap.Col;
 	var Router = __webpack_require__(158);
-	var ProjectAction = __webpack_require__(379);
+	var ProjectAction = __webpack_require__(381);
 	var addProjectForm = React.createClass({displayName: "addProjectForm",
 	    mixins:[Router.Navigation],
 	    getInitialState:function(){
 	        return{
 	            name:"",
 	            descr:"",
-	            errorText:""
+	            errorText:"",
+	            field1:"",
+	            filed2:'',
+	            action: {}
 	        }
 	    },
 	    nameChange:function(){
@@ -46684,20 +46800,35 @@
 	    onClose:function(){
 	        this.goBack();
 	    },
+	    componentWillMount:function(){
+
+	        switch(this.props.target){
+	            case "addProject":
+	            {
+	                this.setState({action: ProjectAction,
+	                    target:'manager',
+	                    field1:'Name of project',
+	                    field2:'Description'
+	                });
+	                break;
+	            }
+	            default:
+	                return;
+	        }
+
+
+	    },
 	    onCreate:function(e){
 	        e.preventDefault();
-	        if(this.state.name.length == 0){
-	            this.setState({errorText:"Name input is empty"});
+	        if(this.state.name.length == 0 || this.state.descr.length == 0){
+	            this.setState({errorText:"Some input is empty"});
 	            return;
 	        }
-	        if(this.state.descr.length == 0){
-	            this.setState({errorText:"Description input is empty"});
-	            return;
-	        }
-	        ProjectAction.create({name:this.state.name,description:this.state.descr});
-	        this.transitionTo('manager');
+	        this.state.action.create({name:this.state.name,description:this.state.descr});
+	        this.transitionTo(this.state.target);
 	    },
 	    render:function(){
+
 	        return(
 	            React.createElement(Row, null, 
 	                React.createElement(Col, {md: 4, xsOffset: 1}, 
@@ -46705,14 +46836,14 @@
 	                        React.createElement("h4", null, this.state.errorText), 
 	                        React.createElement(Input, {type: "text", 
 	                            value: this.state.name, 
-	                            label: "Name of Project", 
-	                            placeholder: "Enter name", 
+	                            label: this.state.field1, 
+	                            placeholder: "Enter " + this.state.field1, 
 	                            ref: "name", 
 	                            onChange: this.nameChange}), 
 	                        React.createElement(Input, {type: "textarea", 
 	                            value: this.state.descr, 
-	                            label: "Description", 
-	                            placeholder: "Enter description", 
+	                            label: this.state.field2, 
+	                            placeholder: "Enter " + this.state.field2, 
 	                            ref: "descr", 
 	                            onChange: this.descrChange}), 
 	                        React.createElement(Button, {bsStyle: "success", onClick: this.onCreate}, "save"), 
@@ -46728,153 +46859,42 @@
 	module.exports = addProjectForm;
 
 /***/ },
-/* 382 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var React = __webpack_require__(1);
-	var Reflux = __webpack_require__(343);
-	var ReactBootstrap = __webpack_require__(197);
-	var ReactRouterBootstrap = __webpack_require__(370);
-	var ProjectUIAction = __webpack_require__(383);
-	var ProjectUIStore = __webpack_require__(384);
-	var ListGroupItemLink = ReactRouterBootstrap.ListGroupItemLink;
-	var Router = __webpack_require__(158);
-	var TaskItem = __webpack_require__(369);
-	var Row = ReactBootstrap.Row;
-	var Col = ReactBootstrap.Col;
-	var RouteHandler = Router.RouteHandler;
-	var Panel = ReactBootstrap.Panel;
-	var ListGroup = ReactBootstrap.ListGroup;
-	var ListGroupLink = ReactRouterBootstrap.ListGroupItemLink;
-	var Button = ReactBootstrap.Button;
-
-
-	var UI = React.createClass({displayName: "UI",
-	    mixins:[Router.Navigation,Reflux.ListenerMixin],
-	    getInitialState:function(){
-	        return{
-	            nameOfTasks:[],
-	            nameOfDevelopers:[],
-	            description:"",
-	            name:""
-	        }
-	    },
-	    componentWillMount:function(){
-	        this.listenTo(ProjectUIStore,this.onLoad);
-	        ProjectUIAction.load(this.props.params.name);
-	    },
-	    componentWillReceiveProps:function(nextProps){
-	        ProjectUIAction.load(nextProps.params.name);
-	    },
-	    onLoad:function(data){
-	        this.setState({nameOfTasks:data.tasks,
-	            nameOfDevelopers:data.developers,
-	            description:data.description,
-	            name:data.name
-	        });
-
-	    },
-	    onCreateDeveloper:function(){
-	        this.transitionTo('developer');
-
-	    },
-	    onCreateTask:function(){
-	        this.transitionTo('task');
-	    },
-	    render:function(){
-	        if(this.state.nameOfTasks.length) {
-	            var tasks = this.state.nameOfTasks.map(function (name) {
-	                return (
-	                    React.createElement(ListGroupItemLink, {params: {taskName:name, name:this.state.name}, to: "task"}, 
-	                        name
-	                    )
-	                );
-	            }.bind(this));
-	        }
-	        if(this.state.nameOfDevelopers.length) {
-	            var developers = this.state.nameOfDevelopers.map(function (name) {
-	                return (
-	                    React.createElement(ListGroupItemLink, {params: {devName:name, name:this.state.name}, to: "developer"}, 
-	                        name
-	                    )
-	                );
-	            }.bind(this));
-	        }
-	        return(
-	            React.createElement(Row, null, 
-	                React.createElement(Col, {md: 6}, 
-	                    React.createElement(Panel, {header: "Project: " + this.state.name, bsStyle: "info"}, 
-
-	                        "Description: " + this.state.description
-	                    ), 
-	                    React.createElement(RouteHandler, null)
-	                ), 
-	                React.createElement(Col, {md: 3}, 
-	                    React.createElement(Panel, {collapsible: true, defaultExpanded: true, bsStyle: "success", header: "Tasks"}, 
-	                        React.createElement(ListGroup, {fill: true}, 
-	                            tasks
-	                        ), 
-	                        React.createElement(Button, {bsStyle: "primary", bsSize: "small", onClick: this.onCreateTask}, "add Task")
-	                    )
-	                ), 
-	                React.createElement(Col, {md: 3}, 
-	                    React.createElement(Panel, {collapsible: true, defaultExpanded: true, bsStyle: "success", header: "Developers"}, 
-	                        React.createElement(ListGroup, {fill: true}, 
-	                            developers
-	                        ), 
-	                        React.createElement(Button, {bsStyle: "primary", bsSize: "small", onClick: this.onCreateDeveloper}, "add Developer")
-	                    )
-	                )
-	            )
-	        )
-	    }
-	});
-	module.exports = UI;
-
-/***/ },
-/* 383 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var Reflux=__webpack_require__(343);
-
-	var ProjectUIActions = Reflux.createActions([
-	    "load",
-	    "update",
-	    "create",
-	    "delete"
-	]);
-
-	module.exports = ProjectUIActions;
-
-
-/***/ },
 /* 384 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var projectUIAction = __webpack_require__(383);
-	var Reflux = __webpack_require__(343);
-	var $ = __webpack_require__(365);
+	var React = __webpack_require__(1);
 
-	var ProjectUIStore = Reflux.createStore({
-	    init: function(){
-	        this.listenTo(projectUIAction.load,this.onLoad);
+	var Search = React.createClass({displayName: "Search",
+	    getInitialState:function() {
+	        return {
+	            search: ""
+	        };
 	    },
-	    onLoad: function (name) {
-	        var url = "/project/" + name;
-	        var self = this;
-	        $.ajax({
-	            url:url,
-	            method:"GET",
-	            dataType:"json",
-	            success:function(data){
-	                self.trigger(data);
-	            }
+	    componentWillReceiveProps:function(nextProps){
+	      this.setState({search:nextProps.params.name});
+	    },
+	    render:function() {
+	        return (
+	            React.createElement("div", {className: "search-component"}, 
+	                React.createElement("input", {type: "text", onChange: this.changeSearch}), 
+	                React.createElement("p", null, React.createElement("span", null, "You are searching for: ", this.state.search))
+	            )
+	        );
+	    },
+	    componentWillMount:function(){
+	        this.setState({search: this.props.params.name});
+
+	    },
+	    changeSearch:function(event) {
+	        var text = event.target.value;
+
+	        this.setState({
+	            search: text
 	        });
 	    }
-
 	});
-	module.exports = ProjectUIStore;
 
+	module.exports = Search;
 
 /***/ }
 /******/ ]);
