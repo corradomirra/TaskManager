@@ -3,7 +3,8 @@ var Reflux=require('reflux');
 var ProjectUIActions = Reflux.createActions([
     "load",
     "update",
-    "create",
+    "createTask",
+    "createDeveloper",
     "delete"
 ]);
 

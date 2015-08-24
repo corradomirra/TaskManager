@@ -12,7 +12,7 @@
     "express": "*",
     "ejs": "*",
     "serve-favicon": "~2.2.0",
-    "mongoose": "*",
+    "mongoose": "4.1.3",
     "crypto":"*",
     "mongoose-auto-increment": "*",
     "nconf":"*",

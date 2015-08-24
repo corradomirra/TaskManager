@@ -6,6 +6,7 @@ var Row = ReactBootstrap.Row;
 var Col = ReactBootstrap.Col;
 var Router = require('react-router');
 var ProjectAction = require('../../actions/projectsListAction');
+var ProjectUIAction = require('../../actions/projectUIAction');
 var addProjectForm = React.createClass({
     mixins:[Router.Navigation],
     getInitialState(){
@@ -15,7 +16,9 @@ var addProjectForm = React.createClass({
             errorText:"",
             field1:"",
             filed2:'',
-            action: {}
+            action:{},
+            size: 0,
+            offset: 0
         }
     },
     nameChange(){
@@ -28,14 +31,60 @@ var addProjectForm = React.createClass({
         this.goBack();
     },
     componentWillMount(){
-
-        switch(this.props.target){
+        this.getNewState(this.props.target,this.props.params.name);
+    },
+    getNewState(prop,project){
+        var self = this;
+        switch(prop){
             case "addProject":
             {
-                this.setState({action: ProjectAction,
-                    target:'manager',
+                var f = function(){
+                    ProjectAction.create({
+                        name:self.state.name,
+                        description:self.state.descr
+                    });
+                };
+                this.setState({action: f,
                     field1:'Name of project',
-                    field2:'Description'
+                    field2:'Description',
+                    size: 4 ,
+                    offset: 1
+                });
+                break;
+            }
+            case "addDeveloper":
+            {
+                var f = function(){
+                    ProjectUIAction.createDeveloper({
+                        name:self.state.name,
+                        password:self.state.descr,
+                        project: project
+                    });
+                };
+                this.setState({
+                    action:f,
+                    field1:"Developer's login",
+                    field2:'Password',
+                    size: 12,
+                    offset: 0
+                });
+                break;
+            }
+            case "addTask":
+            {
+                var f = function() {
+                    ProjectUIAction.createTask({
+                        name:self.state.name,
+                        description:self.state.descr,
+                        project: project
+                    });
+                };
+                this.setState({
+                    action:f,
+                    field1:"Name of Task",
+                    field2:'Description',
+                    size: 12,
+                    offset: 0
                 });
                 break;
             }
@@ -43,6 +92,9 @@ var addProjectForm = React.createClass({
                 return;
         }
 
+    },
+    componentWillReceiveProps(nextProp){
+        this.getNewState(nextProp.target,nextProp.params.name);
 
     },
     onCreate(e){
@@ -51,14 +103,13 @@ var addProjectForm = React.createClass({
             this.setState({errorText:"Some input is empty"});
             return;
         }
-        this.state.action.create({name:this.state.name,description:this.state.descr});
-        this.transitionTo(this.state.target);
+        this.state.action();
+        this.goBack();
     },
     render(){
-
         return(
             <Row>
-                <Col md={4} xsOffset={1}>
+                <Col md={this.state.size} xsOffset={this.state.offset}>
                     <form>
                         <h4>{this.state.errorText}</h4>
                         <Input type="text"

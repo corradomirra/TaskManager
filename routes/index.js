@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var Managers = require('../models/managers');
 var Projects = require('../models/projects');
+var Tasks = require('../models/tasks');
 var names = ["a","a1","a2","a3","a4","a5","a6"];
 
 require("node-jsx").install({
@@ -70,7 +71,33 @@ router.get('/project/:name',function(req,res,next){
 
 });
 
-
+router.post('/task',function(req,res,next){
+    Projects.update({name:req.body.project},
+        {$set: {tasks: {name:req.body.name,description:req.body.descr,comments:undefined, status:false} }},
+        {upsert:true},function(err,data){
+            if(err) throw err;
+            console.log(data);
+            res.send({taskName:req.body.name});
+        });
+});
+router.post('/developer',function(req,res,next){
+    Projects.update({name:req.body.project},
+        {$push: {developers: {
+            username: req.body.name,
+            password: req.body.password,
+            projects:[{
+                name: req.body.project,
+                description: undefined,
+                tasks: undefined,
+                developers: undefined
+            }]
+        } }},
+        {upsert:true},function(err,data){
+            if(err) throw err;
+            console.log(data);
+            res.send({devName:req.body.name});
+        });
+});
 
 
 module.exports = router;

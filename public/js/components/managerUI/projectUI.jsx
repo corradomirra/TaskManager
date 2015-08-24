@@ -23,7 +23,8 @@ var UI = React.createClass({
             nameOfTasks:[],
             nameOfDevelopers:[],
             description:"",
-            name:""
+            name:"",
+            target:""
         }
     },
     componentWillMount(){
@@ -34,19 +35,37 @@ var UI = React.createClass({
         ProjectUIAction.load(nextProps.params.name);
     },
     onLoad(data){
+        if(data.hasOwnProperty('taskName')){
+            this.onSaveTask(data);
+            return;
+        }
+        if(data.hasOwnProperty('devName')){
+            this.onSaveDeveloper(data);
+            return;
+        }
         this.setState({nameOfTasks:data.tasks,
             nameOfDevelopers:data.developers,
             description:data.description,
             name:data.name
         });
-
+    },
+    onSaveTask(data){
+        var mas = this.state.nameOfTasks;
+        mas.push(data.taskName);
+        this.setState({nameOfTasks:mas});
+    },
+    onSaveDeveloper(data){
+        var mas = this.state.nameOfDevelopers;
+        mas.push(data.devName);
+        this.setState({nameOfDevelopers:mas});
     },
     onCreateDeveloper(){
-        this.transitionTo('developer');
-
+        this.setState({target:"addDeveloper"});
+        this.transitionTo('addDeveloper',{name:this.state.name});
     },
     onCreateTask(){
-        this.transitionTo('task');
+        this.setState({target:"addTask"});
+        this.transitionTo('addTask',{name:this.state.name});
     },
     render(){
         if(this.state.nameOfTasks.length) {
@@ -74,7 +93,7 @@ var UI = React.createClass({
                     <Panel header={<h2><strong>Project:   </strong> {this.state.name}</h2>} bsStyle='info'>
                         <strong>Description:   </strong> {this.state.description}
                     </Panel>
-                    <RouteHandler/>
+                    <RouteHandler target ={this.state.target}/>
                 </Col>
                 <Col md={3}>
                     <Panel collapsible defaultExpanded bsStyle='info' header='Tasks'>

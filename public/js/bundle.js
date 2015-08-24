@@ -60,7 +60,9 @@
 	        React.createElement(Route, {name: "manager", path: "/manager", handler: ManagerUI}, 
 	            React.createElement(Route, {name: "project", path: "project/:name", handler: ProjectUI}, 
 	                React.createElement(Route, {name: "task", path: "task/:taskName", handler: Search}), 
-	                React.createElement(Route, {name: "developer", path: "developer/:devName", handler: Search})
+	                React.createElement(Route, {name: "developer", path: "developer/:devName", handler: Search}), 
+	                React.createElement(Route, {name: "addDeveloper", path: "addDeveloper", handler: AddEntity}), 
+	                React.createElement(Route, {name: "addTask", path: "addTask", handler: AddEntity})
 	            ), 
 	            React.createElement(Route, {name: "addProject", path: "addProject", handler: AddEntity})
 	        )
@@ -46024,7 +46026,8 @@
 	            nameOfTasks:[],
 	            nameOfDevelopers:[],
 	            description:"",
-	            name:""
+	            name:"",
+	            target:""
 	        }
 	    },
 	    componentWillMount:function(){
@@ -46035,19 +46038,37 @@
 	        ProjectUIAction.load(nextProps.params.name);
 	    },
 	    onLoad:function(data){
+	        if(data.hasOwnProperty('taskName')){
+	            this.onSaveTask(data);
+	            return;
+	        }
+	        if(data.hasOwnProperty('devName')){
+	            this.onSaveDeveloper(data);
+	            return;
+	        }
 	        this.setState({nameOfTasks:data.tasks,
 	            nameOfDevelopers:data.developers,
 	            description:data.description,
 	            name:data.name
 	        });
-
+	    },
+	    onSaveTask:function(data){
+	        var mas = this.state.nameOfTasks;
+	        mas.push(data.taskName);
+	        this.setState({nameOfTasks:mas});
+	    },
+	    onSaveDeveloper:function(data){
+	        var mas = this.state.nameOfDevelopers;
+	        mas.push(data.devName);
+	        this.setState({nameOfDevelopers:mas});
 	    },
 	    onCreateDeveloper:function(){
-	        this.transitionTo('developer');
-
+	        this.setState({target:"addDeveloper"});
+	        this.transitionTo('addDeveloper',{name:this.state.name});
 	    },
 	    onCreateTask:function(){
-	        this.transitionTo('task');
+	        this.setState({target:"addTask"});
+	        this.transitionTo('addTask',{name:this.state.name});
 	    },
 	    render:function(){
 	        if(this.state.nameOfTasks.length) {
@@ -46075,7 +46096,7 @@
 	                    React.createElement(Panel, {header: React.createElement("h2", null, React.createElement("strong", null, "Project:   "), " ", this.state.name), bsStyle: "info"}, 
 	                        React.createElement("strong", null, "Description:   "), " ", this.state.description
 	                    ), 
-	                    React.createElement(RouteHandler, null)
+	                    React.createElement(RouteHandler, {target: this.state.target})
 	                ), 
 	                React.createElement(Col, {md: 3}, 
 	                    React.createElement(Panel, {collapsible: true, defaultExpanded: true, bsStyle: "info", header: "Tasks"}, 
@@ -46549,7 +46570,8 @@
 	var ProjectUIActions = Reflux.createActions([
 	    "load",
 	    "update",
-	    "create",
+	    "createTask",
+	    "createDeveloper",
 	    "delete"
 	]);
 
@@ -46567,6 +46589,8 @@
 	var ProjectUIStore = Reflux.createStore({
 	    init: function(){
 	        this.listenTo(projectUIAction.load,this.onLoad);
+	        this.listenTo(projectUIAction.createTask,this.onCreateTask);
+	        this.listenTo(projectUIAction.createDeveloper, this.onCreateDeveloper);
 	    },
 	    onLoad: function (name) {
 	        var url = "/project/" + name;
@@ -46575,6 +46599,31 @@
 	            url:url,
 	            method:"GET",
 	            dataType:"json",
+	            success:function(data){
+	                self.trigger(data);
+	            }
+	        });
+	    },
+	    onCreateTask: function(task){
+	        var self = this;
+	        $.ajax({
+	            url:'/task',
+	            method:"POST",
+	            dataType:"json",
+	            data:task,
+	            success:function(data){
+	                self.trigger(data);
+	            }
+	        });
+
+	    },
+	    onCreateDeveloper:function(developer){
+	        var self=this;
+	        $.ajax({
+	            url:'/developer',
+	            method:"POST",
+	            dataType:"json",
+	            data:developer,
 	            success:function(data){
 	                self.trigger(data);
 	            }
@@ -46779,6 +46828,7 @@
 	var Col = ReactBootstrap.Col;
 	var Router = __webpack_require__(158);
 	var ProjectAction = __webpack_require__(381);
+	var ProjectUIAction = __webpack_require__(376);
 	var addProjectForm = React.createClass({displayName: "addProjectForm",
 	    mixins:[Router.Navigation],
 	    getInitialState:function(){
@@ -46788,7 +46838,9 @@
 	            errorText:"",
 	            field1:"",
 	            filed2:'',
-	            action: {}
+	            action:{},
+	            size: 0,
+	            offset: 0
 	        }
 	    },
 	    nameChange:function(){
@@ -46801,14 +46853,60 @@
 	        this.goBack();
 	    },
 	    componentWillMount:function(){
-
-	        switch(this.props.target){
+	        this.getNewState(this.props.target,this.props.params.name);
+	    },
+	    getNewState:function(prop,project){
+	        var self = this;
+	        switch(prop){
 	            case "addProject":
 	            {
-	                this.setState({action: ProjectAction,
-	                    target:'manager',
+	                var f = function(){
+	                    ProjectAction.create({
+	                        name:self.state.name,
+	                        description:self.state.descr
+	                    });
+	                };
+	                this.setState({action: f,
 	                    field1:'Name of project',
-	                    field2:'Description'
+	                    field2:'Description',
+	                    size: 4 ,
+	                    offset: 1
+	                });
+	                break;
+	            }
+	            case "addDeveloper":
+	            {
+	                var f = function(){
+	                    ProjectUIAction.createDeveloper({
+	                        name:self.state.name,
+	                        password:self.state.descr,
+	                        project: project
+	                    });
+	                };
+	                this.setState({
+	                    action:f,
+	                    field1:"Developer's login",
+	                    field2:'Password',
+	                    size: 12,
+	                    offset: 0
+	                });
+	                break;
+	            }
+	            case "addTask":
+	            {
+	                var f = function() {
+	                    ProjectUIAction.createTask({
+	                        name:self.state.name,
+	                        description:self.state.descr,
+	                        project: project
+	                    });
+	                };
+	                this.setState({
+	                    action:f,
+	                    field1:"Name of Task",
+	                    field2:'Description',
+	                    size: 12,
+	                    offset: 0
 	                });
 	                break;
 	            }
@@ -46816,6 +46914,9 @@
 	                return;
 	        }
 
+	    },
+	    componentWillReceiveProps:function(nextProp){
+	        this.getNewState(nextProp.target,nextProp.params.name);
 
 	    },
 	    onCreate:function(e){
@@ -46824,14 +46925,13 @@
 	            this.setState({errorText:"Some input is empty"});
 	            return;
 	        }
-	        this.state.action.create({name:this.state.name,description:this.state.descr});
-	        this.transitionTo(this.state.target);
+	        this.state.action();
+	        this.goBack();
 	    },
 	    render:function(){
-
 	        return(
 	            React.createElement(Row, null, 
-	                React.createElement(Col, {md: 4, xsOffset: 1}, 
+	                React.createElement(Col, {md: this.state.size, xsOffset: this.state.offset}, 
 	                    React.createElement("form", null, 
 	                        React.createElement("h4", null, this.state.errorText), 
 	                        React.createElement(Input, {type: "text", 

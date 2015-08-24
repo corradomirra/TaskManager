@@ -4,7 +4,8 @@ var mongoose = require('../libs/mongoose'),
     tasks = require('./tasks'),
     developers = require('./developers');
 
-var schema = new Schema({
+var schema = new Schema();
+schema.add({
     name: {
         type: String,
         unique: true,
@@ -14,8 +15,8 @@ var schema = new Schema({
         type: String,
         required: true
     },
-    tasks:[tasks],
-    developers:[developers]
+    tasks:[tasks.schema],
+    developers:[developers.schema]
 });
 
 

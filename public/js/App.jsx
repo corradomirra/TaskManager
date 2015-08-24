@@ -15,6 +15,8 @@ var routes = (
             <Route name="project" path="project/:name" handler = {ProjectUI}>
                 <Route name = "task" path="task/:taskName" handler = {Search}/>
                 <Route name = "developer" path="developer/:devName" handler = {Search}/>
+                <Route name = "addDeveloper" path="addDeveloper" handler = {AddEntity}/>
+                <Route name = "addTask" path="addTask" handler = {AddEntity}/>
             </Route>
             <Route name = "addProject" path = "addProject" handler = {AddEntity}/>
         </Route>

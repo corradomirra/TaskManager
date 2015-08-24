@@ -1,12 +1,15 @@
 var crypto = require('crypto');
 var projects = require('./projects');
 var tasks = require('./tasks');
+console.log(projects);
+
 
 var mongoose = require('../libs/mongoose'),
     autoIncrement = require('mongoose-auto-increment'),
     Schema = mongoose.Schema;
 
-var schema = new Schema({
+var schema = new Schema();
+schema.add({
     username: {
         type: String,
         unique: true,
@@ -20,8 +23,7 @@ var schema = new Schema({
         type: String,
         required: true
     },
-    projects:[projects],
-    tasks:[tasks]
+    projects:[projects]
 });
 
 schema.methods.encryptPassword = function (password) {

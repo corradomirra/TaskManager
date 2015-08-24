@@ -3,7 +3,8 @@ var mongoose = require('../libs/mongoose'),
     autoIncrement = require('mongoose-auto-increment'),
     comments = require('./comments');
 
-var schema = new Schema({
+var schema = new Schema();
+schema.add({
     name: {
         type: String,
         unique: true,
@@ -13,7 +14,12 @@ var schema = new Schema({
         type: String,
         required: true
     },
-    comments:[comments]
+    status:{
+        type: Boolean,
+        required:true,
+        default:false
+    },
+    comments:[comments.schema ]
 });
 
 
