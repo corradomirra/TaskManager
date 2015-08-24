@@ -4,6 +4,8 @@ var Managers = require('../models/managers');
 var Projects = require('../models/projects');
 var Tasks = require('../models/tasks');
 var names = ["a","a1","a2","a3","a4","a5","a6"];
+var async = require('async');
+var Developers = require('../models/developers');
 
 require("node-jsx").install({
   harmony: true,
@@ -59,44 +61,100 @@ router.post('/project',function(req,res,next){
 router.get('/project/:name',function(req,res,next){
     Projects.findOne({name:req.params.name},function(err,data){
        if(err) console.log(err);
-        var name = data.name;
-        var descr = data.description;
+        var tasks = [];
+        var devs = [];
+        for(var i = 0; i< data.developers.length; i++){
+            devs.push(data.developers[i].username);
+        }
+        for(var i = 0; i< data.tasks.length; i++){
+            tasks.push(data.tasks[i].name);
+        }
         res.send({
-            name:name,
-            description:descr,
-            tasks:["asdasd","asdad1","ae23","qwefaf"],
-            developers:["Mike","Tedd","Barny","Marshal"]
+            name:data.name,
+            description:data.description,
+            tasks:tasks,
+            developers:devs
         });
     });
 
 });
 
 router.post('/task',function(req,res,next){
-    Projects.update({name:req.body.project},
-        {$set: {tasks: {name:req.body.name,description:req.body.descr,comments:undefined, status:false} }},
-        {upsert:true},function(err,data){
+    async.series([
+        function(callback){
+            var newTask = new Tasks({
+                name:req.body.name,
+                project:req.body.project,
+                status:false,
+                description:req.body.description,
+                comments:undefined
+            });
+            newTask.save(function(err,data){
+                if(err) callback(err,null);
+                console.log(data);
+                callback(null,null);
+            })
+        },function(callback){
+            Projects.update({name:req.body.project},
+                {$push: {"tasks": {
+                    name:req.body.name,
+                    description:req.body.description,
+                    comments:undefined,
+                    status:false,
+                    project:req.body.project
+                }}},
+                {upsert:true},function(err,data){
+                    if(err) callback(err,null);
+                    callback(null,null);
+                });
+
+
+        }],
+        function(err,result) {
             if(err) throw err;
-            console.log(data);
-            res.send({taskName:req.body.name});
+            res.send({taskName: req.body.name});
         });
+
 });
 router.post('/developer',function(req,res,next){
-    Projects.update({name:req.body.project},
-        {$push: {developers: {
-            username: req.body.name,
-            password: req.body.password,
-            projects:[{
-                name: req.body.project,
-                description: undefined,
-                tasks: undefined,
-                developers: undefined
-            }]
-        } }},
-        {upsert:true},function(err,data){
+    async.series([
+            function(callback){
+                var newDev = new Developers({
+                    username: req.body.name,
+                    password: req.body.password,
+                    projects:[{
+                        name: req.body.project,
+                        description: undefined,
+                        tasks: undefined,
+                        developers: undefined
+                    }]});
+                newDev.save(function(err,data){
+                    if(err) callback(err,null);
+                    console.log(data);
+                    callback(null,null);
+                })
+            },function(callback){
+                Projects.update({name:req.body.project},
+                    {$push: {developers: {
+                        username: req.body.name,
+                        password: req.body.password,
+                        projects:[{
+                            name: req.body.project,
+                            description: undefined,
+                            tasks: undefined,
+                            developers: undefined
+                        }]
+                    } }},
+                    {upsert:true},function(err,data){
+                        if(err) callback(err,null);
+                        callback(null,null);
+                    });
+            }],
+        function(err,result) {
             if(err) throw err;
-            console.log(data);
             res.send({devName:req.body.name});
         });
+
 });
 
 

@@ -50,7 +50,8 @@
 	var ProjectUI = __webpack_require__(366);
 	var ManagerUI = __webpack_require__(379);
 	var AddEntity = __webpack_require__(383);
-	var Search = __webpack_require__(384);
+	var TaskUI = __webpack_require__(384);
+	var Search = __webpack_require__(385);
 	var Router = __webpack_require__(158);
 	var $__0=       Router,Route=$__0.Route,DefaultRoute=$__0.DefaultRoute,RouteHandler=$__0.RouteHandler,Link=$__0.Link;
 
@@ -59,7 +60,7 @@
 	        React.createElement(DefaultRoute, {name: "login", handler: Login}), 
 	        React.createElement(Route, {name: "manager", path: "/manager", handler: ManagerUI}, 
 	            React.createElement(Route, {name: "project", path: "project/:name", handler: ProjectUI}, 
-	                React.createElement(Route, {name: "task", path: "task/:taskName", handler: Search}), 
+	                React.createElement(Route, {name: "task", path: "task/:taskName", handler: TaskUI}), 
 	                React.createElement(Route, {name: "developer", path: "developer/:devName", handler: Search}), 
 	                React.createElement(Route, {name: "addDeveloper", path: "addDeveloper", handler: AddEntity}), 
 	                React.createElement(Route, {name: "addTask", path: "addTask", handler: AddEntity})
@@ -46960,6 +46961,66 @@
 
 /***/ },
 /* 384 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var ReactBootstrap = __webpack_require__(197);
+	var Row = ReactBootstrap.Row;
+	var Col = ReactBootstrap.Col;
+	var Panel = ReactBootstrap.Panel;
+	var Input = ReactBootstrap.Input;
+	var Accordion = ReactBootstrap.Accordion;
+	var Button = ReactBootstrap.Button;
+	var taskUI = React.createClass({displayName: "taskUI",
+	    getInitialState:function(){
+	        return{
+	            name:'Create Db',
+	            description:'MongoDB or SQL',
+	            status:false,
+	            comments:[{author:"Mike",data:"12.05.2014",text:"hey you!"},
+	                {author:"Lola",data:"13.05.2014",text:"hey yssgergerger"},
+	                {author:"Yorg",data:"12.01.2015",text:"Merry crhsdfsdlfkm!"}
+	            ]
+	        }
+	    },
+	    render:function(){
+	        var statusLabel = "In progress";
+	        if(this.state.status){
+	            statusLabel = "finished";
+	        }
+	        if(this.state.comments.length){
+	            var comments = this.state.comments.map(function (comment,index) {
+	                return (
+	                    React.createElement(Panel, {header: comment.data + ' ' +comment.author}, 
+	                        comment.text
+	                    )
+	                );
+	            });
+	        }
+	        return(
+	            React.createElement(Row, null, 
+	                React.createElement(Col, {md: 12}, 
+	                    React.createElement(Panel, {header: React.createElement("h2", null, React.createElement("strong", null, "Task:   "), " ", this.state.name), footer: React.createElement(Input, {type: "checkbox", label: statusLabel})}, 
+	                        this.state.description
+	                    ), 
+	                    React.createElement(Accordion, null, 
+	                        comments
+	                    ), 
+	                    React.createElement(Input, {type: "textarea", label: "comment", placeholder: "Enter comment"}), 
+	                    React.createElement(Button, null, "Add comment")
+	                )
+	            )
+	        )
+	    }
+
+
+
+
+	});
+	module.exports = taskUI;
+
+/***/ },
+/* 385 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);

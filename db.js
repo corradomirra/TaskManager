@@ -7,20 +7,16 @@ var Tasks = require("./models/tasks");
 //    console.log(data);
 //
 //});
-Projects.findOne({name:"Starcraft 2"},function(err,data){
-    data.developers.push({username:"Mik",password:"Mik",projects:[{
-        name:"Starcraft 2",
-        tasks:undefined,
-        developers:undefined,
-        description: undefined
-    }]});
-    var subdoc = data.developers[data.developers.length -1];
-    console.log(subdoc);
-    data.save();
-});
-Developers.find({},function(err,data){
+
+
+Projects.findOne({name:"league of legend"},function(err,data){
+
     console.log(data);
+
 });
+//Developers.find({},function(err,data){
+//    console.log(data);
+//});
 
 
 

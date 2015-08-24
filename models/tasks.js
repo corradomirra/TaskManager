@@ -19,7 +19,11 @@ schema.add({
         required:true,
         default:false
     },
-    comments:[comments.schema ]
+    project: {
+        type: String,
+        required:true
+    },
+    comments:[comments.schema]
 });
 
 

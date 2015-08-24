@@ -15,8 +15,8 @@ schema.add({
         type: String,
         required: true
     },
-    tasks:[tasks.schema],
-    developers:[developers.schema]
+    developers:[developers.schema],
+    tasks:[tasks.schema]
 });
 
 
