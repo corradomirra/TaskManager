@@ -1,11 +1,11 @@
 0 info it worked if it ends with ok
-1 verbose cli [ 'C:\\Program Files (x86)\\nodejs\\\\node.exe',
-1 verbose cli   'C:\\Program Files (x86)\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli [ 'C:\\Program Files\\nodejs\\\\node.exe',
+1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
 1 verbose cli   'install' ]
-2 info using npm@2.7.4
-3 info using node@v0.12.2
-4 verbose node symlink C:\Program Files (x86)\nodejs\\node.exe
-5 verbose install where, deps [ 'd:\\TaskManager',
+2 info using npm@2.11.3
+3 info using node@v0.12.7
+4 verbose readDependencies loading dependencies from e:\TaskManager\package.json
+5 verbose install where, deps [ 'e:\\TaskManager',
 5 verbose install   [ 'body-parser',
 5 verbose install     'cookie-parser',
 5 verbose install     'debug',
@@ -27,312 +27,1642 @@
 5 verbose install     'react-router-bootstrap',
 5 verbose install     'reflux',
 5 verbose install     'jquery',
-5 verbose install     'async' ] ]
-6 verbose install where, peers [ 'd:\\TaskManager', [] ]
-7 info preinstall TaskManager@0.0.0
-8 warn package.json path@0.11.14 path is also the name of a node core module.
-9 warn package.json crypto@0.0.3 crypto is also the name of a node core module.
-10 verbose already installed skipping nconf@* d:\TaskManager
-11 verbose already installed skipping path@* d:\TaskManager
-12 verbose already installed skipping express-session@* d:\TaskManager
-13 verbose already installed skipping connect-mongo@* d:\TaskManager
-14 verbose already installed skipping jsx-loader@* d:\TaskManager
-15 verbose already installed skipping node-jsx@* d:\TaskManager
-16 verbose already installed skipping react@* d:\TaskManager
-17 verbose already installed skipping react-router@* d:\TaskManager
-18 verbose already installed skipping react-bootstrap@* d:\TaskManager
-19 verbose already installed skipping react-router-bootstrap@* d:\TaskManager
-20 verbose already installed skipping reflux@* d:\TaskManager
-21 verbose already installed skipping jquery@* d:\TaskManager
-22 silly cache add args [ 'async@*', null ]
-23 verbose cache add spec async@*
-24 silly cache add parsed spec { raw: 'async@*',
-24 silly cache add   scope: null,
-24 silly cache add   name: 'async',
-24 silly cache add   rawSpec: '*',
-24 silly cache add   spec: '*',
-24 silly cache add   type: 'range' }
-25 verbose addNamed async@*
-26 silly addNamed semver.valid null
-27 silly addNamed semver.validRange *
-28 silly addNameRange { name: 'async', range: '*', hasData: false }
-29 silly mapToRegistry name async
-30 silly mapToRegistry using default registry
-31 silly mapToRegistry registry https://registry.npmjs.org/
-32 silly mapToRegistry uri https://registry.npmjs.org/async
-33 verbose addNameRange registry:https://registry.npmjs.org/async not in flight; fetching
-34 verbose already installed skipping body-parser@* d:\TaskManager
-35 verbose already installed skipping cookie-parser@* d:\TaskManager
-36 verbose already installed skipping debug@* d:\TaskManager
-37 verbose already installed skipping express@* d:\TaskManager
-38 verbose already installed skipping ejs@* d:\TaskManager
-39 verbose already installed skipping serve-favicon@~2.2.0 d:\TaskManager
-40 verbose already installed skipping mongoose@4.1.3 d:\TaskManager
-41 verbose already installed skipping crypto@* d:\TaskManager
-42 verbose already installed skipping mongoose-auto-increment@* d:\TaskManager
-43 verbose request uri https://registry.npmjs.org/async
-44 verbose request no auth needed
-45 info attempt registry request try #1 at 22:42:38
-46 verbose request id 8ea3f9283770e0f2
-47 verbose etag "ILNLY5LZ8O95S3STI6GPZBHS"
-48 http request GET https://registry.npmjs.org/async
-49 http 200 https://registry.npmjs.org/async
-50 silly get cb [ 200,
-50 silly get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
-50 silly get     etag: '"3JH3NDMO8T67SDYYXTRRQ120V"',
-50 silly get     'content-type': 'application/json',
-50 silly get     'cache-control': 'max-age=60',
-50 silly get     'content-length': '128368',
-50 silly get     'accept-ranges': 'bytes',
-50 silly get     date: 'Mon, 24 Aug 2015 18:42:34 GMT',
-50 silly get     via: '1.1 varnish',
-50 silly get     age: '18',
-50 silly get     connection: 'keep-alive',
-50 silly get     'x-served-by': 'cache-ams4134-AMS',
-50 silly get     'x-cache': 'HIT',
-50 silly get     'x-cache-hits': '203',
-50 silly get     'x-timer': 'S1440441754.380878,VS0,VE0',
-50 silly get     vary: 'Accept' } ]
-51 verbose get saving async to C:\Users\User\AppData\Roaming\npm-cache\registry.npmjs.org\async\.cache.json
-52 silly addNameRange number 2 { name: 'async', range: '*', hasData: true }
-53 silly addNameRange versions [ 'async',
-53 silly addNameRange   [ '0.1.0',
-53 silly addNameRange     '0.1.1',
-53 silly addNameRange     '0.1.2',
-53 silly addNameRange     '0.1.3',
-53 silly addNameRange     '0.1.4',
-53 silly addNameRange     '0.1.5',
-53 silly addNameRange     '0.1.6',
-53 silly addNameRange     '0.1.7',
-53 silly addNameRange     '0.1.8',
-53 silly addNameRange     '0.1.9',
-53 silly addNameRange     '0.1.10',
-53 silly addNameRange     '0.1.11',
-53 silly addNameRange     '0.1.12',
-53 silly addNameRange     '0.1.13',
-53 silly addNameRange     '0.1.14',
-53 silly addNameRange     '0.1.15',
-53 silly addNameRange     '0.1.16',
-53 silly addNameRange     '0.1.17',
-53 silly addNameRange     '0.1.18',
-53 silly addNameRange     '0.1.19',
-53 silly addNameRange     '0.1.20',
-53 silly addNameRange     '0.1.21',
-53 silly addNameRange     '0.1.22',
-53 silly addNameRange     '0.2.0',
-53 silly addNameRange     '0.2.1',
-53 silly addNameRange     '0.2.2',
-53 silly addNameRange     '0.2.3',
-53 silly addNameRange     '0.2.4',
-53 silly addNameRange     '0.2.5',
-53 silly addNameRange     '0.2.6',
-53 silly addNameRange     '0.2.7',
-53 silly addNameRange     '0.2.8',
-53 silly addNameRange     '0.2.9',
-53 silly addNameRange     '0.2.10',
-53 silly addNameRange     '0.3.0',
-53 silly addNameRange     '0.4.0',
-53 silly addNameRange     '0.4.1',
-53 silly addNameRange     '0.5.0',
-53 silly addNameRange     '0.6.0',
-53 silly addNameRange     '0.6.1',
-53 silly addNameRange     '0.6.2',
-53 silly addNameRange     '0.7.0',
-53 silly addNameRange     '0.8.0',
-53 silly addNameRange     '0.9.0',
-53 silly addNameRange     '0.9.2',
-53 silly addNameRange     '1.0.0',
-53 silly addNameRange     '1.1.0',
-53 silly addNameRange     '1.2.0',
-53 silly addNameRange     '1.1.1',
-53 silly addNameRange     '1.2.1',
-53 silly addNameRange     '1.3.0',
-53 silly addNameRange     '1.4.0',
-53 silly addNameRange     '1.4.1',
-53 silly addNameRange     '1.4.2' ] ]
-54 verbose addNamed async@1.4.2
-55 silly addNamed semver.valid 1.4.2
-56 silly addNamed semver.validRange 1.4.2
-57 silly cache afterAdd async@1.4.2
-58 verbose afterAdd C:\Users\User\AppData\Roaming\npm-cache\async\1.4.2\package\package.json not in flight; writing
-59 verbose afterAdd C:\Users\User\AppData\Roaming\npm-cache\async\1.4.2\package\package.json written
-60 silly install resolved [ { name: 'async',
-60 silly install resolved     description: 'Higher-order functions and common patterns for asynchronous code',
-60 silly install resolved     main: 'lib/async.js',
-60 silly install resolved     files: [ 'lib' ],
-60 silly install resolved     author: { name: 'Caolan McMahon' },
-60 silly install resolved     version: '1.4.2',
-60 silly install resolved     keywords: [ 'async', 'callback', 'utility', 'module' ],
-60 silly install resolved     repository: { type: 'git', url: 'git+https://github.com/caolan/async.git' },
-60 silly install resolved     bugs: { url: 'https://github.com/caolan/async/issues' },
-60 silly install resolved     license: 'MIT',
-60 silly install resolved     devDependencies:
-60 silly install resolved      { benchmark: 'github:bestiejs/benchmark.js',
-60 silly install resolved        bluebird: '^2.9.32',
-60 silly install resolved        chai: '^3.1.0',
-60 silly install resolved        coveralls: '^2.11.2',
-60 silly install resolved        'es6-promise': '^2.3.0',
-60 silly install resolved        jscs: '^1.13.1',
-60 silly install resolved        jshint: '~2.8.0',
-60 silly install resolved        karma: '^0.13.2',
-60 silly install resolved        'karma-browserify': '^4.2.1',
-60 silly install resolved        'karma-firefox-launcher': '^0.1.6',
-60 silly install resolved        'karma-mocha': '^0.2.0',
-60 silly install resolved        'karma-mocha-reporter': '^1.0.2',
-60 silly install resolved        lodash: '^3.9.0',
-60 silly install resolved        mkdirp: '~0.5.1',
-60 silly install resolved        mocha: '^2.2.5',
-60 silly install resolved        'native-promise-only': '^0.8.0-a',
-60 silly install resolved        nodeunit: '>0.0.0',
-60 silly install resolved        nyc: '^2.1.0',
-60 silly install resolved        rsvp: '^3.0.18',
-60 silly install resolved        'uglify-js': '~2.4.0',
-60 silly install resolved        xyz: '^0.5.0',
-60 silly install resolved        yargs: '~3.9.1' },
-60 silly install resolved     jam: { main: 'lib/async.js', include: [Object], categories: [Object] },
-60 silly install resolved     scripts:
-60 silly install resolved      { 'mocha-node-test': 'mocha mocha_test/',
-60 silly install resolved        'mocha-browser-test': 'karma start',
-60 silly install resolved        'mocha-test': 'npm run mocha-node-test && npm run mocha-browser-test',
-60 silly install resolved        'nodeunit-test': 'nodeunit test/test-async.js',
-60 silly install resolved        test: 'npm run-script lint && npm run nodeunit-test && npm run mocha-test',
-60 silly install resolved        lint: 'jshint lib/*.js test/*.js perf/*.js && jscs lib/*.js test/*.js perf/*.js',
-60 silly install resolved        coverage: 'nyc npm test && nyc report',
-60 silly install resolved        coveralls: 'nyc npm test && nyc report --reporter=text-lcov | coveralls' },
-60 silly install resolved     spm: { main: 'lib/async.js' },
-60 silly install resolved     volo: { main: 'lib/async.js', ignore: [Object] },
-60 silly install resolved     gitHead: '92f78aebad222d60c13e4299c0e723f2fe2d6611',
-60 silly install resolved     homepage: 'https://github.com/caolan/async#readme',
-60 silly install resolved     _id: 'async@1.4.2',
-60 silly install resolved     _shasum: '6c9edcb11ced4f0dd2f2d40db0d49a109c088aab',
-60 silly install resolved     _from: 'async@*',
-60 silly install resolved     _npmVersion: '2.9.0',
-60 silly install resolved     _nodeVersion: '2.0.1',
-60 silly install resolved     _npmUser: { name: 'megawac', email: 'megawac@gmail.com' },
-60 silly install resolved     dist:
-60 silly install resolved      { shasum: '6c9edcb11ced4f0dd2f2d40db0d49a109c088aab',
-60 silly install resolved        tarball: 'http://registry.npmjs.org/async/-/async-1.4.2.tgz' },
-60 silly install resolved     maintainers: [ [Object], [Object], [Object], [Object] ],
-60 silly install resolved     directories: {},
-60 silly install resolved     _resolved: 'https://registry.npmjs.org/async/-/async-1.4.2.tgz',
-60 silly install resolved     readme: 'ERROR: No README data found!' } ]
-61 info install async@1.4.2 into d:\TaskManager
-62 info installOne async@1.4.2
-63 verbose installOne of async to d:\TaskManager not in flight; installing
-64 verbose lock using C:\Users\User\AppData\Roaming\npm-cache\_locks\async-d986d0b70da58a58.lock for d:\TaskManager\node_modules\async
-65 silly install write writing async 1.4.2 to d:\TaskManager\node_modules\async
-66 silly cache addNamed cb async@1.4.2
-67 verbose unbuild node_modules\async
-68 silly gentlyRm d:\TaskManager\node_modules\async is being purged from base d:\TaskManager
-69 verbose gentlyRm don't care about contents; nuking d:\TaskManager\node_modules\async
-70 verbose tar unpack C:\Users\User\AppData\Roaming\npm-cache\async\1.4.2\package.tgz
-71 verbose tar unpacking to d:\TaskManager\node_modules\async
-72 silly gentlyRm d:\TaskManager\node_modules\async is being purged
-73 verbose gentlyRm don't care about contents; nuking d:\TaskManager\node_modules\async
-74 silly gunzTarPerm modes [ '777', '666' ]
-75 silly gunzTarPerm extractEntry package.json
-76 silly gunzTarPerm modified mode [ 'package.json', 420, 438 ]
-77 silly gunzTarPerm extractEntry LICENSE
-78 silly gunzTarPerm modified mode [ 'LICENSE', 420, 438 ]
-79 silly gunzTarPerm extractEntry CHANGELOG.md
-80 silly gunzTarPerm modified mode [ 'CHANGELOG.md', 420, 438 ]
-81 silly gunzTarPerm extractEntry lib/async.js
-82 silly gunzTarPerm modified mode [ 'lib/async.js', 420, 438 ]
-83 info preinstall async@1.4.2
-84 silly install resolved []
-85 verbose about to build d:\TaskManager\node_modules\async
-86 info build d:\TaskManager\node_modules\async
-87 verbose linkStuff [ false, false, false, 'd:\\TaskManager\\node_modules' ]
-88 info linkStuff async@1.4.2
-89 verbose linkBins async@1.4.2
-90 verbose linkMans async@1.4.2
-91 verbose rebuildBundles async@1.4.2
-92 info install async@1.4.2
-93 info postinstall async@1.4.2
-94 verbose unlock done using C:\Users\User\AppData\Roaming\npm-cache\_locks\async-d986d0b70da58a58.lock for d:\TaskManager\node_modules\async
-95 info build d:\TaskManager
-96 verbose linkStuff [ false, false, false, 'd:\\' ]
-97 info linkStuff TaskManager@0.0.0
-98 verbose linkBins TaskManager@0.0.0
-99 verbose linkMans TaskManager@0.0.0
-100 verbose rebuildBundles TaskManager@0.0.0
-101 verbose rebuildBundles [ '.bin',
-101 verbose rebuildBundles   'async',
-101 verbose rebuildBundles   'body-parser',
-101 verbose rebuildBundles   'connect-mongo',
-101 verbose rebuildBundles   'cookie-parser',
-101 verbose rebuildBundles   'crypto',
-101 verbose rebuildBundles   'debug',
-101 verbose rebuildBundles   'ejs',
-101 verbose rebuildBundles   'express',
-101 verbose rebuildBundles   'express-session',
-101 verbose rebuildBundles   'jade',
-101 verbose rebuildBundles   'jquery',
-101 verbose rebuildBundles   'jsx-loader',
-101 verbose rebuildBundles   'mongoose',
-101 verbose rebuildBundles   'mongoose-auto-increment',
-101 verbose rebuildBundles   'morgan',
-101 verbose rebuildBundles   'nconf',
-101 verbose rebuildBundles   'node-jsx',
-101 verbose rebuildBundles   'path',
-101 verbose rebuildBundles   'react',
-101 verbose rebuildBundles   'react-bootstrap',
-101 verbose rebuildBundles   'react-router',
-101 verbose rebuildBundles   'react-router-bootstrap',
-101 verbose rebuildBundles   'reflux',
-101 verbose rebuildBundles   'serve-favicon' ]
-102 verbose rebuild bundle d:\TaskManager\node_modules\jade
-103 info build d:\TaskManager\node_modules\jade
-104 info preinstall jade@1.9.2
-105 verbose linkStuff [ false, false, false, 'd:\\TaskManager\\node_modules' ]
-106 info linkStuff jade@1.9.2
-107 verbose linkBins jade@1.9.2
-108 verbose link bins [ { jade: './bin/jade.js' },
-108 verbose link bins   'd:\\TaskManager\\node_modules\\.bin',
-108 verbose link bins   false ]
-109 verbose linkMans jade@1.9.2
-110 verbose rebuildBundles jade@1.9.2
-111 verbose rebuildBundles [ '.bin',
-111 verbose rebuildBundles   'character-parser',
-111 verbose rebuildBundles   'commander',
-111 verbose rebuildBundles   'constantinople',
-111 verbose rebuildBundles   'mkdirp',
-111 verbose rebuildBundles   'transformers',
-111 verbose rebuildBundles   'void-elements',
-111 verbose rebuildBundles   'with' ]
-112 info install jade@1.9.2
-113 info postinstall jade@1.9.2
-114 verbose rebuild bundle d:\TaskManager\node_modules\morgan
-115 info build d:\TaskManager\node_modules\morgan
-116 info preinstall morgan@1.3.2
-117 verbose linkStuff [ false, false, false, 'd:\\TaskManager\\node_modules' ]
-118 info linkStuff morgan@1.3.2
-119 verbose linkBins morgan@1.3.2
-120 verbose linkMans morgan@1.3.2
-121 verbose rebuildBundles morgan@1.3.2
-122 verbose rebuildBundles [ 'basic-auth', 'depd', 'on-finished' ]
-123 info install morgan@1.3.2
-124 info postinstall morgan@1.3.2
-125 info install TaskManager@0.0.0
-126 info postinstall TaskManager@0.0.0
-127 info prepublish TaskManager@0.0.0
-128 verbose stack Error: The package mongoose does not satisfy its siblings' peerDependencies requirements!
-128 verbose stack     at C:\Program Files (x86)\nodejs\node_modules\npm\lib\install.js:125:32
-128 verbose stack     at C:\Program Files (x86)\nodejs\node_modules\npm\lib\install.js:264:7
-128 verbose stack     at C:\Program Files (x86)\nodejs\node_modules\npm\node_modules\read-installed\read-installed.js:138:5
-128 verbose stack     at C:\Program Files (x86)\nodejs\node_modules\npm\node_modules\read-installed\read-installed.js:251:14
-128 verbose stack     at cb (C:\Program Files (x86)\nodejs\node_modules\npm\node_modules\slide\lib\async-map.js:47:24)
-128 verbose stack     at C:\Program Files (x86)\nodejs\node_modules\npm\node_modules\read-installed\read-installed.js:251:14
-128 verbose stack     at cb (C:\Program Files (x86)\nodejs\node_modules\npm\node_modules\slide\lib\async-map.js:47:24)
-128 verbose stack     at C:\Program Files (x86)\nodejs\node_modules\npm\node_modules\read-installed\read-installed.js:251:14
-128 verbose stack     at cb (C:\Program Files (x86)\nodejs\node_modules\npm\node_modules\slide\lib\async-map.js:47:24)
-128 verbose stack     at C:\Program Files (x86)\nodejs\node_modules\npm\node_modules\read-installed\read-installed.js:251:14
-129 verbose cwd d:\TaskManager
-130 error Windows_NT 6.1.7601
-131 error argv "C:\\Program Files (x86)\\nodejs\\\\node.exe" "C:\\Program Files (x86)\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install"
-132 error node v0.12.2
-133 error npm  v2.7.4
-134 error code EPEERINVALID
-135 error peerinvalid The package mongoose does not satisfy its siblings' peerDependencies requirements!
-135 error peerinvalid Peer mongoose-auto-increment@4.0.0 wants mongoose@~4.0.0
-136 verbose exit [ 1, true ]
+5 verbose install     'async',
+5 verbose install     'react-btn-checkbox' ] ]
+6 verbose install where, peers [ 'e:\\TaskManager', [] ]
+7 verbose installManyTop reading for lifecycle e:\TaskManager\package.json
+8 info preinstall TaskManager@0.0.0
+9 verbose installManyTop reading scoped package data from e:\TaskManager\node_modules\async\package.json
+10 verbose installManyTop reading scoped package data from e:\TaskManager\node_modules\body-parser\package.json
+11 verbose installManyTop reading scoped package data from e:\TaskManager\node_modules\connect-mongo\package.json
+12 verbose installManyTop reading scoped package data from e:\TaskManager\node_modules\cookie-parser\package.json
+13 verbose installManyTop reading scoped package data from e:\TaskManager\node_modules\crypto\package.json
+14 verbose installManyTop reading scoped package data from e:\TaskManager\node_modules\debug\package.json
+15 verbose installManyTop reading scoped package data from e:\TaskManager\node_modules\ejs\package.json
+16 verbose installManyTop reading scoped package data from e:\TaskManager\node_modules\express\package.json
+17 verbose installManyTop reading scoped package data from e:\TaskManager\node_modules\express-session\package.json
+18 verbose installManyTop reading scoped package data from e:\TaskManager\node_modules\jquery\package.json
+19 verbose installManyTop reading scoped package data from e:\TaskManager\node_modules\jsx-loader\package.json
+20 verbose installManyTop reading scoped package data from e:\TaskManager\node_modules\mongoose\package.json
+21 verbose installManyTop reading scoped package data from e:\TaskManager\node_modules\mongoose-auto-increment\package.json
+22 verbose installManyTop reading scoped package data from e:\TaskManager\node_modules\nconf\package.json
+23 verbose installManyTop reading scoped package data from e:\TaskManager\node_modules\node-jsx\package.json
+24 verbose installManyTop reading scoped package data from e:\TaskManager\node_modules\path\package.json
+25 verbose installManyTop reading scoped package data from e:\TaskManager\node_modules\react\package.json
+26 verbose installManyTop reading scoped package data from e:\TaskManager\node_modules\react-bootstrap\package.json
+27 verbose installManyTop reading scoped package data from e:\TaskManager\node_modules\react-router\package.json
+28 verbose installManyTop reading scoped package data from e:\TaskManager\node_modules\react-router-bootstrap\package.json
+29 verbose installManyTop reading scoped package data from e:\TaskManager\node_modules\reflux\package.json
+30 verbose installManyTop reading scoped package data from e:\TaskManager\node_modules\serve-favicon\package.json
+31 info package.json connect-mongo@0.8.2 No license field.
+32 info package.json jsx-loader@0.13.2 license should be a valid SPDX license expression
+33 info package.json jquery@2.1.4 No license field.
+34 info package.json nconf@0.7.2 No license field.
+35 info package.json mongoose-auto-increment@4.0.0 No license field.
+36 info package.json node-jsx@0.13.3 license should be a valid SPDX license expression
+37 info package.json path@0.11.14 path is also the name of a node core module.
+38 info package.json crypto@0.0.3 crypto is also the name of a node core module.
+39 info package.json crypto@0.0.3 No license field.
+40 verbose readDependencies loading dependencies from e:\TaskManager\package.json
+41 verbose targetResolver reading package data from e:\TaskManager\node_modules\async\package.json
+42 verbose targetResolver reading package data from e:\TaskManager\node_modules\body-parser\package.json
+43 verbose targetResolver reading package data from e:\TaskManager\node_modules\connect-mongo\package.json
+44 verbose targetResolver reading package data from e:\TaskManager\node_modules\cookie-parser\package.json
+45 verbose targetResolver reading package data from e:\TaskManager\node_modules\crypto\package.json
+46 verbose targetResolver reading package data from e:\TaskManager\node_modules\debug\package.json
+47 verbose targetResolver reading package data from e:\TaskManager\node_modules\ejs\package.json
+48 verbose targetResolver reading package data from e:\TaskManager\node_modules\express\package.json
+49 verbose targetResolver reading package data from e:\TaskManager\node_modules\express-session\package.json
+50 verbose targetResolver reading package data from e:\TaskManager\node_modules\jquery\package.json
+51 verbose targetResolver reading package data from e:\TaskManager\node_modules\jsx-loader\package.json
+52 verbose targetResolver reading package data from e:\TaskManager\node_modules\mongoose\package.json
+53 verbose targetResolver reading package data from e:\TaskManager\node_modules\mongoose-auto-increment\package.json
+54 verbose targetResolver reading package data from e:\TaskManager\node_modules\nconf\package.json
+55 verbose targetResolver reading package data from e:\TaskManager\node_modules\node-jsx\package.json
+56 verbose targetResolver reading package data from e:\TaskManager\node_modules\path\package.json
+57 verbose targetResolver reading package data from e:\TaskManager\node_modules\react\package.json
+58 verbose targetResolver reading package data from e:\TaskManager\node_modules\react-bootstrap\package.json
+59 verbose targetResolver reading package data from e:\TaskManager\node_modules\react-router\package.json
+60 verbose targetResolver reading package data from e:\TaskManager\node_modules\react-router-bootstrap\package.json
+61 verbose targetResolver reading package data from e:\TaskManager\node_modules\reflux\package.json
+62 verbose targetResolver reading package data from e:\TaskManager\node_modules\serve-favicon\package.json
+63 silly cache add args [ 'react-btn-checkbox@*', null ]
+64 verbose cache add spec react-btn-checkbox@*
+65 silly cache add parsed spec { raw: 'react-btn-checkbox@*',
+65 silly cache add   scope: null,
+65 silly cache add   name: 'react-btn-checkbox',
+65 silly cache add   rawSpec: '*',
+65 silly cache add   spec: '*',
+65 silly cache add   type: 'range' }
+66 silly addNamed react-btn-checkbox@*
+67 verbose addNamed "*" is a valid semver range for react-btn-checkbox
+68 silly addNameRange { name: 'react-btn-checkbox', range: '*', hasData: false }
+69 silly mapToRegistry name react-btn-checkbox
+70 silly mapToRegistry using default registry
+71 silly mapToRegistry registry https://registry.npmjs.org/
+72 silly mapToRegistry uri https://registry.npmjs.org/react-btn-checkbox
+73 verbose addNameRange registry:https://registry.npmjs.org/react-btn-checkbox not in flight; fetching
+74 verbose already installed skipping body-parser@* e:\TaskManager
+75 verbose already installed skipping cookie-parser@* e:\TaskManager
+76 verbose already installed skipping debug@* e:\TaskManager
+77 verbose already installed skipping express@* e:\TaskManager
+78 verbose already installed skipping ejs@* e:\TaskManager
+79 verbose already installed skipping serve-favicon@~2.2.0 e:\TaskManager
+80 verbose request uri https://registry.npmjs.org/react-btn-checkbox
+81 verbose request no auth needed
+82 info attempt registry request try #1 at 10:51:00
+83 verbose request id 8e471025e10b5fe3
+84 http request GET https://registry.npmjs.org/react-btn-checkbox
+85 verbose already installed skipping mongoose@4.1.3 e:\TaskManager
+86 verbose already installed skipping crypto@* e:\TaskManager
+87 verbose already installed skipping mongoose-auto-increment@* e:\TaskManager
+88 verbose already installed skipping nconf@* e:\TaskManager
+89 verbose already installed skipping path@* e:\TaskManager
+90 verbose already installed skipping express-session@* e:\TaskManager
+91 verbose already installed skipping connect-mongo@* e:\TaskManager
+92 verbose already installed skipping jsx-loader@* e:\TaskManager
+93 verbose already installed skipping node-jsx@* e:\TaskManager
+94 verbose already installed skipping react@* e:\TaskManager
+95 verbose already installed skipping react-router@* e:\TaskManager
+96 verbose already installed skipping react-bootstrap@* e:\TaskManager
+97 verbose already installed skipping react-router-bootstrap@* e:\TaskManager
+98 verbose already installed skipping reflux@* e:\TaskManager
+99 verbose already installed skipping jquery@* e:\TaskManager
+100 verbose already installed skipping async@* e:\TaskManager
+101 http 200 https://registry.npmjs.org/react-btn-checkbox
+102 silly get cb [ 200,
+102 silly get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+102 silly get     etag: '"BGPZQN8AZ4VDIFGGMGKRJSQW7"',
+102 silly get     'content-type': 'application/json',
+102 silly get     'cache-control': 'max-age=60',
+102 silly get     'content-length': '7132',
+102 silly get     'accept-ranges': 'bytes',
+102 silly get     date: 'Tue, 25 Aug 2015 08:51:03 GMT',
+102 silly get     via: '1.1 varnish',
+102 silly get     age: '0',
+102 silly get     connection: 'keep-alive',
+102 silly get     'x-served-by': 'cache-fra1246-FRA',
+102 silly get     'x-cache': 'MISS',
+102 silly get     'x-cache-hits': '0',
+102 silly get     'x-timer': 'S1440492662.875684,VS0,VE203',
+102 silly get     vary: 'Accept' } ]
+103 verbose get saving react-btn-checkbox to C:\Users\user\AppData\Roaming\npm-cache\registry.npmjs.org\react-btn-checkbox\.cache.json
+104 silly addNameRange number 2 { name: 'react-btn-checkbox', range: '*', hasData: true }
+105 silly addNameRange versions [ 'react-btn-checkbox', [ '0.0.1', '0.0.2' ] ]
+106 silly addNamed react-btn-checkbox@0.0.2
+107 verbose addNamed "0.0.2" is a plain semver version for react-btn-checkbox
+108 silly mapToRegistry name react-btn-checkbox
+109 silly mapToRegistry using default registry
+110 silly mapToRegistry registry https://registry.npmjs.org/
+111 silly mapToRegistry uri https://registry.npmjs.org/react-btn-checkbox
+112 verbose addRemoteTarball https://registry.npmjs.org/react-btn-checkbox/-/react-btn-checkbox-0.0.2.tgz not in flight; adding
+113 verbose addRemoteTarball [ 'https://registry.npmjs.org/react-btn-checkbox/-/react-btn-checkbox-0.0.2.tgz',
+113 verbose addRemoteTarball   '63b8663cb95ae20010f63765d3928a6ce7f3477d' ]
+114 info retry fetch attempt 1 at 10:51:01
+115 info attempt registry request try #1 at 10:51:01
+116 http fetch GET https://registry.npmjs.org/react-btn-checkbox/-/react-btn-checkbox-0.0.2.tgz
+117 http fetch 200 https://registry.npmjs.org/react-btn-checkbox/-/react-btn-checkbox-0.0.2.tgz
+118 silly fetchAndShaCheck shasum 63b8663cb95ae20010f63765d3928a6ce7f3477d
+119 verbose addTmpTarball C:\Users\user\AppData\Local\Temp\npm-156-3660bde1\registry.npmjs.org\react-btn-checkbox\-\react-btn-checkbox-0.0.2.tgz not in flight; adding
+120 verbose addTmpTarball already have metadata; skipping unpack for react-btn-checkbox@0.0.2
+121 silly cache afterAdd react-btn-checkbox@0.0.2
+122 verbose afterAdd C:\Users\user\AppData\Roaming\npm-cache\react-btn-checkbox\0.0.2\package\package.json not in flight; writing
+123 verbose afterAdd C:\Users\user\AppData\Roaming\npm-cache\react-btn-checkbox\0.0.2\package\package.json written
+124 silly install resolved [ { name: 'react-btn-checkbox',
+124 silly install resolved     version: '0.0.2',
+124 silly install resolved     description: 'display checkboxes and radios as button',
+124 silly install resolved     main: 'dist/react-btn-checkbox.js',
+124 silly install resolved     repository:
+124 silly install resolved      { type: 'git',
+124 silly install resolved        url: 'git+ssh://git@github.com/iam4x/react-btn-checkbox.git' },
+124 silly install resolved     keywords: [ 'react', 'component' ],
+124 silly install resolved     author: { name: 'iam4x' },
+124 silly install resolved     license: 'MIT',
+124 silly install resolved     bugs: { url: 'https://github.com/iam4x/react-btn-checkbox/issues' },
+124 silly install resolved     homepage: 'http://iam4x.github.io/react-btn-checkbox/',
+124 silly install resolved     jest:
+124 silly install resolved      { scriptPreprocessor: './node_modules/babel-jest',
+124 silly install resolved        testFileExtensions: [Object],
+124 silly install resolved        moduleFileExtensions: [Object],
+124 silly install resolved        unmockedModulePathPatterns: [Object] },
+124 silly install resolved     dependencies:
+124 silly install resolved      { classnames: '^2.1.2',
+124 silly install resolved        lodash: '^3.9.3',
+124 silly install resolved        'object-assign': '^3.0.0',
+124 silly install resolved        react: '^0.13.3' },
+124 silly install resolved     devDependencies:
+124 silly install resolved      { babel: '^5.5.6',
+124 silly install resolved        'babel-core': '^5.5.6',
+124 silly install resolved        'babel-eslint': '^3.1.15',
+124 silly install resolved        'babel-jest': '^5.2.0',
+124 silly install resolved        'babel-loader': '^5.1.4',
+124 silly install resolved        'css-loader': '^0.14.5',
+124 silly install resolved        del: '^1.1.1',
+124 silly install resolved        eslint: '^0.22.1',
+124 silly install resolved        'eslint-config-future': '^2.1.1',
+124 silly install resolved        'eslint-plugin-react': '^2.5.0',
+124 silly install resolved        gulp: '^3.8.11',
+124 silly install resolved        'gulp-cached': '^1.0.2',
+124 silly install resolved        'gulp-concat-css': '^2.1.0',
+124 silly install resolved        'gulp-header': '^1.2.2',
+124 silly install resolved        'gulp-minify-css': '^1.1.6',
+124 silly install resolved        'gulp-rename': '^1.2.0',
+124 silly install resolved        'gulp-sass': '^2.0.1',
+124 silly install resolved        'gulp-shell': '^0.4.2',
+124 silly install resolved        'gulp-util': '^3.0.4',
+124 silly install resolved        'jest-cli': '^0.4.0',
+124 silly install resolved        'node-sass': '^3.1.2',
+124 silly install resolved        'react-hot-loader': '^1.1.6',
+124 silly install resolved        'run-sequence': '^1.0.2',
+124 silly install resolved        'sass-loader': '^1.0.2',
+124 silly install resolved        'style-loader': '^0.12.3',
+124 silly install resolved        webpack: '^1.6.0',
+124 silly install resolved        'webpack-dev-server': '^1.9.0' },
+124 silly install resolved     scripts: { start: 'node server.js' },
+124 silly install resolved     gitHead: 'a56eb4928818b02cb040dbffa81e113b09a54b63',
+124 silly install resolved     _id: 'react-btn-checkbox@0.0.2',
+124 silly install resolved     _shasum: '63b8663cb95ae20010f63765d3928a6ce7f3477d',
+124 silly install resolved     _from: 'react-btn-checkbox@*',
+124 silly install resolved     _npmVersion: '2.11.0',
+124 silly install resolved     _nodeVersion: '2.2.1',
+124 silly install resolved     _npmUser: { name: 'iam4x', email: 'iam4x@me.com' },
+124 silly install resolved     dist:
+124 silly install resolved      { shasum: '63b8663cb95ae20010f63765d3928a6ce7f3477d',
+124 silly install resolved        tarball: 'http://registry.npmjs.org/react-btn-checkbox/-/react-btn-checkbox-0.0.2.tgz' },
+124 silly install resolved     maintainers: [ [Object] ],
+124 silly install resolved     directories: {},
+124 silly install resolved     _resolved: 'https://registry.npmjs.org/react-btn-checkbox/-/react-btn-checkbox-0.0.2.tgz' } ]
+125 info install react-btn-checkbox@0.0.2 into e:\TaskManager
+126 info installOne react-btn-checkbox@0.0.2
+127 verbose installOne of react-btn-checkbox to e:\TaskManager not in flight; installing
+128 verbose lock using C:\Users\user\AppData\Roaming\npm-cache\_locks\react-btn-checkbox-02e30ebd6b4cb900.lock for e:\TaskManager\node_modules\react-btn-checkbox
+129 silly install write writing react-btn-checkbox 0.0.2 to e:\TaskManager\node_modules\react-btn-checkbox
+130 verbose unbuild node_modules\react-btn-checkbox
+131 silly gentlyRm e:\TaskManager\node_modules\react-btn-checkbox is being purged from base e:\TaskManager
+132 verbose gentlyRm don't care about contents; nuking e:\TaskManager\node_modules\react-btn-checkbox
+133 verbose tar unpack C:\Users\user\AppData\Roaming\npm-cache\react-btn-checkbox\0.0.2\package.tgz
+134 verbose tar unpacking to e:\TaskManager\node_modules\react-btn-checkbox
+135 silly gentlyRm e:\TaskManager\node_modules\react-btn-checkbox is being purged
+136 verbose gentlyRm don't care about contents; nuking e:\TaskManager\node_modules\react-btn-checkbox
+137 silly gunzTarPerm modes [ '777', '666' ]
+138 silly gunzTarPerm extractEntry package.json
+139 silly gunzTarPerm modified mode [ 'package.json', 420, 438 ]
+140 silly gunzTarPerm extractEntry .npmignore
+141 silly gunzTarPerm modified mode [ '.npmignore', 420, 438 ]
+142 silly gunzTarPerm extractEntry README.md
+143 silly gunzTarPerm modified mode [ 'README.md', 420, 438 ]
+144 silly gunzTarPerm extractEntry docs/vendor/JSXTransformer.js
+145 silly gunzTarPerm modified mode [ 'docs/vendor/JSXTransformer.js', 420, 438 ]
+146 silly gunzTarPerm extractEntry docs/vendor/prism.js
+147 silly gunzTarPerm modified mode [ 'docs/vendor/prism.js', 420, 438 ]
+148 silly gunzTarPerm extractEntry docs/vendor/react-btn-checkbox.js
+149 silly gunzTarPerm modified mode [ 'docs/vendor/react-btn-checkbox.js', 420, 438 ]
+150 silly gunzTarPerm extractEntry docs/vendor/react-with-addons.min.js
+151 silly gunzTarPerm modified mode [ 'docs/vendor/react-with-addons.min.js', 420, 438 ]
+152 silly gunzTarPerm extractEntry docs/vendor/docs-react.css
+153 silly gunzTarPerm modified mode [ 'docs/vendor/docs-react.css', 420, 438 ]
+154 silly gunzTarPerm extractEntry docs/vendor/docs.min.css
+155 silly gunzTarPerm modified mode [ 'docs/vendor/docs.min.css', 420, 438 ]
+156 silly gunzTarPerm extractEntry docs/vendor/prism.css
+157 silly gunzTarPerm modified mode [ 'docs/vendor/prism.css', 420, 438 ]
+158 silly gunzTarPerm extractEntry docs/vendor/react-btn-checkbox.css
+159 silly gunzTarPerm modified mode [ 'docs/vendor/react-btn-checkbox.css', 420, 438 ]
+160 silly gunzTarPerm extractEntry .babelrc
+161 silly gunzTarPerm modified mode [ '.babelrc', 420, 438 ]
+162 silly gunzTarPerm extractEntry dist/react-btn-checkbox.js
+163 silly gunzTarPerm modified mode [ 'dist/react-btn-checkbox.js', 420, 438 ]
+164 silly gunzTarPerm extractEntry dist/react-btn-checkbox.min.js
+165 silly gunzTarPerm modified mode [ 'dist/react-btn-checkbox.min.js', 420, 438 ]
+166 silly gunzTarPerm extractEntry dist/react-btn-checkbox.css
+167 silly gunzTarPerm modified mode [ 'dist/react-btn-checkbox.css', 420, 438 ]
+168 silly gunzTarPerm extractEntry dist/react-btn-checkbox.min.css
+169 silly gunzTarPerm modified mode [ 'dist/react-btn-checkbox.min.css', 420, 438 ]
+170 verbose write writing to e:\TaskManager\node_modules\react-btn-checkbox\package.json
+171 info preinstall react-btn-checkbox@0.0.2
+172 verbose readDependencies loading dependencies from e:\TaskManager\node_modules\react-btn-checkbox\package.json
+173 silly prepareForInstallMany adding classnames@^2.1.2 from react-btn-checkbox dependencies
+174 silly prepareForInstallMany adding lodash@^3.9.3 from react-btn-checkbox dependencies
+175 silly prepareForInstallMany adding object-assign@^3.0.0 from react-btn-checkbox dependencies
+176 verbose readDependencies loading dependencies from e:\TaskManager\node_modules\react-btn-checkbox\package.json
+177 silly cache add args [ 'classnames@^2.1.2', null ]
+178 verbose cache add spec classnames@^2.1.2
+179 silly cache add args [ 'lodash@^3.9.3', null ]
+180 verbose cache add spec lodash@^3.9.3
+181 silly cache add parsed spec { raw: 'classnames@^2.1.2',
+181 silly cache add   scope: null,
+181 silly cache add   name: 'classnames',
+181 silly cache add   rawSpec: '^2.1.2',
+181 silly cache add   spec: '>=2.1.2 <3.0.0',
+181 silly cache add   type: 'range' }
+182 silly addNamed classnames@>=2.1.2 <3.0.0
+183 verbose addNamed ">=2.1.2 <3.0.0" is a valid semver range for classnames
+184 silly addNameRange { name: 'classnames', range: '>=2.1.2 <3.0.0', hasData: false }
+185 silly mapToRegistry name classnames
+186 silly mapToRegistry using default registry
+187 silly mapToRegistry registry https://registry.npmjs.org/
+188 silly mapToRegistry uri https://registry.npmjs.org/classnames
+189 verbose addNameRange registry:https://registry.npmjs.org/classnames not in flight; fetching
+190 silly cache add parsed spec { raw: 'lodash@^3.9.3',
+190 silly cache add   scope: null,
+190 silly cache add   name: 'lodash',
+190 silly cache add   rawSpec: '^3.9.3',
+190 silly cache add   spec: '>=3.9.3 <4.0.0',
+190 silly cache add   type: 'range' }
+191 silly addNamed lodash@>=3.9.3 <4.0.0
+192 verbose addNamed ">=3.9.3 <4.0.0" is a valid semver range for lodash
+193 silly addNameRange { name: 'lodash', range: '>=3.9.3 <4.0.0', hasData: false }
+194 silly mapToRegistry name lodash
+195 silly mapToRegistry using default registry
+196 silly mapToRegistry registry https://registry.npmjs.org/
+197 silly mapToRegistry uri https://registry.npmjs.org/lodash
+198 verbose addNameRange registry:https://registry.npmjs.org/lodash not in flight; fetching
+199 silly cache add args [ 'object-assign@^3.0.0', null ]
+200 verbose cache add spec object-assign@^3.0.0
+201 silly cache add parsed spec { raw: 'object-assign@^3.0.0',
+201 silly cache add   scope: null,
+201 silly cache add   name: 'object-assign',
+201 silly cache add   rawSpec: '^3.0.0',
+201 silly cache add   spec: '>=3.0.0 <4.0.0',
+201 silly cache add   type: 'range' }
+202 silly addNamed object-assign@>=3.0.0 <4.0.0
+203 verbose addNamed ">=3.0.0 <4.0.0" is a valid semver range for object-assign
+204 silly addNameRange { name: 'object-assign',
+204 silly addNameRange   range: '>=3.0.0 <4.0.0',
+204 silly addNameRange   hasData: false }
+205 silly mapToRegistry name object-assign
+206 silly mapToRegistry using default registry
+207 silly mapToRegistry registry https://registry.npmjs.org/
+208 silly mapToRegistry uri https://registry.npmjs.org/object-assign
+209 verbose addNameRange registry:https://registry.npmjs.org/object-assign not in flight; fetching
+210 verbose request uri https://registry.npmjs.org/lodash
+211 verbose request no auth needed
+212 info attempt registry request try #1 at 10:51:03
+213 verbose etag "DPIHC9EESG08WE88VXWR2LZPZ"
+214 http request GET https://registry.npmjs.org/lodash
+215 verbose request uri https://registry.npmjs.org/object-assign
+216 verbose request no auth needed
+217 info attempt registry request try #1 at 10:51:03
+218 verbose etag "95EIINO0OC17V6TYPD5XIOCQ8"
+219 http request GET https://registry.npmjs.org/object-assign
+220 verbose request uri https://registry.npmjs.org/classnames
+221 verbose request no auth needed
+222 info attempt registry request try #1 at 10:51:03
+223 verbose etag "4KOW0LU5WTTWIFFWURWS4OFVB"
+224 http request GET https://registry.npmjs.org/classnames
+225 http 200 https://registry.npmjs.org/classnames
+226 silly get cb [ 200,
+226 silly get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+226 silly get     etag: '"3ABP5Q939OU5TM68FFYB0LKRV"',
+226 silly get     'content-type': 'application/json',
+226 silly get     'cache-control': 'max-age=60',
+226 silly get     'content-length': '18343',
+226 silly get     'accept-ranges': 'bytes',
+226 silly get     date: 'Tue, 25 Aug 2015 08:51:05 GMT',
+226 silly get     via: '1.1 varnish',
+226 silly get     age: '49',
+226 silly get     connection: 'keep-alive',
+226 silly get     'x-served-by': 'cache-fra1229-FRA',
+226 silly get     'x-cache': 'HIT',
+226 silly get     'x-cache-hits': '2',
+226 silly get     'x-timer': 'S1440492665.951547,VS0,VE0',
+226 silly get     vary: 'Accept' } ]
+227 verbose get saving classnames to C:\Users\user\AppData\Roaming\npm-cache\registry.npmjs.org\classnames\.cache.json
+228 silly addNameRange number 2 { name: 'classnames', range: '>=2.1.2 <3.0.0', hasData: true }
+229 silly addNameRange versions [ 'classnames',
+229 silly addNameRange   [ '1.0.0',
+229 silly addNameRange     '1.1.0',
+229 silly addNameRange     '1.1.1',
+229 silly addNameRange     '1.1.2',
+229 silly addNameRange     '1.1.3',
+229 silly addNameRange     '1.1.4',
+229 silly addNameRange     '1.2.0',
+229 silly addNameRange     '1.2.1',
+229 silly addNameRange     '1.2.2',
+229 silly addNameRange     '2.0.0',
+229 silly addNameRange     '2.1.0',
+229 silly addNameRange     '2.1.1',
+229 silly addNameRange     '2.1.2',
+229 silly addNameRange     '2.1.3' ] ]
+230 silly addNamed classnames@2.1.3
+231 verbose addNamed "2.1.3" is a plain semver version for classnames
+232 silly cache afterAdd classnames@2.1.3
+233 verbose afterAdd C:\Users\user\AppData\Roaming\npm-cache\classnames\2.1.3\package\package.json not in flight; writing
+234 verbose afterAdd C:\Users\user\AppData\Roaming\npm-cache\classnames\2.1.3\package\package.json written
+235 http 200 https://registry.npmjs.org/object-assign
+236 silly get cb [ 200,
+236 silly get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+236 silly get     etag: '"9Y072UXPGMKE8NKK9IQ13AUIG"',
+236 silly get     'content-type': 'application/json',
+236 silly get     'cache-control': 'max-age=60',
+236 silly get     'content-length': '19803',
+236 silly get     'accept-ranges': 'bytes',
+236 silly get     date: 'Tue, 25 Aug 2015 08:51:05 GMT',
+236 silly get     via: '1.1 varnish',
+236 silly get     age: '45',
+236 silly get     connection: 'keep-alive',
+236 silly get     'x-served-by': 'cache-fra1230-FRA',
+236 silly get     'x-cache': 'HIT',
+236 silly get     'x-cache-hits': '8',
+236 silly get     'x-timer': 'S1440492665.961082,VS0,VE0',
+236 silly get     vary: 'Accept' } ]
+237 verbose get saving object-assign to C:\Users\user\AppData\Roaming\npm-cache\registry.npmjs.org\object-assign\.cache.json
+238 silly addNameRange number 2 { name: 'object-assign', range: '>=3.0.0 <4.0.0', hasData: true }
+239 silly addNameRange versions [ 'object-assign',
+239 silly addNameRange   [ '0.1.0',
+239 silly addNameRange     '0.1.1',
+239 silly addNameRange     '0.1.2',
+239 silly addNameRange     '0.2.0',
+239 silly addNameRange     '0.2.1',
+239 silly addNameRange     '0.2.2',
+239 silly addNameRange     '0.3.0',
+239 silly addNameRange     '0.3.1',
+239 silly addNameRange     '0.4.0',
+239 silly addNameRange     '1.0.0',
+239 silly addNameRange     '2.0.0',
+239 silly addNameRange     '3.0.0',
+239 silly addNameRange     '2.1.1',
+239 silly addNameRange     '4.0.0',
+239 silly addNameRange     '4.0.1' ] ]
+240 silly addNamed object-assign@3.0.0
+241 verbose addNamed "3.0.0" is a plain semver version for object-assign
+242 silly mapToRegistry name object-assign
+243 silly mapToRegistry using default registry
+244 silly mapToRegistry registry https://registry.npmjs.org/
+245 silly mapToRegistry uri https://registry.npmjs.org/object-assign
+246 verbose addRemoteTarball https://registry.npmjs.org/object-assign/-/object-assign-3.0.0.tgz not in flight; adding
+247 verbose addRemoteTarball [ 'https://registry.npmjs.org/object-assign/-/object-assign-3.0.0.tgz',
+247 verbose addRemoteTarball   '9bedd5ca0897949bca47e7ff408062d549f587f2' ]
+248 info retry fetch attempt 1 at 10:51:04
+249 info attempt registry request try #1 at 10:51:04
+250 http fetch GET https://registry.npmjs.org/object-assign/-/object-assign-3.0.0.tgz
+251 http fetch 200 https://registry.npmjs.org/object-assign/-/object-assign-3.0.0.tgz
+252 silly fetchAndShaCheck shasum 9bedd5ca0897949bca47e7ff408062d549f587f2
+253 verbose addTmpTarball C:\Users\user\AppData\Local\Temp\npm-156-3660bde1\registry.npmjs.org\object-assign\-\object-assign-3.0.0.tgz not in flight; adding
+254 verbose addTmpTarball already have metadata; skipping unpack for object-assign@3.0.0
+255 silly cache afterAdd object-assign@3.0.0
+256 verbose afterAdd C:\Users\user\AppData\Roaming\npm-cache\object-assign\3.0.0\package\package.json not in flight; writing
+257 verbose afterAdd C:\Users\user\AppData\Roaming\npm-cache\object-assign\3.0.0\package\package.json written
+258 http 200 https://registry.npmjs.org/lodash
+259 silly get cb [ 200,
+259 silly get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+259 silly get     etag: '"A1TZ0E5XYN1BITHZC950K2P46"',
+259 silly get     'content-type': 'application/json',
+259 silly get     'cache-control': 'max-age=60',
+259 silly get     'content-length': '108904',
+259 silly get     'accept-ranges': 'bytes',
+259 silly get     date: 'Tue, 25 Aug 2015 08:51:05 GMT',
+259 silly get     via: '1.1 varnish',
+259 silly get     age: '50',
+259 silly get     connection: 'keep-alive',
+259 silly get     'x-served-by': 'cache-fra1246-FRA',
+259 silly get     'x-cache': 'HIT',
+259 silly get     'x-cache-hits': '5',
+259 silly get     'x-timer': 'S1440492665.975263,VS0,VE0',
+259 silly get     vary: 'Accept' } ]
+260 verbose get saving lodash to C:\Users\user\AppData\Roaming\npm-cache\registry.npmjs.org\lodash\.cache.json
+261 silly addNameRange number 2 { name: 'lodash', range: '>=3.9.3 <4.0.0', hasData: true }
+262 silly addNameRange versions [ 'lodash',
+262 silly addNameRange   [ '0.1.0',
+262 silly addNameRange     '0.2.0',
+262 silly addNameRange     '0.2.1',
+262 silly addNameRange     '0.2.2',
+262 silly addNameRange     '0.3.0',
+262 silly addNameRange     '0.3.1',
+262 silly addNameRange     '0.3.2',
+262 silly addNameRange     '0.4.0',
+262 silly addNameRange     '0.4.1',
+262 silly addNameRange     '0.4.2',
+262 silly addNameRange     '0.5.0-rc.1',
+262 silly addNameRange     '0.5.0',
+262 silly addNameRange     '0.5.1',
+262 silly addNameRange     '0.5.2',
+262 silly addNameRange     '0.6.0',
+262 silly addNameRange     '0.6.1',
+262 silly addNameRange     '0.7.0',
+262 silly addNameRange     '0.8.0',
+262 silly addNameRange     '0.8.1',
+262 silly addNameRange     '0.8.2',
+262 silly addNameRange     '0.9.0',
+262 silly addNameRange     '0.9.1',
+262 silly addNameRange     '0.9.2',
+262 silly addNameRange     '0.10.0',
+262 silly addNameRange     '1.0.0-rc.1',
+262 silly addNameRange     '1.0.0-rc.2',
+262 silly addNameRange     '1.0.0-rc.3',
+262 silly addNameRange     '1.0.0',
+262 silly addNameRange     '1.0.1',
+262 silly addNameRange     '1.1.0',
+262 silly addNameRange     '1.1.1',
+262 silly addNameRange     '1.2.0',
+262 silly addNameRange     '1.2.1',
+262 silly addNameRange     '1.3.0',
+262 silly addNameRange     '1.3.1',
+262 silly addNameRange     '2.0.0',
+262 silly addNameRange     '2.1.0',
+262 silly addNameRange     '2.2.0',
+262 silly addNameRange     '2.2.1',
+262 silly addNameRange     '2.3.0',
+262 silly addNameRange     '2.4.0',
+262 silly addNameRange     '2.4.1',
+262 silly addNameRange     '3.0.0',
+262 silly addNameRange     '3.0.1',
+262 silly addNameRange     '3.1.0',
+262 silly addNameRange     '3.2.0',
+262 silly addNameRange     '3.3.0',
+262 silly addNameRange     '3.3.1',
+262 silly addNameRange     '3.4.0',
+262 silly addNameRange     '3.5.0',
+262 silly addNameRange     '3.6.0',
+262 silly addNameRange     '1.0.2',
+262 silly addNameRange     '3.7.0',
+262 silly addNameRange     '2.4.2',
+262 silly addNameRange     '3.8.0',
+262 silly addNameRange     '3.9.0',
+262 silly addNameRange     '3.9.1',
+262 silly addNameRange     '3.9.2',
+262 silly addNameRange     '3.9.3',
+262 silly addNameRange     '3.10.0',
+262 silly addNameRange     '3.10.1' ] ]
+263 silly addNamed lodash@3.10.1
+264 verbose addNamed "3.10.1" is a plain semver version for lodash
+265 silly cache afterAdd lodash@3.10.1
+266 verbose afterAdd C:\Users\user\AppData\Roaming\npm-cache\lodash\3.10.1\package\package.json not in flight; writing
+267 verbose afterAdd C:\Users\user\AppData\Roaming\npm-cache\lodash\3.10.1\package\package.json written
+268 silly install resolved [ { name: 'classnames',
+268 silly install resolved     version: '2.1.3',
+268 silly install resolved     description: 'A simple utility for conditionally joining classNames together',
+268 silly install resolved     main: 'index.js',
+268 silly install resolved     author: { name: 'Jed Watson' },
+268 silly install resolved     license: 'MIT',
+268 silly install resolved     repository:
+268 silly install resolved      { type: 'git',
+268 silly install resolved        url: 'git+https://github.com/JedWatson/classnames.git' },
+268 silly install resolved     scripts:
+268 silly install resolved      { benchmarks: 'node ./benchmarks/run',
+268 silly install resolved        unit: 'mocha tests/*.js',
+268 silly install resolved        test: 'npm run unit' },
+268 silly install resolved     keywords:
+268 silly install resolved      [ 'react',
+268 silly install resolved        'css',
+268 silly install resolved        'classes',
+268 silly install resolved        'classname',
+268 silly install resolved        'classnames',
+268 silly install resolved        'util',
+268 silly install resolved        'utility' ],
+268 silly install resolved     devDependencies: { benchmark: '^1.0.0', mocha: '^2.1.0' },
+268 silly install resolved     gitHead: '99715cc93219198c2abb8ac488078fe336b922dd',
+268 silly install resolved     bugs: { url: 'https://github.com/JedWatson/classnames/issues' },
+268 silly install resolved     homepage: 'https://github.com/JedWatson/classnames',
+268 silly install resolved     _id: 'classnames@2.1.3',
+268 silly install resolved     _shasum: 'af9b2453fc143ae8546d0e73bbeea40f74b7e363',
+268 silly install resolved     _from: 'classnames@>=2.1.2 <3.0.0',
+268 silly install resolved     _npmVersion: '2.7.5',
+268 silly install resolved     _nodeVersion: '0.12.2',
+268 silly install resolved     _npmUser: { name: 'jedwatson', email: 'jed.watson@me.com' },
+268 silly install resolved     dist:
+268 silly install resolved      { shasum: 'af9b2453fc143ae8546d0e73bbeea40f74b7e363',
+268 silly install resolved        tarball: 'http://registry.npmjs.org/classnames/-/classnames-2.1.3.tgz' },
+268 silly install resolved     maintainers: [ [Object] ],
+268 silly install resolved     directories: {},
+268 silly install resolved     _resolved: 'https://registry.npmjs.org/classnames/-/classnames-2.1.3.tgz',
+268 silly install resolved     readme: 'ERROR: No README data found!' },
+268 silly install resolved   { name: 'object-assign',
+268 silly install resolved     version: '3.0.0',
+268 silly install resolved     description: 'ES6 Object.assign() ponyfill',
+268 silly install resolved     license: 'MIT',
+268 silly install resolved     repository:
+268 silly install resolved      { type: 'git',
+268 silly install resolved        url: 'https://github.com/sindresorhus/object-assign' },
+268 silly install resolved     author:
+268 silly install resolved      { name: 'Sindre Sorhus',
+268 silly install resolved        email: 'sindresorhus@gmail.com',
+268 silly install resolved        url: 'http://sindresorhus.com' },
+268 silly install resolved     engines: { node: '>=0.10.0' },
+268 silly install resolved     scripts: { test: 'mocha' },
+268 silly install resolved     files: [ 'index.js' ],
+268 silly install resolved     keywords:
+268 silly install resolved      [ 'object',
+268 silly install resolved        'assign',
+268 silly install resolved        'extend',
+268 silly install resolved        'properties',
+268 silly install resolved        'es6',
+268 silly install resolved        'ecmascript',
+268 silly install resolved        'harmony',
+268 silly install resolved        'ponyfill',
+268 silly install resolved        'prollyfill',
+268 silly install resolved        'polyfill',
+268 silly install resolved        'shim',
+268 silly install resolved        'browser' ],
+268 silly install resolved     devDependencies: { mocha: '*' },
+268 silly install resolved     gitHead: '02622dcb0d82bd81a071ed0b04fedf5e5eea7059',
+268 silly install resolved     bugs: { url: 'https://github.com/sindresorhus/object-assign/issues' },
+268 silly install resolved     homepage: 'https://github.com/sindresorhus/object-assign',
+268 silly install resolved     _id: 'object-assign@3.0.0',
+268 silly install resolved     _shasum: '9bedd5ca0897949bca47e7ff408062d549f587f2',
+268 silly install resolved     _from: 'object-assign@>=3.0.0 <4.0.0',
+268 silly install resolved     _npmVersion: '2.10.1',
+268 silly install resolved     _nodeVersion: '0.12.4',
+268 silly install resolved     _npmUser: { name: 'sindresorhus', email: 'sindresorhus@gmail.com' },
+268 silly install resolved     dist:
+268 silly install resolved      { shasum: '9bedd5ca0897949bca47e7ff408062d549f587f2',
+268 silly install resolved        tarball: 'http://registry.npmjs.org/object-assign/-/object-assign-3.0.0.tgz' },
+268 silly install resolved     maintainers: [ [Object] ],
+268 silly install resolved     directories: {},
+268 silly install resolved     _resolved: 'https://registry.npmjs.org/object-assign/-/object-assign-3.0.0.tgz' },
+268 silly install resolved   { name: 'lodash',
+268 silly install resolved     version: '3.10.1',
+268 silly install resolved     description: 'The modern build of lodash modular utilities.',
+268 silly install resolved     homepage: 'https://lodash.com/',
+268 silly install resolved     icon: 'https://lodash.com/icon.svg',
+268 silly install resolved     license: 'MIT',
+268 silly install resolved     main: 'index.js',
+268 silly install resolved     keywords: [ 'modules', 'stdlib', 'util' ],
+268 silly install resolved     author:
+268 silly install resolved      { name: 'John-David Dalton',
+268 silly install resolved        email: 'john.david.dalton@gmail.com',
+268 silly install resolved        url: 'http://allyoucanleet.com/' },
+268 silly install resolved     contributors: [ [Object], [Object], [Object], [Object], [Object] ],
+268 silly install resolved     repository: { type: 'git', url: 'git+https://github.com/lodash/lodash.git' },
+268 silly install resolved     scripts: { test: 'echo "See https://travis-ci.org/lodash/lodash-cli for testing details."' },
+268 silly install resolved     bugs: { url: 'https://github.com/lodash/lodash/issues' },
+268 silly install resolved     _id: 'lodash@3.10.1',
+268 silly install resolved     _shasum: '5bf45e8e49ba4189e17d482789dfd15bd140b7b6',
+268 silly install resolved     _from: 'lodash@>=3.9.3 <4.0.0',
+268 silly install resolved     _npmVersion: '2.13.1',
+268 silly install resolved     _nodeVersion: '0.12.5',
+268 silly install resolved     _npmUser: { name: 'jdalton', email: 'john.david.dalton@gmail.com' },
+268 silly install resolved     maintainers: [ [Object], [Object], [Object], [Object], [Object] ],
+268 silly install resolved     dist:
+268 silly install resolved      { shasum: '5bf45e8e49ba4189e17d482789dfd15bd140b7b6',
+268 silly install resolved        tarball: 'http://registry.npmjs.org/lodash/-/lodash-3.10.1.tgz' },
+268 silly install resolved     directories: {},
+268 silly install resolved     _resolved: 'https://registry.npmjs.org/lodash/-/lodash-3.10.1.tgz',
+268 silly install resolved     readme: 'ERROR: No README data found!' } ]
+269 info install classnames@2.1.3 into e:\TaskManager\node_modules\react-btn-checkbox
+270 info install object-assign@3.0.0 into e:\TaskManager\node_modules\react-btn-checkbox
+271 info install lodash@3.10.1 into e:\TaskManager\node_modules\react-btn-checkbox
+272 info installOne classnames@2.1.3
+273 verbose installOne of classnames to e:\TaskManager\node_modules\react-btn-checkbox not in flight; installing
+274 info installOne object-assign@3.0.0
+275 verbose installOne of object-assign to e:\TaskManager\node_modules\react-btn-checkbox not in flight; installing
+276 info installOne lodash@3.10.1
+277 verbose installOne of lodash to e:\TaskManager\node_modules\react-btn-checkbox not in flight; installing
+278 verbose lock using C:\Users\user\AppData\Roaming\npm-cache\_locks\lodash-43bcceeebb748825.lock for e:\TaskManager\node_modules\react-btn-checkbox\node_modules\lodash
+279 verbose lock using C:\Users\user\AppData\Roaming\npm-cache\_locks\object-assign-f385f5acbd0cc192.lock for e:\TaskManager\node_modules\react-btn-checkbox\node_modules\object-assign
+280 silly install write writing lodash 3.10.1 to e:\TaskManager\node_modules\react-btn-checkbox\node_modules\lodash
+281 verbose lock using C:\Users\user\AppData\Roaming\npm-cache\_locks\classnames-83154a7f442e2e10.lock for e:\TaskManager\node_modules\react-btn-checkbox\node_modules\classnames
+282 silly install write writing object-assign 3.0.0 to e:\TaskManager\node_modules\react-btn-checkbox\node_modules\object-assign
+283 silly install write writing classnames 2.1.3 to e:\TaskManager\node_modules\react-btn-checkbox\node_modules\classnames
+284 verbose unbuild node_modules\react-btn-checkbox\node_modules\object-assign
+285 verbose unbuild node_modules\react-btn-checkbox\node_modules\classnames
+286 silly gentlyRm e:\TaskManager\node_modules\react-btn-checkbox\node_modules\object-assign is being purged from base e:\TaskManager
+287 verbose gentlyRm don't care about contents; nuking e:\TaskManager\node_modules\react-btn-checkbox\node_modules\object-assign
+288 silly gentlyRm e:\TaskManager\node_modules\react-btn-checkbox\node_modules\classnames is being purged from base e:\TaskManager
+289 verbose gentlyRm don't care about contents; nuking e:\TaskManager\node_modules\react-btn-checkbox\node_modules\classnames
+290 verbose tar unpack C:\Users\user\AppData\Roaming\npm-cache\object-assign\3.0.0\package.tgz
+291 verbose tar unpacking to e:\TaskManager\node_modules\react-btn-checkbox\node_modules\object-assign
+292 silly gentlyRm e:\TaskManager\node_modules\react-btn-checkbox\node_modules\object-assign is being purged
+293 verbose gentlyRm don't care about contents; nuking e:\TaskManager\node_modules\react-btn-checkbox\node_modules\object-assign
+294 verbose tar unpack C:\Users\user\AppData\Roaming\npm-cache\classnames\2.1.3\package.tgz
+295 verbose tar unpacking to e:\TaskManager\node_modules\react-btn-checkbox\node_modules\classnames
+296 silly gentlyRm e:\TaskManager\node_modules\react-btn-checkbox\node_modules\classnames is being purged
+297 verbose gentlyRm don't care about contents; nuking e:\TaskManager\node_modules\react-btn-checkbox\node_modules\classnames
+298 verbose unbuild node_modules\react-btn-checkbox\node_modules\lodash
+299 silly gunzTarPerm modes [ '777', '666' ]
+300 silly gunzTarPerm modes [ '777', '666' ]
+301 silly gentlyRm e:\TaskManager\node_modules\react-btn-checkbox\node_modules\lodash is being purged from base e:\TaskManager
+302 verbose gentlyRm don't care about contents; nuking e:\TaskManager\node_modules\react-btn-checkbox\node_modules\lodash
+303 verbose tar unpack C:\Users\user\AppData\Roaming\npm-cache\lodash\3.10.1\package.tgz
+304 verbose tar unpacking to e:\TaskManager\node_modules\react-btn-checkbox\node_modules\lodash
+305 silly gentlyRm e:\TaskManager\node_modules\react-btn-checkbox\node_modules\lodash is being purged
+306 verbose gentlyRm don't care about contents; nuking e:\TaskManager\node_modules\react-btn-checkbox\node_modules\lodash
+307 silly gunzTarPerm modes [ '777', '666' ]
+308 silly gunzTarPerm extractEntry package.json
+309 silly gunzTarPerm modified mode [ 'package.json', 420, 438 ]
+310 silly gunzTarPerm extractEntry index.js
+311 silly gunzTarPerm modified mode [ 'index.js', 420, 438 ]
+312 silly gunzTarPerm extractEntry license
+313 silly gunzTarPerm modified mode [ 'license', 420, 438 ]
+314 silly gunzTarPerm extractEntry readme.md
+315 silly gunzTarPerm modified mode [ 'readme.md', 420, 438 ]
+316 silly gunzTarPerm extractEntry package.json
+317 silly gunzTarPerm modified mode [ 'package.json', 420, 438 ]
+318 verbose write writing to e:\TaskManager\node_modules\react-btn-checkbox\node_modules\object-assign\package.json
+319 info preinstall object-assign@3.0.0
+320 silly gunzTarPerm extractEntry package.json
+321 silly gunzTarPerm modified mode [ 'package.json', 420, 438 ]
+322 verbose readDependencies loading dependencies from e:\TaskManager\node_modules\react-btn-checkbox\node_modules\object-assign\package.json
+323 verbose readDependencies loading dependencies from e:\TaskManager\node_modules\react-btn-checkbox\node_modules\object-assign\package.json
+324 silly gunzTarPerm extractEntry .npmignore
+325 silly gunzTarPerm modified mode [ '.npmignore', 420, 438 ]
+326 silly gunzTarPerm extractEntry README.md
+327 silly gunzTarPerm modified mode [ 'README.md', 420, 438 ]
+328 silly gunzTarPerm extractEntry README.md
+329 silly gunzTarPerm modified mode [ 'README.md', 420, 438 ]
+330 silly gunzTarPerm extractEntry LICENSE
+331 silly gunzTarPerm modified mode [ 'LICENSE', 420, 438 ]
+332 silly install resolved []
+333 verbose about to build e:\TaskManager\node_modules\react-btn-checkbox\node_modules\object-assign
+334 info build e:\TaskManager\node_modules\react-btn-checkbox\node_modules\object-assign
+335 silly gunzTarPerm extractEntry LICENSE
+336 silly gunzTarPerm modified mode [ 'LICENSE', 420, 438 ]
+337 silly gunzTarPerm extractEntry dedupe.js
+338 silly gunzTarPerm modified mode [ 'dedupe.js', 420, 438 ]
+339 silly gunzTarPerm extractEntry chain.js
+340 silly gunzTarPerm modified mode [ 'chain.js', 420, 438 ]
+341 silly gunzTarPerm extractEntry string.js
+342 silly gunzTarPerm modified mode [ 'string.js', 420, 438 ]
+343 info linkStuff object-assign@3.0.0
+344 silly linkStuff object-assign@3.0.0 has e:\TaskManager\node_modules\react-btn-checkbox\node_modules as its parent node_modules
+345 silly gunzTarPerm extractEntry index.js
+346 silly gunzTarPerm modified mode [ 'index.js', 420, 438 ]
+347 silly gunzTarPerm extractEntry .travis.yml
+348 silly gunzTarPerm modified mode [ '.travis.yml', 420, 438 ]
+349 verbose linkBins object-assign@3.0.0
+350 verbose linkMans object-assign@3.0.0
+351 verbose rebuildBundles object-assign@3.0.0
+352 info install object-assign@3.0.0
+353 info postinstall object-assign@3.0.0
+354 silly gunzTarPerm extractEntry benchmarks/package.json
+355 silly gunzTarPerm modified mode [ 'benchmarks/package.json', 420, 438 ]
+356 silly gunzTarPerm extractEntry benchmarks/run.js
+357 silly gunzTarPerm modified mode [ 'benchmarks/run.js', 420, 438 ]
+358 silly gunzTarPerm extractEntry collection.js
+359 silly gunzTarPerm modified mode [ 'collection.js', 420, 438 ]
+360 verbose unlock done using C:\Users\user\AppData\Roaming\npm-cache\_locks\object-assign-f385f5acbd0cc192.lock for e:\TaskManager\node_modules\react-btn-checkbox\node_modules\object-assign
+361 silly gunzTarPerm extractEntry array.js
+362 silly gunzTarPerm modified mode [ 'array.js', 420, 438 ]
+363 silly gunzTarPerm extractEntry date.js
+364 silly gunzTarPerm modified mode [ 'date.js', 420, 438 ]
+365 silly gunzTarPerm extractEntry bower.json
+366 silly gunzTarPerm modified mode [ 'bower.json', 420, 438 ]
+367 silly gunzTarPerm extractEntry CONTRIBUTING.md
+368 silly gunzTarPerm modified mode [ 'CONTRIBUTING.md', 420, 438 ]
+369 silly gunzTarPerm extractEntry HISTORY.md
+370 silly gunzTarPerm modified mode [ 'HISTORY.md', 420, 438 ]
+371 silly gunzTarPerm extractEntry number.js
+372 silly gunzTarPerm modified mode [ 'number.js', 420, 438 ]
+373 silly gunzTarPerm extractEntry function.js
+374 silly gunzTarPerm modified mode [ 'function.js', 420, 438 ]
+375 silly gunzTarPerm extractEntry .editorconfig
+376 silly gunzTarPerm modified mode [ '.editorconfig', 420, 438 ]
+377 silly gunzTarPerm extractEntry tests/dedupe.js
+378 silly gunzTarPerm modified mode [ 'tests/dedupe.js', 420, 438 ]
+379 silly gunzTarPerm extractEntry index.js
+380 silly gunzTarPerm modified mode [ 'index.js', 420, 438 ]
+381 silly gunzTarPerm extractEntry math.js
+382 silly gunzTarPerm modified mode [ 'math.js', 420, 438 ]
+383 silly gunzTarPerm extractEntry tests/index.js
+384 silly gunzTarPerm modified mode [ 'tests/index.js', 420, 438 ]
+385 silly gunzTarPerm extractEntry support.js
+386 silly gunzTarPerm modified mode [ 'support.js', 420, 438 ]
+387 silly gunzTarPerm extractEntry lang.js
+388 silly gunzTarPerm modified mode [ 'lang.js', 420, 438 ]
+389 silly gunzTarPerm extractEntry object.js
+390 silly gunzTarPerm modified mode [ 'object.js', 420, 438 ]
+391 silly gunzTarPerm extractEntry utility.js
+392 silly gunzTarPerm modified mode [ 'utility.js', 420, 438 ]
+393 silly gunzTarPerm extractEntry collection/all.js
+394 silly gunzTarPerm modified mode [ 'collection/all.js', 420, 438 ]
+395 silly gunzTarPerm extractEntry collection/forEachRight.js
+396 silly gunzTarPerm modified mode [ 'collection/forEachRight.js', 420, 438 ]
+397 silly gunzTarPerm extractEntry collection/groupBy.js
+398 silly gunzTarPerm modified mode [ 'collection/groupBy.js', 420, 438 ]
+399 silly gunzTarPerm extractEntry collection/include.js
+400 silly gunzTarPerm modified mode [ 'collection/include.js', 420, 438 ]
+401 silly gunzTarPerm extractEntry collection/includes.js
+402 silly gunzTarPerm modified mode [ 'collection/includes.js', 420, 438 ]
+403 silly gunzTarPerm extractEntry collection/forEach.js
+404 silly gunzTarPerm modified mode [ 'collection/forEach.js', 420, 438 ]
+405 silly gunzTarPerm extractEntry collection/inject.js
+406 silly gunzTarPerm modified mode [ 'collection/inject.js', 420, 438 ]
+407 silly gunzTarPerm extractEntry collection/invoke.js
+408 silly gunzTarPerm modified mode [ 'collection/invoke.js', 420, 438 ]
+409 silly gunzTarPerm extractEntry collection/map.js
+410 silly gunzTarPerm modified mode [ 'collection/map.js', 420, 438 ]
+411 silly gunzTarPerm extractEntry collection/max.js
+412 silly gunzTarPerm modified mode [ 'collection/max.js', 420, 438 ]
+413 verbose write writing to e:\TaskManager\node_modules\react-btn-checkbox\node_modules\classnames\package.json
+414 silly gunzTarPerm extractEntry collection/min.js
+415 silly gunzTarPerm modified mode [ 'collection/min.js', 420, 438 ]
+416 info preinstall classnames@2.1.3
+417 verbose readDependencies loading dependencies from e:\TaskManager\node_modules\react-btn-checkbox\node_modules\classnames\package.json
+418 silly gunzTarPerm extractEntry collection/foldr.js
+419 silly gunzTarPerm modified mode [ 'collection/foldr.js', 420, 438 ]
+420 verbose readDependencies loading dependencies from e:\TaskManager\node_modules\react-btn-checkbox\node_modules\classnames\package.json
+421 silly install resolved []
+422 verbose about to build e:\TaskManager\node_modules\react-btn-checkbox\node_modules\classnames
+423 info build e:\TaskManager\node_modules\react-btn-checkbox\node_modules\classnames
+424 info linkStuff classnames@2.1.3
+425 silly linkStuff classnames@2.1.3 has e:\TaskManager\node_modules\react-btn-checkbox\node_modules as its parent node_modules
+426 silly gunzTarPerm extractEntry collection/partition.js
+427 silly gunzTarPerm modified mode [ 'collection/partition.js', 420, 438 ]
+428 verbose linkBins classnames@2.1.3
+429 verbose linkMans classnames@2.1.3
+430 verbose rebuildBundles classnames@2.1.3
+431 info install classnames@2.1.3
+432 info postinstall classnames@2.1.3
+433 silly gunzTarPerm extractEntry collection/foldl.js
+434 silly gunzTarPerm modified mode [ 'collection/foldl.js', 420, 438 ]
+435 verbose unlock done using C:\Users\user\AppData\Roaming\npm-cache\_locks\classnames-83154a7f442e2e10.lock for e:\TaskManager\node_modules\react-btn-checkbox\node_modules\classnames
+436 silly gunzTarPerm extractEntry collection/pluck.js
+437 silly gunzTarPerm modified mode [ 'collection/pluck.js', 420, 438 ]
+438 silly gunzTarPerm extractEntry collection/findWhere.js
+439 silly gunzTarPerm modified mode [ 'collection/findWhere.js', 420, 438 ]
+440 silly gunzTarPerm extractEntry collection/reduce.js
+441 silly gunzTarPerm modified mode [ 'collection/reduce.js', 420, 438 ]
+442 silly gunzTarPerm extractEntry collection/findLast.js
+443 silly gunzTarPerm modified mode [ 'collection/findLast.js', 420, 438 ]
+444 silly gunzTarPerm extractEntry collection/reduceRight.js
+445 silly gunzTarPerm modified mode [ 'collection/reduceRight.js', 420, 438 ]
+446 silly gunzTarPerm extractEntry collection/find.js
+447 silly gunzTarPerm modified mode [ 'collection/find.js', 420, 438 ]
+448 silly gunzTarPerm extractEntry collection/reject.js
+449 silly gunzTarPerm modified mode [ 'collection/reject.js', 420, 438 ]
+450 silly gunzTarPerm extractEntry collection/filter.js
+451 silly gunzTarPerm modified mode [ 'collection/filter.js', 420, 438 ]
+452 silly gunzTarPerm extractEntry collection/sample.js
+453 silly gunzTarPerm modified mode [ 'collection/sample.js', 420, 438 ]
+454 silly gunzTarPerm extractEntry collection/every.js
+455 silly gunzTarPerm modified mode [ 'collection/every.js', 420, 438 ]
+456 silly gunzTarPerm extractEntry collection/select.js
+457 silly gunzTarPerm modified mode [ 'collection/select.js', 420, 438 ]
+458 silly gunzTarPerm extractEntry collection/eachRight.js
+459 silly gunzTarPerm modified mode [ 'collection/eachRight.js', 420, 438 ]
+460 silly gunzTarPerm extractEntry collection/shuffle.js
+461 silly gunzTarPerm modified mode [ 'collection/shuffle.js', 420, 438 ]
+462 silly gunzTarPerm extractEntry collection/each.js
+463 silly gunzTarPerm modified mode [ 'collection/each.js', 420, 438 ]
+464 silly gunzTarPerm extractEntry collection/size.js
+465 silly gunzTarPerm modified mode [ 'collection/size.js', 420, 438 ]
+466 silly gunzTarPerm extractEntry collection/detect.js
+467 silly gunzTarPerm modified mode [ 'collection/detect.js', 420, 438 ]
+468 silly gunzTarPerm extractEntry collection/some.js
+469 silly gunzTarPerm modified mode [ 'collection/some.js', 420, 438 ]
+470 silly gunzTarPerm extractEntry collection/countBy.js
+471 silly gunzTarPerm modified mode [ 'collection/countBy.js', 420, 438 ]
+472 silly gunzTarPerm extractEntry collection/sortBy.js
+473 silly gunzTarPerm modified mode [ 'collection/sortBy.js', 420, 438 ]
+474 silly gunzTarPerm extractEntry collection/contains.js
+475 silly gunzTarPerm modified mode [ 'collection/contains.js', 420, 438 ]
+476 silly gunzTarPerm extractEntry collection/sortByAll.js
+477 silly gunzTarPerm modified mode [ 'collection/sortByAll.js', 420, 438 ]
+478 silly gunzTarPerm extractEntry collection/collect.js
+479 silly gunzTarPerm modified mode [ 'collection/collect.js', 420, 438 ]
+480 silly gunzTarPerm extractEntry collection/sortByOrder.js
+481 silly gunzTarPerm modified mode [ 'collection/sortByOrder.js', 420, 438 ]
+482 silly gunzTarPerm extractEntry collection/at.js
+483 silly gunzTarPerm modified mode [ 'collection/at.js', 420, 438 ]
+484 silly gunzTarPerm extractEntry collection/sum.js
+485 silly gunzTarPerm modified mode [ 'collection/sum.js', 420, 438 ]
+486 silly gunzTarPerm extractEntry collection/any.js
+487 silly gunzTarPerm modified mode [ 'collection/any.js', 420, 438 ]
+488 silly gunzTarPerm extractEntry collection/where.js
+489 silly gunzTarPerm modified mode [ 'collection/where.js', 420, 438 ]
+490 silly gunzTarPerm extractEntry collection/indexBy.js
+491 silly gunzTarPerm modified mode [ 'collection/indexBy.js', 420, 438 ]
+492 silly gunzTarPerm extractEntry math/add.js
+493 silly gunzTarPerm modified mode [ 'math/add.js', 420, 438 ]
+494 silly gunzTarPerm extractEntry math/ceil.js
+495 silly gunzTarPerm modified mode [ 'math/ceil.js', 420, 438 ]
+496 silly gunzTarPerm extractEntry math/floor.js
+497 silly gunzTarPerm modified mode [ 'math/floor.js', 420, 438 ]
+498 silly gunzTarPerm extractEntry math/max.js
+499 silly gunzTarPerm modified mode [ 'math/max.js', 420, 438 ]
+500 silly gunzTarPerm extractEntry math/min.js
+501 silly gunzTarPerm modified mode [ 'math/min.js', 420, 438 ]
+502 silly gunzTarPerm extractEntry math/round.js
+503 silly gunzTarPerm modified mode [ 'math/round.js', 420, 438 ]
+504 silly gunzTarPerm extractEntry math/sum.js
+505 silly gunzTarPerm modified mode [ 'math/sum.js', 420, 438 ]
+506 silly gunzTarPerm extractEntry number/inRange.js
+507 silly gunzTarPerm modified mode [ 'number/inRange.js', 420, 438 ]
+508 silly gunzTarPerm extractEntry number/random.js
+509 silly gunzTarPerm modified mode [ 'number/random.js', 420, 438 ]
+510 silly gunzTarPerm extractEntry function/after.js
+511 silly gunzTarPerm modified mode [ 'function/after.js', 420, 438 ]
+512 silly gunzTarPerm extractEntry function/curryRight.js
+513 silly gunzTarPerm modified mode [ 'function/curryRight.js', 420, 438 ]
+514 silly gunzTarPerm extractEntry function/debounce.js
+515 silly gunzTarPerm modified mode [ 'function/debounce.js', 420, 438 ]
+516 silly gunzTarPerm extractEntry function/defer.js
+517 silly gunzTarPerm modified mode [ 'function/defer.js', 420, 438 ]
+518 silly gunzTarPerm extractEntry function/delay.js
+519 silly gunzTarPerm modified mode [ 'function/delay.js', 420, 438 ]
+520 silly gunzTarPerm extractEntry function/curry.js
+521 silly gunzTarPerm modified mode [ 'function/curry.js', 420, 438 ]
+522 silly gunzTarPerm extractEntry function/flowRight.js
+523 silly gunzTarPerm modified mode [ 'function/flowRight.js', 420, 438 ]
+524 silly gunzTarPerm extractEntry function/memoize.js
+525 silly gunzTarPerm modified mode [ 'function/memoize.js', 420, 438 ]
+526 silly gunzTarPerm extractEntry function/modArgs.js
+527 silly gunzTarPerm modified mode [ 'function/modArgs.js', 420, 438 ]
+528 silly gunzTarPerm extractEntry function/negate.js
+529 silly gunzTarPerm modified mode [ 'function/negate.js', 420, 438 ]
+530 silly gunzTarPerm extractEntry function/once.js
+531 silly gunzTarPerm modified mode [ 'function/once.js', 420, 438 ]
+532 silly gunzTarPerm extractEntry function/compose.js
+533 silly gunzTarPerm modified mode [ 'function/compose.js', 420, 438 ]
+534 silly gunzTarPerm extractEntry function/partial.js
+535 silly gunzTarPerm modified mode [ 'function/partial.js', 420, 438 ]
+536 silly gunzTarPerm extractEntry function/bindKey.js
+537 silly gunzTarPerm modified mode [ 'function/bindKey.js', 420, 438 ]
+538 silly gunzTarPerm extractEntry function/partialRight.js
+539 silly gunzTarPerm modified mode [ 'function/partialRight.js', 420, 438 ]
+540 silly gunzTarPerm extractEntry function/bindAll.js
+541 silly gunzTarPerm modified mode [ 'function/bindAll.js', 420, 438 ]
+542 silly gunzTarPerm extractEntry function/rearg.js
+543 silly gunzTarPerm modified mode [ 'function/rearg.js', 420, 438 ]
+544 silly gunzTarPerm extractEntry function/bind.js
+545 silly gunzTarPerm modified mode [ 'function/bind.js', 420, 438 ]
+546 silly gunzTarPerm extractEntry function/restParam.js
+547 silly gunzTarPerm modified mode [ 'function/restParam.js', 420, 438 ]
+548 silly gunzTarPerm extractEntry function/before.js
+549 silly gunzTarPerm modified mode [ 'function/before.js', 420, 438 ]
+550 silly gunzTarPerm extractEntry function/spread.js
+551 silly gunzTarPerm modified mode [ 'function/spread.js', 420, 438 ]
+552 silly gunzTarPerm extractEntry function/backflow.js
+553 silly gunzTarPerm modified mode [ 'function/backflow.js', 420, 438 ]
+554 silly gunzTarPerm extractEntry function/throttle.js
+555 silly gunzTarPerm modified mode [ 'function/throttle.js', 420, 438 ]
+556 silly gunzTarPerm extractEntry function/ary.js
+557 silly gunzTarPerm modified mode [ 'function/ary.js', 420, 438 ]
+558 silly gunzTarPerm extractEntry function/wrap.js
+559 silly gunzTarPerm modified mode [ 'function/wrap.js', 420, 438 ]
+560 silly gunzTarPerm extractEntry function/flow.js
+561 silly gunzTarPerm modified mode [ 'function/flow.js', 420, 438 ]
+562 silly gunzTarPerm extractEntry object/assign.js
+563 silly gunzTarPerm modified mode [ 'object/assign.js', 420, 438 ]
+564 silly gunzTarPerm extractEntry object/functions.js
+565 silly gunzTarPerm modified mode [ 'object/functions.js', 420, 438 ]
+566 silly gunzTarPerm extractEntry object/get.js
+567 silly gunzTarPerm modified mode [ 'object/get.js', 420, 438 ]
+568 silly gunzTarPerm extractEntry object/has.js
+569 silly gunzTarPerm modified mode [ 'object/has.js', 420, 438 ]
+570 silly gunzTarPerm extractEntry object/forOwnRight.js
+571 silly gunzTarPerm modified mode [ 'object/forOwnRight.js', 420, 438 ]
+572 silly gunzTarPerm extractEntry object/keys.js
+573 silly gunzTarPerm modified mode [ 'object/keys.js', 420, 438 ]
+574 silly gunzTarPerm extractEntry object/keysIn.js
+575 silly gunzTarPerm modified mode [ 'object/keysIn.js', 420, 438 ]
+576 silly gunzTarPerm extractEntry object/mapKeys.js
+577 silly gunzTarPerm modified mode [ 'object/mapKeys.js', 420, 438 ]
+578 silly gunzTarPerm extractEntry object/mapValues.js
+579 silly gunzTarPerm modified mode [ 'object/mapValues.js', 420, 438 ]
+580 silly gunzTarPerm extractEntry object/merge.js
+581 silly gunzTarPerm modified mode [ 'object/merge.js', 420, 438 ]
+582 silly gunzTarPerm extractEntry object/forOwn.js
+583 silly gunzTarPerm modified mode [ 'object/forOwn.js', 420, 438 ]
+584 silly gunzTarPerm extractEntry object/methods.js
+585 silly gunzTarPerm modified mode [ 'object/methods.js', 420, 438 ]
+586 silly gunzTarPerm extractEntry object/forInRight.js
+587 silly gunzTarPerm modified mode [ 'object/forInRight.js', 420, 438 ]
+588 silly gunzTarPerm extractEntry object/omit.js
+589 silly gunzTarPerm modified mode [ 'object/omit.js', 420, 438 ]
+590 silly gunzTarPerm extractEntry object/forIn.js
+591 silly gunzTarPerm modified mode [ 'object/forIn.js', 420, 438 ]
+592 silly gunzTarPerm extractEntry object/pairs.js
+593 silly gunzTarPerm modified mode [ 'object/pairs.js', 420, 438 ]
+594 silly gunzTarPerm extractEntry object/findLastKey.js
+595 silly gunzTarPerm modified mode [ 'object/findLastKey.js', 420, 438 ]
+596 silly gunzTarPerm extractEntry object/pick.js
+597 silly gunzTarPerm modified mode [ 'object/pick.js', 420, 438 ]
+598 silly gunzTarPerm extractEntry object/findKey.js
+599 silly gunzTarPerm modified mode [ 'object/findKey.js', 420, 438 ]
+600 silly gunzTarPerm extractEntry object/result.js
+601 silly gunzTarPerm modified mode [ 'object/result.js', 420, 438 ]
+602 silly gunzTarPerm extractEntry object/extend.js
+603 silly gunzTarPerm modified mode [ 'object/extend.js', 420, 438 ]
+604 silly gunzTarPerm extractEntry object/set.js
+605 silly gunzTarPerm modified mode [ 'object/set.js', 420, 438 ]
+606 silly gunzTarPerm extractEntry object/defaultsDeep.js
+607 silly gunzTarPerm modified mode [ 'object/defaultsDeep.js', 420, 438 ]
+608 silly gunzTarPerm extractEntry object/transform.js
+609 silly gunzTarPerm modified mode [ 'object/transform.js', 420, 438 ]
+610 silly gunzTarPerm extractEntry object/defaults.js
+611 silly gunzTarPerm modified mode [ 'object/defaults.js', 420, 438 ]
+612 silly gunzTarPerm extractEntry object/values.js
+613 silly gunzTarPerm modified mode [ 'object/values.js', 420, 438 ]
+614 silly gunzTarPerm extractEntry object/create.js
+615 silly gunzTarPerm modified mode [ 'object/create.js', 420, 438 ]
+616 silly gunzTarPerm extractEntry object/valuesIn.js
+617 silly gunzTarPerm modified mode [ 'object/valuesIn.js', 420, 438 ]
+618 silly gunzTarPerm extractEntry object/invert.js
+619 silly gunzTarPerm modified mode [ 'object/invert.js', 420, 438 ]
+620 silly gunzTarPerm extractEntry date/now.js
+621 silly gunzTarPerm modified mode [ 'date/now.js', 420, 438 ]
+622 silly gunzTarPerm extractEntry internal/LazyWrapper.js
+623 silly gunzTarPerm modified mode [ 'internal/LazyWrapper.js', 420, 438 ]
+624 silly gunzTarPerm extractEntry internal/compareAscending.js
+625 silly gunzTarPerm modified mode [ 'internal/compareAscending.js', 420, 438 ]
+626 silly gunzTarPerm extractEntry internal/compareMultiple.js
+627 silly gunzTarPerm modified mode [ 'internal/compareMultiple.js', 420, 438 ]
+628 silly gunzTarPerm extractEntry internal/composeArgs.js
+629 silly gunzTarPerm modified mode [ 'internal/composeArgs.js', 420, 438 ]
+630 silly gunzTarPerm extractEntry internal/charsRightIndex.js
+631 silly gunzTarPerm modified mode [ 'internal/charsRightIndex.js', 420, 438 ]
+632 silly gunzTarPerm extractEntry internal/createAggregator.js
+633 silly gunzTarPerm modified mode [ 'internal/createAggregator.js', 420, 438 ]
+634 silly gunzTarPerm extractEntry internal/createAssigner.js
+635 silly gunzTarPerm modified mode [ 'internal/createAssigner.js', 420, 438 ]
+636 silly gunzTarPerm extractEntry internal/createBaseEach.js
+637 silly gunzTarPerm modified mode [ 'internal/createBaseEach.js', 420, 438 ]
+638 silly gunzTarPerm extractEntry internal/createBaseFor.js
+639 silly gunzTarPerm modified mode [ 'internal/createBaseFor.js', 420, 438 ]
+640 silly gunzTarPerm extractEntry internal/createBindWrapper.js
+641 silly gunzTarPerm modified mode [ 'internal/createBindWrapper.js', 420, 438 ]
+642 silly gunzTarPerm extractEntry internal/charsLeftIndex.js
+643 silly gunzTarPerm modified mode [ 'internal/charsLeftIndex.js', 420, 438 ]
+644 silly gunzTarPerm extractEntry internal/createCache.js
+645 silly gunzTarPerm modified mode [ 'internal/createCache.js', 420, 438 ]
+646 silly gunzTarPerm extractEntry internal/cachePush.js
+647 silly gunzTarPerm modified mode [ 'internal/cachePush.js', 420, 438 ]
+648 silly gunzTarPerm extractEntry internal/createCompounder.js
+649 silly gunzTarPerm modified mode [ 'internal/createCompounder.js', 420, 438 ]
+650 silly gunzTarPerm extractEntry internal/cacheIndexOf.js
+651 silly gunzTarPerm modified mode [ 'internal/cacheIndexOf.js', 420, 438 ]
+652 silly gunzTarPerm extractEntry internal/createCtorWrapper.js
+653 silly gunzTarPerm modified mode [ 'internal/createCtorWrapper.js', 420, 438 ]
+654 silly gunzTarPerm extractEntry internal/bufferClone.js
+655 silly gunzTarPerm modified mode [ 'internal/bufferClone.js', 420, 438 ]
+656 silly gunzTarPerm extractEntry internal/createCurry.js
+657 silly gunzTarPerm modified mode [ 'internal/createCurry.js', 420, 438 ]
+658 silly gunzTarPerm extractEntry internal/bindCallback.js
+659 silly gunzTarPerm modified mode [ 'internal/bindCallback.js', 420, 438 ]
+660 silly gunzTarPerm extractEntry internal/createDefaults.js
+661 silly gunzTarPerm modified mode [ 'internal/createDefaults.js', 420, 438 ]
+662 silly gunzTarPerm extractEntry internal/binaryIndexBy.js
+663 silly gunzTarPerm modified mode [ 'internal/binaryIndexBy.js', 420, 438 ]
+664 silly gunzTarPerm extractEntry internal/createExtremum.js
+665 silly gunzTarPerm modified mode [ 'internal/createExtremum.js', 420, 438 ]
+666 silly gunzTarPerm extractEntry internal/binaryIndex.js
+667 silly gunzTarPerm modified mode [ 'internal/binaryIndex.js', 420, 438 ]
+668 silly gunzTarPerm extractEntry internal/createFind.js
+669 silly gunzTarPerm modified mode [ 'internal/createFind.js', 420, 438 ]
+670 silly gunzTarPerm extractEntry internal/baseWrapperValue.js
+671 silly gunzTarPerm modified mode [ 'internal/baseWrapperValue.js', 420, 438 ]
+672 silly gunzTarPerm extractEntry internal/createFindIndex.js
+673 silly gunzTarPerm modified mode [ 'internal/createFindIndex.js', 420, 438 ]
+674 silly gunzTarPerm extractEntry internal/baseWhile.js
+675 silly gunzTarPerm modified mode [ 'internal/baseWhile.js', 420, 438 ]
+676 silly gunzTarPerm extractEntry internal/createFindKey.js
+677 silly gunzTarPerm modified mode [ 'internal/createFindKey.js', 420, 438 ]
+678 silly gunzTarPerm extractEntry internal/baseValues.js
+679 silly gunzTarPerm modified mode [ 'internal/baseValues.js', 420, 438 ]
+680 silly gunzTarPerm extractEntry internal/createFlow.js
+681 silly gunzTarPerm modified mode [ 'internal/createFlow.js', 420, 438 ]
+682 silly gunzTarPerm extractEntry internal/baseUniq.js
+683 silly gunzTarPerm modified mode [ 'internal/baseUniq.js', 420, 438 ]
+684 silly gunzTarPerm extractEntry internal/createForEach.js
+685 silly gunzTarPerm modified mode [ 'internal/createForEach.js', 420, 438 ]
+686 silly gunzTarPerm extractEntry internal/baseToString.js
+687 silly gunzTarPerm modified mode [ 'internal/baseToString.js', 420, 438 ]
+688 silly gunzTarPerm extractEntry internal/createForIn.js
+689 silly gunzTarPerm modified mode [ 'internal/createForIn.js', 420, 438 ]
+690 silly gunzTarPerm extractEntry internal/baseSum.js
+691 silly gunzTarPerm modified mode [ 'internal/baseSum.js', 420, 438 ]
+692 silly gunzTarPerm extractEntry internal/createForOwn.js
+693 silly gunzTarPerm modified mode [ 'internal/createForOwn.js', 420, 438 ]
+694 silly gunzTarPerm extractEntry internal/baseSortByOrder.js
+695 silly gunzTarPerm modified mode [ 'internal/baseSortByOrder.js', 420, 438 ]
+696 silly gunzTarPerm extractEntry internal/createHybridWrapper.js
+697 silly gunzTarPerm modified mode [ 'internal/createHybridWrapper.js', 420, 438 ]
+698 silly gunzTarPerm extractEntry internal/baseSortBy.js
+699 silly gunzTarPerm modified mode [ 'internal/baseSortBy.js', 420, 438 ]
+700 silly gunzTarPerm extractEntry internal/createObjectMapper.js
+701 silly gunzTarPerm modified mode [ 'internal/createObjectMapper.js', 420, 438 ]
+702 silly gunzTarPerm extractEntry internal/baseSome.js
+703 silly gunzTarPerm modified mode [ 'internal/baseSome.js', 420, 438 ]
+704 silly gunzTarPerm extractEntry internal/createPadDir.js
+705 silly gunzTarPerm modified mode [ 'internal/createPadDir.js', 420, 438 ]
+706 silly gunzTarPerm extractEntry internal/baseSlice.js
+707 silly gunzTarPerm modified mode [ 'internal/baseSlice.js', 420, 438 ]
+708 silly gunzTarPerm extractEntry internal/createPadding.js
+709 silly gunzTarPerm modified mode [ 'internal/createPadding.js', 420, 438 ]
+710 silly gunzTarPerm extractEntry internal/baseSetData.js
+711 silly gunzTarPerm modified mode [ 'internal/baseSetData.js', 420, 438 ]
+712 silly gunzTarPerm extractEntry internal/createPartial.js
+713 silly gunzTarPerm modified mode [ 'internal/createPartial.js', 420, 438 ]
+714 silly gunzTarPerm extractEntry internal/baseReduce.js
+715 silly gunzTarPerm modified mode [ 'internal/baseReduce.js', 420, 438 ]
+716 silly gunzTarPerm extractEntry internal/createPartialWrapper.js
+717 silly gunzTarPerm modified mode [ 'internal/createPartialWrapper.js', 420, 438 ]
+718 silly gunzTarPerm extractEntry internal/baseRandom.js
+719 silly gunzTarPerm modified mode [ 'internal/baseRandom.js', 420, 438 ]
+720 silly gunzTarPerm extractEntry internal/createReduce.js
+721 silly gunzTarPerm modified mode [ 'internal/createReduce.js', 420, 438 ]
+722 silly gunzTarPerm extractEntry internal/basePullAt.js
+723 silly gunzTarPerm modified mode [ 'internal/basePullAt.js', 420, 438 ]
+724 silly gunzTarPerm extractEntry internal/createRound.js
+725 silly gunzTarPerm modified mode [ 'internal/createRound.js', 420, 438 ]
+726 silly gunzTarPerm extractEntry internal/basePropertyDeep.js
+727 silly gunzTarPerm modified mode [ 'internal/basePropertyDeep.js', 420, 438 ]
+728 silly gunzTarPerm extractEntry internal/createSortedIndex.js
+729 silly gunzTarPerm modified mode [ 'internal/createSortedIndex.js', 420, 438 ]
+730 silly gunzTarPerm extractEntry internal/baseProperty.js
+731 silly gunzTarPerm modified mode [ 'internal/baseProperty.js', 420, 438 ]
+732 silly gunzTarPerm extractEntry internal/createWrapper.js
+733 silly gunzTarPerm modified mode [ 'internal/createWrapper.js', 420, 438 ]
+734 silly gunzTarPerm extractEntry internal/baseMergeDeep.js
+735 silly gunzTarPerm modified mode [ 'internal/baseMergeDeep.js', 420, 438 ]
+736 silly gunzTarPerm extractEntry internal/deburrLetter.js
+737 silly gunzTarPerm modified mode [ 'internal/deburrLetter.js', 420, 438 ]
+738 silly gunzTarPerm extractEntry internal/baseMerge.js
+739 silly gunzTarPerm modified mode [ 'internal/baseMerge.js', 420, 438 ]
+740 silly gunzTarPerm extractEntry internal/equalArrays.js
+741 silly gunzTarPerm modified mode [ 'internal/equalArrays.js', 420, 438 ]
+742 silly gunzTarPerm extractEntry internal/baseMatchesProperty.js
+743 silly gunzTarPerm modified mode [ 'internal/baseMatchesProperty.js', 420, 438 ]
+744 silly gunzTarPerm extractEntry internal/equalByTag.js
+745 silly gunzTarPerm modified mode [ 'internal/equalByTag.js', 420, 438 ]
+746 silly gunzTarPerm extractEntry internal/baseMatches.js
+747 silly gunzTarPerm modified mode [ 'internal/baseMatches.js', 420, 438 ]
+748 silly gunzTarPerm extractEntry internal/equalObjects.js
+749 silly gunzTarPerm modified mode [ 'internal/equalObjects.js', 420, 438 ]
+750 silly gunzTarPerm extractEntry internal/baseMap.js
+751 silly gunzTarPerm modified mode [ 'internal/baseMap.js', 420, 438 ]
+752 silly gunzTarPerm extractEntry internal/escapeHtmlChar.js
+753 silly gunzTarPerm modified mode [ 'internal/escapeHtmlChar.js', 420, 438 ]
+754 silly gunzTarPerm extractEntry internal/baseLodash.js
+755 silly gunzTarPerm modified mode [ 'internal/baseLodash.js', 420, 438 ]
+756 silly gunzTarPerm extractEntry internal/escapeRegExpChar.js
+757 silly gunzTarPerm modified mode [ 'internal/escapeRegExpChar.js', 420, 438 ]
+758 silly gunzTarPerm extractEntry internal/baseIsMatch.js
+759 silly gunzTarPerm modified mode [ 'internal/baseIsMatch.js', 420, 438 ]
+760 silly gunzTarPerm extractEntry internal/escapeStringChar.js
+761 silly gunzTarPerm modified mode [ 'internal/escapeStringChar.js', 420, 438 ]
+762 silly gunzTarPerm extractEntry internal/baseIsFunction.js
+763 silly gunzTarPerm modified mode [ 'internal/baseIsFunction.js', 420, 438 ]
+764 silly gunzTarPerm extractEntry internal/getData.js
+765 silly gunzTarPerm modified mode [ 'internal/getData.js', 420, 438 ]
+766 silly gunzTarPerm extractEntry internal/baseIsEqualDeep.js
+767 silly gunzTarPerm modified mode [ 'internal/baseIsEqualDeep.js', 420, 438 ]
+768 silly gunzTarPerm extractEntry internal/getFuncName.js
+769 silly gunzTarPerm modified mode [ 'internal/getFuncName.js', 420, 438 ]
+770 silly gunzTarPerm extractEntry internal/baseIsEqual.js
+771 silly gunzTarPerm modified mode [ 'internal/baseIsEqual.js', 420, 438 ]
+772 silly gunzTarPerm extractEntry internal/getLength.js
+773 silly gunzTarPerm modified mode [ 'internal/getLength.js', 420, 438 ]
+774 silly gunzTarPerm extractEntry internal/baseIndexOf.js
+775 silly gunzTarPerm modified mode [ 'internal/baseIndexOf.js', 420, 438 ]
+776 silly gunzTarPerm extractEntry internal/getMatchData.js
+777 silly gunzTarPerm modified mode [ 'internal/getMatchData.js', 420, 438 ]
+778 silly gunzTarPerm extractEntry internal/baseGet.js
+779 silly gunzTarPerm modified mode [ 'internal/baseGet.js', 420, 438 ]
+780 silly gunzTarPerm extractEntry internal/getNative.js
+781 silly gunzTarPerm modified mode [ 'internal/getNative.js', 420, 438 ]
+782 silly gunzTarPerm extractEntry internal/baseFunctions.js
+783 silly gunzTarPerm modified mode [ 'internal/baseFunctions.js', 420, 438 ]
+784 silly gunzTarPerm extractEntry internal/getView.js
+785 silly gunzTarPerm modified mode [ 'internal/getView.js', 420, 438 ]
+786 silly gunzTarPerm extractEntry internal/baseForRight.js
+787 silly gunzTarPerm modified mode [ 'internal/baseForRight.js', 420, 438 ]
+788 silly gunzTarPerm extractEntry internal/indexOfNaN.js
+789 silly gunzTarPerm modified mode [ 'internal/indexOfNaN.js', 420, 438 ]
+790 silly gunzTarPerm extractEntry internal/baseForOwnRight.js
+791 silly gunzTarPerm modified mode [ 'internal/baseForOwnRight.js', 420, 438 ]
+792 silly gunzTarPerm extractEntry internal/initCloneArray.js
+793 silly gunzTarPerm modified mode [ 'internal/initCloneArray.js', 420, 438 ]
+794 silly gunzTarPerm extractEntry internal/baseForOwn.js
+795 silly gunzTarPerm modified mode [ 'internal/baseForOwn.js', 420, 438 ]
+796 silly gunzTarPerm extractEntry internal/initCloneByTag.js
+797 silly gunzTarPerm modified mode [ 'internal/initCloneByTag.js', 420, 438 ]
+798 silly gunzTarPerm extractEntry internal/baseForIn.js
+799 silly gunzTarPerm modified mode [ 'internal/baseForIn.js', 420, 438 ]
+800 silly gunzTarPerm extractEntry internal/initCloneObject.js
+801 silly gunzTarPerm modified mode [ 'internal/initCloneObject.js', 420, 438 ]
+802 silly gunzTarPerm extractEntry internal/baseFor.js
+803 silly gunzTarPerm modified mode [ 'internal/baseFor.js', 420, 438 ]
+804 silly gunzTarPerm extractEntry internal/invokePath.js
+805 silly gunzTarPerm modified mode [ 'internal/invokePath.js', 420, 438 ]
+806 silly gunzTarPerm extractEntry internal/baseFlatten.js
+807 silly gunzTarPerm modified mode [ 'internal/baseFlatten.js', 420, 438 ]
+808 silly gunzTarPerm extractEntry internal/isArrayLike.js
+809 silly gunzTarPerm modified mode [ 'internal/isArrayLike.js', 420, 438 ]
+810 silly gunzTarPerm extractEntry internal/baseFindIndex.js
+811 silly gunzTarPerm modified mode [ 'internal/baseFindIndex.js', 420, 438 ]
+812 silly gunzTarPerm extractEntry internal/isIndex.js
+813 silly gunzTarPerm modified mode [ 'internal/isIndex.js', 420, 438 ]
+814 silly gunzTarPerm extractEntry internal/baseFind.js
+815 silly gunzTarPerm modified mode [ 'internal/baseFind.js', 420, 438 ]
+816 silly gunzTarPerm extractEntry internal/isIterateeCall.js
+817 silly gunzTarPerm modified mode [ 'internal/isIterateeCall.js', 420, 438 ]
+818 silly gunzTarPerm extractEntry internal/baseFilter.js
+819 silly gunzTarPerm modified mode [ 'internal/baseFilter.js', 420, 438 ]
+820 silly gunzTarPerm extractEntry internal/isKey.js
+821 silly gunzTarPerm modified mode [ 'internal/isKey.js', 420, 438 ]
+822 silly gunzTarPerm extractEntry internal/baseFill.js
+823 silly gunzTarPerm modified mode [ 'internal/baseFill.js', 420, 438 ]
+824 silly gunzTarPerm extractEntry internal/isLaziable.js
+825 silly gunzTarPerm modified mode [ 'internal/isLaziable.js', 420, 438 ]
+826 silly gunzTarPerm extractEntry internal/baseExtremum.js
+827 silly gunzTarPerm modified mode [ 'internal/baseExtremum.js', 420, 438 ]
+828 silly gunzTarPerm extractEntry internal/isLength.js
+829 silly gunzTarPerm modified mode [ 'internal/isLength.js', 420, 438 ]
+830 silly gunzTarPerm extractEntry internal/baseEvery.js
+831 silly gunzTarPerm modified mode [ 'internal/baseEvery.js', 420, 438 ]
+832 silly gunzTarPerm extractEntry internal/isObjectLike.js
+833 silly gunzTarPerm modified mode [ 'internal/isObjectLike.js', 420, 438 ]
+834 silly gunzTarPerm extractEntry internal/baseEachRight.js
+835 silly gunzTarPerm modified mode [ 'internal/baseEachRight.js', 420, 438 ]
+836 silly gunzTarPerm extractEntry internal/isSpace.js
+837 silly gunzTarPerm modified mode [ 'internal/isSpace.js', 420, 438 ]
+838 silly gunzTarPerm extractEntry internal/baseEach.js
+839 silly gunzTarPerm modified mode [ 'internal/baseEach.js', 420, 438 ]
+840 silly gunzTarPerm extractEntry internal/isStrictComparable.js
+841 silly gunzTarPerm modified mode [ 'internal/isStrictComparable.js', 420, 438 ]
+842 silly gunzTarPerm extractEntry internal/baseDifference.js
+843 silly gunzTarPerm modified mode [ 'internal/baseDifference.js', 420, 438 ]
+844 silly gunzTarPerm extractEntry internal/lazyClone.js
+845 silly gunzTarPerm modified mode [ 'internal/lazyClone.js', 420, 438 ]
+846 silly gunzTarPerm extractEntry internal/baseDelay.js
+847 silly gunzTarPerm modified mode [ 'internal/baseDelay.js', 420, 438 ]
+848 silly gunzTarPerm extractEntry internal/lazyReverse.js
+849 silly gunzTarPerm modified mode [ 'internal/lazyReverse.js', 420, 438 ]
+850 silly gunzTarPerm extractEntry internal/baseCreate.js
+851 silly gunzTarPerm modified mode [ 'internal/baseCreate.js', 420, 438 ]
+852 silly gunzTarPerm extractEntry internal/lazyValue.js
+853 silly gunzTarPerm modified mode [ 'internal/lazyValue.js', 420, 438 ]
+854 silly gunzTarPerm extractEntry internal/baseCopy.js
+855 silly gunzTarPerm modified mode [ 'internal/baseCopy.js', 420, 438 ]
+856 silly gunzTarPerm extractEntry internal/mapDelete.js
+857 silly gunzTarPerm modified mode [ 'internal/mapDelete.js', 420, 438 ]
+858 silly gunzTarPerm extractEntry internal/baseCompareAscending.js
+859 silly gunzTarPerm modified mode [ 'internal/baseCompareAscending.js', 420, 438 ]
+860 silly gunzTarPerm extractEntry internal/mapGet.js
+861 silly gunzTarPerm modified mode [ 'internal/mapGet.js', 420, 438 ]
+862 silly gunzTarPerm extractEntry internal/baseClone.js
+863 silly gunzTarPerm modified mode [ 'internal/baseClone.js', 420, 438 ]
+864 silly gunzTarPerm extractEntry internal/mapHas.js
+865 silly gunzTarPerm modified mode [ 'internal/mapHas.js', 420, 438 ]
+866 silly gunzTarPerm extractEntry internal/baseCallback.js
+867 silly gunzTarPerm modified mode [ 'internal/baseCallback.js', 420, 438 ]
+868 silly gunzTarPerm extractEntry internal/mapSet.js
+869 silly gunzTarPerm modified mode [ 'internal/mapSet.js', 420, 438 ]
+870 silly gunzTarPerm extractEntry internal/baseAt.js
+871 silly gunzTarPerm modified mode [ 'internal/baseAt.js', 420, 438 ]
+872 silly gunzTarPerm extractEntry internal/mergeData.js
+873 silly gunzTarPerm modified mode [ 'internal/mergeData.js', 420, 438 ]
+874 silly gunzTarPerm extractEntry internal/baseAssign.js
+875 silly gunzTarPerm modified mode [ 'internal/baseAssign.js', 420, 438 ]
+876 silly gunzTarPerm extractEntry internal/mergeDefaults.js
+877 silly gunzTarPerm modified mode [ 'internal/mergeDefaults.js', 420, 438 ]
+878 silly gunzTarPerm extractEntry internal/assignWith.js
+879 silly gunzTarPerm modified mode [ 'internal/assignWith.js', 420, 438 ]
+880 silly gunzTarPerm extractEntry internal/metaMap.js
+881 silly gunzTarPerm modified mode [ 'internal/metaMap.js', 420, 438 ]
+882 silly gunzTarPerm extractEntry internal/assignOwnDefaults.js
+883 silly gunzTarPerm modified mode [ 'internal/assignOwnDefaults.js', 420, 438 ]
+884 silly gunzTarPerm extractEntry internal/pickByArray.js
+885 silly gunzTarPerm modified mode [ 'internal/pickByArray.js', 420, 438 ]
+886 silly gunzTarPerm extractEntry internal/assignDefaults.js
+887 silly gunzTarPerm modified mode [ 'internal/assignDefaults.js', 420, 438 ]
+888 silly gunzTarPerm extractEntry internal/pickByCallback.js
+889 silly gunzTarPerm modified mode [ 'internal/pickByCallback.js', 420, 438 ]
+890 silly gunzTarPerm extractEntry internal/arraySum.js
+891 silly gunzTarPerm modified mode [ 'internal/arraySum.js', 420, 438 ]
+892 silly gunzTarPerm extractEntry internal/reEscape.js
+893 silly gunzTarPerm modified mode [ 'internal/reEscape.js', 420, 438 ]
+894 silly gunzTarPerm extractEntry internal/arraySome.js
+895 silly gunzTarPerm modified mode [ 'internal/arraySome.js', 420, 438 ]
+896 silly gunzTarPerm extractEntry internal/reEvaluate.js
+897 silly gunzTarPerm modified mode [ 'internal/reEvaluate.js', 420, 438 ]
+898 silly gunzTarPerm extractEntry internal/arrayReduceRight.js
+899 silly gunzTarPerm modified mode [ 'internal/arrayReduceRight.js', 420, 438 ]
+900 silly gunzTarPerm extractEntry internal/reInterpolate.js
+901 silly gunzTarPerm modified mode [ 'internal/reInterpolate.js', 420, 438 ]
+902 silly gunzTarPerm extractEntry internal/arrayReduce.js
+903 silly gunzTarPerm modified mode [ 'internal/arrayReduce.js', 420, 438 ]
+904 silly gunzTarPerm extractEntry internal/realNames.js
+905 silly gunzTarPerm modified mode [ 'internal/realNames.js', 420, 438 ]
+906 silly gunzTarPerm extractEntry internal/arrayPush.js
+907 silly gunzTarPerm modified mode [ 'internal/arrayPush.js', 420, 438 ]
+908 silly gunzTarPerm extractEntry internal/reorder.js
+909 silly gunzTarPerm modified mode [ 'internal/reorder.js', 420, 438 ]
+910 silly gunzTarPerm extractEntry internal/arrayMap.js
+911 silly gunzTarPerm modified mode [ 'internal/arrayMap.js', 420, 438 ]
+912 silly gunzTarPerm extractEntry internal/replaceHolders.js
+913 silly gunzTarPerm modified mode [ 'internal/replaceHolders.js', 420, 438 ]
+914 silly gunzTarPerm extractEntry internal/arrayFilter.js
+915 silly gunzTarPerm modified mode [ 'internal/arrayFilter.js', 420, 438 ]
+916 silly gunzTarPerm extractEntry internal/setData.js
+917 silly gunzTarPerm modified mode [ 'internal/setData.js', 420, 438 ]
+918 silly gunzTarPerm extractEntry internal/arrayExtremum.js
+919 silly gunzTarPerm modified mode [ 'internal/arrayExtremum.js', 420, 438 ]
+920 silly gunzTarPerm extractEntry internal/shimKeys.js
+921 silly gunzTarPerm modified mode [ 'internal/shimKeys.js', 420, 438 ]
+922 silly gunzTarPerm extractEntry internal/arrayEvery.js
+923 silly gunzTarPerm modified mode [ 'internal/arrayEvery.js', 420, 438 ]
+924 silly gunzTarPerm extractEntry internal/sortedUniq.js
+925 silly gunzTarPerm modified mode [ 'internal/sortedUniq.js', 420, 438 ]
+926 silly gunzTarPerm extractEntry internal/arrayEachRight.js
+927 silly gunzTarPerm modified mode [ 'internal/arrayEachRight.js', 420, 438 ]
+928 silly gunzTarPerm extractEntry internal/toIterable.js
+929 silly gunzTarPerm modified mode [ 'internal/toIterable.js', 420, 438 ]
+930 silly gunzTarPerm extractEntry internal/arrayEach.js
+931 silly gunzTarPerm modified mode [ 'internal/arrayEach.js', 420, 438 ]
+932 silly gunzTarPerm extractEntry internal/toObject.js
+933 silly gunzTarPerm modified mode [ 'internal/toObject.js', 420, 438 ]
+934 silly gunzTarPerm extractEntry internal/arrayCopy.js
+935 silly gunzTarPerm modified mode [ 'internal/arrayCopy.js', 420, 438 ]
+936 silly gunzTarPerm extractEntry internal/toPath.js
+937 silly gunzTarPerm modified mode [ 'internal/toPath.js', 420, 438 ]
+938 silly gunzTarPerm extractEntry internal/arrayConcat.js
+939 silly gunzTarPerm modified mode [ 'internal/arrayConcat.js', 420, 438 ]
+940 silly gunzTarPerm extractEntry internal/trimmedLeftIndex.js
+941 silly gunzTarPerm modified mode [ 'internal/trimmedLeftIndex.js', 420, 438 ]
+942 silly gunzTarPerm extractEntry internal/SetCache.js
+943 silly gunzTarPerm modified mode [ 'internal/SetCache.js', 420, 438 ]
+944 silly gunzTarPerm extractEntry internal/trimmedRightIndex.js
+945 silly gunzTarPerm modified mode [ 'internal/trimmedRightIndex.js', 420, 438 ]
+946 silly gunzTarPerm extractEntry internal/MapCache.js
+947 silly gunzTarPerm modified mode [ 'internal/MapCache.js', 420, 438 ]
+948 silly gunzTarPerm extractEntry internal/unescapeHtmlChar.js
+949 silly gunzTarPerm modified mode [ 'internal/unescapeHtmlChar.js', 420, 438 ]
+950 silly gunzTarPerm extractEntry internal/LodashWrapper.js
+951 silly gunzTarPerm modified mode [ 'internal/LodashWrapper.js', 420, 438 ]
+952 silly gunzTarPerm extractEntry internal/wrapperClone.js
+953 silly gunzTarPerm modified mode [ 'internal/wrapperClone.js', 420, 438 ]
+954 silly gunzTarPerm extractEntry internal/composeArgsRight.js
+955 silly gunzTarPerm modified mode [ 'internal/composeArgsRight.js', 420, 438 ]
+956 silly gunzTarPerm extractEntry string/camelCase.js
+957 silly gunzTarPerm modified mode [ 'string/camelCase.js', 420, 438 ]
+958 silly gunzTarPerm extractEntry string/padLeft.js
+959 silly gunzTarPerm modified mode [ 'string/padLeft.js', 420, 438 ]
+960 silly gunzTarPerm extractEntry string/padRight.js
+961 silly gunzTarPerm modified mode [ 'string/padRight.js', 420, 438 ]
+962 silly gunzTarPerm extractEntry string/parseInt.js
+963 silly gunzTarPerm modified mode [ 'string/parseInt.js', 420, 438 ]
+964 silly gunzTarPerm extractEntry string/pad.js
+965 silly gunzTarPerm modified mode [ 'string/pad.js', 420, 438 ]
+966 silly gunzTarPerm extractEntry string/snakeCase.js
+967 silly gunzTarPerm modified mode [ 'string/snakeCase.js', 420, 438 ]
+968 silly gunzTarPerm extractEntry string/startCase.js
+969 silly gunzTarPerm modified mode [ 'string/startCase.js', 420, 438 ]
+970 silly gunzTarPerm extractEntry string/startsWith.js
+971 silly gunzTarPerm modified mode [ 'string/startsWith.js', 420, 438 ]
+972 silly gunzTarPerm extractEntry string/template.js
+973 silly gunzTarPerm modified mode [ 'string/template.js', 420, 438 ]
+974 silly gunzTarPerm extractEntry string/templateSettings.js
+975 silly gunzTarPerm modified mode [ 'string/templateSettings.js', 420, 438 ]
+976 silly gunzTarPerm extractEntry string/kebabCase.js
+977 silly gunzTarPerm modified mode [ 'string/kebabCase.js', 420, 438 ]
+978 silly gunzTarPerm extractEntry string/trim.js
+979 silly gunzTarPerm modified mode [ 'string/trim.js', 420, 438 ]
+980 silly gunzTarPerm extractEntry string/escapeRegExp.js
+981 silly gunzTarPerm modified mode [ 'string/escapeRegExp.js', 420, 438 ]
+982 silly gunzTarPerm extractEntry string/trimLeft.js
+983 silly gunzTarPerm modified mode [ 'string/trimLeft.js', 420, 438 ]
+984 silly gunzTarPerm extractEntry string/escape.js
+985 silly gunzTarPerm modified mode [ 'string/escape.js', 420, 438 ]
+986 silly gunzTarPerm extractEntry string/trimRight.js
+987 silly gunzTarPerm modified mode [ 'string/trimRight.js', 420, 438 ]
+988 silly gunzTarPerm extractEntry string/endsWith.js
+989 silly gunzTarPerm modified mode [ 'string/endsWith.js', 420, 438 ]
+990 silly gunzTarPerm extractEntry string/trunc.js
+991 silly gunzTarPerm modified mode [ 'string/trunc.js', 420, 438 ]
+992 silly gunzTarPerm extractEntry string/deburr.js
+993 silly gunzTarPerm modified mode [ 'string/deburr.js', 420, 438 ]
+994 silly gunzTarPerm extractEntry string/unescape.js
+995 silly gunzTarPerm modified mode [ 'string/unescape.js', 420, 438 ]
+996 silly gunzTarPerm extractEntry string/capitalize.js
+997 silly gunzTarPerm modified mode [ 'string/capitalize.js', 420, 438 ]
+998 silly gunzTarPerm extractEntry string/words.js
+999 silly gunzTarPerm modified mode [ 'string/words.js', 420, 438 ]
+1000 silly gunzTarPerm extractEntry string/repeat.js
+1001 silly gunzTarPerm modified mode [ 'string/repeat.js', 420, 438 ]
+1002 silly gunzTarPerm extractEntry chain/chain.js
+1003 silly gunzTarPerm modified mode [ 'chain/chain.js', 420, 438 ]
+1004 silly gunzTarPerm extractEntry chain/run.js
+1005 silly gunzTarPerm modified mode [ 'chain/run.js', 420, 438 ]
+1006 silly gunzTarPerm extractEntry chain/tap.js
+1007 silly gunzTarPerm modified mode [ 'chain/tap.js', 420, 438 ]
+1008 silly gunzTarPerm extractEntry chain/thru.js
+1009 silly gunzTarPerm modified mode [ 'chain/thru.js', 420, 438 ]
+1010 silly gunzTarPerm extractEntry chain/toJSON.js
+1011 silly gunzTarPerm modified mode [ 'chain/toJSON.js', 420, 438 ]
+1012 silly gunzTarPerm extractEntry chain/reverse.js
+1013 silly gunzTarPerm modified mode [ 'chain/reverse.js', 420, 438 ]
+1014 silly gunzTarPerm extractEntry chain/value.js
+1015 silly gunzTarPerm modified mode [ 'chain/value.js', 420, 438 ]
+1016 silly gunzTarPerm extractEntry chain/valueOf.js
+1017 silly gunzTarPerm modified mode [ 'chain/valueOf.js', 420, 438 ]
+1018 silly gunzTarPerm extractEntry chain/wrapperChain.js
+1019 silly gunzTarPerm modified mode [ 'chain/wrapperChain.js', 420, 438 ]
+1020 silly gunzTarPerm extractEntry chain/wrapperCommit.js
+1021 silly gunzTarPerm modified mode [ 'chain/wrapperCommit.js', 420, 438 ]
+1022 silly gunzTarPerm extractEntry chain/wrapperConcat.js
+1023 silly gunzTarPerm modified mode [ 'chain/wrapperConcat.js', 420, 438 ]
+1024 silly gunzTarPerm extractEntry chain/plant.js
+1025 silly gunzTarPerm modified mode [ 'chain/plant.js', 420, 438 ]
+1026 silly gunzTarPerm extractEntry chain/wrapperPlant.js
+1027 silly gunzTarPerm modified mode [ 'chain/wrapperPlant.js', 420, 438 ]
+1028 silly gunzTarPerm extractEntry chain/lodash.js
+1029 silly gunzTarPerm modified mode [ 'chain/lodash.js', 420, 438 ]
+1030 silly gunzTarPerm extractEntry chain/wrapperReverse.js
+1031 silly gunzTarPerm modified mode [ 'chain/wrapperReverse.js', 420, 438 ]
+1032 silly gunzTarPerm extractEntry chain/concat.js
+1033 silly gunzTarPerm modified mode [ 'chain/concat.js', 420, 438 ]
+1034 silly gunzTarPerm extractEntry chain/wrapperToString.js
+1035 silly gunzTarPerm modified mode [ 'chain/wrapperToString.js', 420, 438 ]
+1036 silly gunzTarPerm extractEntry chain/commit.js
+1037 silly gunzTarPerm modified mode [ 'chain/commit.js', 420, 438 ]
+1038 silly gunzTarPerm extractEntry chain/wrapperValue.js
+1039 silly gunzTarPerm modified mode [ 'chain/wrapperValue.js', 420, 438 ]
+1040 silly gunzTarPerm extractEntry chain/toString.js
+1041 silly gunzTarPerm modified mode [ 'chain/toString.js', 420, 438 ]
+1042 silly gunzTarPerm extractEntry array/chunk.js
+1043 silly gunzTarPerm modified mode [ 'array/chunk.js', 420, 438 ]
+1044 silly gunzTarPerm extractEntry array/last.js
+1045 silly gunzTarPerm modified mode [ 'array/last.js', 420, 438 ]
+1046 silly gunzTarPerm extractEntry array/lastIndexOf.js
+1047 silly gunzTarPerm modified mode [ 'array/lastIndexOf.js', 420, 438 ]
+1048 silly gunzTarPerm extractEntry array/object.js
+1049 silly gunzTarPerm modified mode [ 'array/object.js', 420, 438 ]
+1050 silly gunzTarPerm extractEntry array/pull.js
+1051 silly gunzTarPerm modified mode [ 'array/pull.js', 420, 438 ]
+1052 silly gunzTarPerm extractEntry array/intersection.js
+1053 silly gunzTarPerm modified mode [ 'array/intersection.js', 420, 438 ]
+1054 silly gunzTarPerm extractEntry array/remove.js
+1055 silly gunzTarPerm modified mode [ 'array/remove.js', 420, 438 ]
+1056 silly gunzTarPerm extractEntry array/rest.js
+1057 silly gunzTarPerm modified mode [ 'array/rest.js', 420, 438 ]
+1058 silly gunzTarPerm extractEntry array/slice.js
+1059 silly gunzTarPerm modified mode [ 'array/slice.js', 420, 438 ]
+1060 silly gunzTarPerm extractEntry array/sortedIndex.js
+1061 silly gunzTarPerm modified mode [ 'array/sortedIndex.js', 420, 438 ]
+1062 silly gunzTarPerm extractEntry array/sortedLastIndex.js
+1063 silly gunzTarPerm modified mode [ 'array/sortedLastIndex.js', 420, 438 ]
+1064 silly gunzTarPerm extractEntry array/initial.js
+1065 silly gunzTarPerm modified mode [ 'array/initial.js', 420, 438 ]
+1066 silly gunzTarPerm extractEntry array/tail.js
+1067 silly gunzTarPerm modified mode [ 'array/tail.js', 420, 438 ]
+1068 silly gunzTarPerm extractEntry array/indexOf.js
+1069 silly gunzTarPerm modified mode [ 'array/indexOf.js', 420, 438 ]
+1070 silly gunzTarPerm extractEntry array/take.js
+1071 silly gunzTarPerm modified mode [ 'array/take.js', 420, 438 ]
+1072 silly gunzTarPerm extractEntry array/head.js
+1073 silly gunzTarPerm modified mode [ 'array/head.js', 420, 438 ]
+1074 silly gunzTarPerm extractEntry array/takeRight.js
+1075 silly gunzTarPerm modified mode [ 'array/takeRight.js', 420, 438 ]
+1076 silly gunzTarPerm extractEntry array/flattenDeep.js
+1077 silly gunzTarPerm modified mode [ 'array/flattenDeep.js', 420, 438 ]
+1078 silly gunzTarPerm extractEntry array/takeRightWhile.js
+1079 silly gunzTarPerm modified mode [ 'array/takeRightWhile.js', 420, 438 ]
+1080 silly gunzTarPerm extractEntry array/flatten.js
+1081 silly gunzTarPerm modified mode [ 'array/flatten.js', 420, 438 ]
+1082 silly gunzTarPerm extractEntry array/takeWhile.js
+1083 silly gunzTarPerm modified mode [ 'array/takeWhile.js', 420, 438 ]
+1084 silly gunzTarPerm extractEntry array/first.js
+1085 silly gunzTarPerm modified mode [ 'array/first.js', 420, 438 ]
+1086 silly gunzTarPerm extractEntry array/union.js
+1087 silly gunzTarPerm modified mode [ 'array/union.js', 420, 438 ]
+1088 silly gunzTarPerm extractEntry array/findLastIndex.js
+1089 silly gunzTarPerm modified mode [ 'array/findLastIndex.js', 420, 438 ]
+1090 silly gunzTarPerm extractEntry array/uniq.js
+1091 silly gunzTarPerm modified mode [ 'array/uniq.js', 420, 438 ]
+1092 silly gunzTarPerm extractEntry array/findIndex.js
+1093 silly gunzTarPerm modified mode [ 'array/findIndex.js', 420, 438 ]
+1094 silly gunzTarPerm extractEntry array/unique.js
+1095 silly gunzTarPerm modified mode [ 'array/unique.js', 420, 438 ]
+1096 silly gunzTarPerm extractEntry array/fill.js
+1097 silly gunzTarPerm modified mode [ 'array/fill.js', 420, 438 ]
+1098 silly gunzTarPerm extractEntry array/unzip.js
+1099 silly gunzTarPerm modified mode [ 'array/unzip.js', 420, 438 ]
+1100 silly gunzTarPerm extractEntry array/dropWhile.js
+1101 silly gunzTarPerm modified mode [ 'array/dropWhile.js', 420, 438 ]
+1102 silly gunzTarPerm extractEntry array/unzipWith.js
+1103 silly gunzTarPerm modified mode [ 'array/unzipWith.js', 420, 438 ]
+1104 silly gunzTarPerm extractEntry array/dropRightWhile.js
+1105 silly gunzTarPerm modified mode [ 'array/dropRightWhile.js', 420, 438 ]
+1106 silly gunzTarPerm extractEntry array/without.js
+1107 silly gunzTarPerm modified mode [ 'array/without.js', 420, 438 ]
+1108 silly gunzTarPerm extractEntry array/dropRight.js
+1109 silly gunzTarPerm modified mode [ 'array/dropRight.js', 420, 438 ]
+1110 silly gunzTarPerm extractEntry array/xor.js
+1111 silly gunzTarPerm modified mode [ 'array/xor.js', 420, 438 ]
+1112 silly gunzTarPerm extractEntry array/drop.js
+1113 silly gunzTarPerm modified mode [ 'array/drop.js', 420, 438 ]
+1114 silly gunzTarPerm extractEntry array/zip.js
+1115 silly gunzTarPerm modified mode [ 'array/zip.js', 420, 438 ]
+1116 silly gunzTarPerm extractEntry array/difference.js
+1117 silly gunzTarPerm modified mode [ 'array/difference.js', 420, 438 ]
+1118 silly gunzTarPerm extractEntry array/zipObject.js
+1119 silly gunzTarPerm modified mode [ 'array/zipObject.js', 420, 438 ]
+1120 silly gunzTarPerm extractEntry array/compact.js
+1121 silly gunzTarPerm modified mode [ 'array/compact.js', 420, 438 ]
+1122 silly gunzTarPerm extractEntry array/zipWith.js
+1123 silly gunzTarPerm modified mode [ 'array/zipWith.js', 420, 438 ]
+1124 silly gunzTarPerm extractEntry array/pullAt.js
+1125 silly gunzTarPerm modified mode [ 'array/pullAt.js', 420, 438 ]
+1126 silly gunzTarPerm extractEntry utility/attempt.js
+1127 silly gunzTarPerm modified mode [ 'utility/attempt.js', 420, 438 ]
+1128 silly gunzTarPerm extractEntry utility/iteratee.js
+1129 silly gunzTarPerm modified mode [ 'utility/iteratee.js', 420, 438 ]
+1130 silly gunzTarPerm extractEntry utility/matches.js
+1131 silly gunzTarPerm modified mode [ 'utility/matches.js', 420, 438 ]
+1132 silly gunzTarPerm extractEntry utility/matchesProperty.js
+1133 silly gunzTarPerm modified mode [ 'utility/matchesProperty.js', 420, 438 ]
+1134 silly gunzTarPerm extractEntry utility/method.js
+1135 silly gunzTarPerm modified mode [ 'utility/method.js', 420, 438 ]
+1136 silly gunzTarPerm extractEntry utility/identity.js
+1137 silly gunzTarPerm modified mode [ 'utility/identity.js', 420, 438 ]
+1138 silly gunzTarPerm extractEntry utility/mixin.js
+1139 silly gunzTarPerm modified mode [ 'utility/mixin.js', 420, 438 ]
+1140 silly gunzTarPerm extractEntry utility/noop.js
+1141 silly gunzTarPerm modified mode [ 'utility/noop.js', 420, 438 ]
+1142 silly gunzTarPerm extractEntry utility/property.js
+1143 silly gunzTarPerm modified mode [ 'utility/property.js', 420, 438 ]
+1144 silly gunzTarPerm extractEntry utility/propertyOf.js
+1145 silly gunzTarPerm modified mode [ 'utility/propertyOf.js', 420, 438 ]
+1146 silly gunzTarPerm extractEntry utility/range.js
+1147 silly gunzTarPerm modified mode [ 'utility/range.js', 420, 438 ]
+1148 silly gunzTarPerm extractEntry utility/constant.js
+1149 silly gunzTarPerm modified mode [ 'utility/constant.js', 420, 438 ]
+1150 silly gunzTarPerm extractEntry utility/times.js
+1151 silly gunzTarPerm modified mode [ 'utility/times.js', 420, 438 ]
+1152 silly gunzTarPerm extractEntry utility/callback.js
+1153 silly gunzTarPerm modified mode [ 'utility/callback.js', 420, 438 ]
+1154 silly gunzTarPerm extractEntry utility/uniqueId.js
+1155 silly gunzTarPerm modified mode [ 'utility/uniqueId.js', 420, 438 ]
+1156 silly gunzTarPerm extractEntry utility/methodOf.js
+1157 silly gunzTarPerm modified mode [ 'utility/methodOf.js', 420, 438 ]
+1158 silly gunzTarPerm extractEntry lang/clone.js
+1159 silly gunzTarPerm modified mode [ 'lang/clone.js', 420, 438 ]
+1160 silly gunzTarPerm extractEntry lang/isEqual.js
+1161 silly gunzTarPerm modified mode [ 'lang/isEqual.js', 420, 438 ]
+1162 silly gunzTarPerm extractEntry lang/isError.js
+1163 silly gunzTarPerm modified mode [ 'lang/isError.js', 420, 438 ]
+1164 silly gunzTarPerm extractEntry lang/isFinite.js
+1165 silly gunzTarPerm modified mode [ 'lang/isFinite.js', 420, 438 ]
+1166 silly gunzTarPerm extractEntry lang/isFunction.js
+1167 silly gunzTarPerm modified mode [ 'lang/isFunction.js', 420, 438 ]
+1168 silly gunzTarPerm extractEntry lang/isEmpty.js
+1169 silly gunzTarPerm modified mode [ 'lang/isEmpty.js', 420, 438 ]
+1170 silly gunzTarPerm extractEntry lang/isNaN.js
+1171 silly gunzTarPerm modified mode [ 'lang/isNaN.js', 420, 438 ]
+1172 silly gunzTarPerm extractEntry lang/isNative.js
+1173 silly gunzTarPerm modified mode [ 'lang/isNative.js', 420, 438 ]
+1174 silly gunzTarPerm extractEntry lang/isNull.js
+1175 silly gunzTarPerm modified mode [ 'lang/isNull.js', 420, 438 ]
+1176 silly gunzTarPerm extractEntry lang/isNumber.js
+1177 silly gunzTarPerm modified mode [ 'lang/isNumber.js', 420, 438 ]
+1178 silly gunzTarPerm extractEntry lang/isObject.js
+1179 silly gunzTarPerm modified mode [ 'lang/isObject.js', 420, 438 ]
+1180 silly gunzTarPerm extractEntry lang/isElement.js
+1181 silly gunzTarPerm modified mode [ 'lang/isElement.js', 420, 438 ]
+1182 silly gunzTarPerm extractEntry lang/isPlainObject.js
+1183 silly gunzTarPerm modified mode [ 'lang/isPlainObject.js', 420, 438 ]
+1184 silly gunzTarPerm extractEntry lang/isDate.js
+1185 silly gunzTarPerm modified mode [ 'lang/isDate.js', 420, 438 ]
+1186 silly gunzTarPerm extractEntry lang/isRegExp.js
+1187 silly gunzTarPerm modified mode [ 'lang/isRegExp.js', 420, 438 ]
+1188 silly gunzTarPerm extractEntry lang/isBoolean.js
+1189 silly gunzTarPerm modified mode [ 'lang/isBoolean.js', 420, 438 ]
+1190 silly gunzTarPerm extractEntry lang/isString.js
+1191 silly gunzTarPerm modified mode [ 'lang/isString.js', 420, 438 ]
+1192 silly gunzTarPerm extractEntry lang/isArray.js
+1193 silly gunzTarPerm modified mode [ 'lang/isArray.js', 420, 438 ]
+1194 silly gunzTarPerm extractEntry lang/isTypedArray.js
+1195 silly gunzTarPerm modified mode [ 'lang/isTypedArray.js', 420, 438 ]
+1196 silly gunzTarPerm extractEntry lang/isArguments.js
+1197 silly gunzTarPerm modified mode [ 'lang/isArguments.js', 420, 438 ]
+1198 silly gunzTarPerm extractEntry lang/isUndefined.js
+1199 silly gunzTarPerm modified mode [ 'lang/isUndefined.js', 420, 438 ]
+1200 silly gunzTarPerm extractEntry lang/gte.js
+1201 silly gunzTarPerm modified mode [ 'lang/gte.js', 420, 438 ]
+1202 silly gunzTarPerm extractEntry lang/lt.js
+1203 silly gunzTarPerm modified mode [ 'lang/lt.js', 420, 438 ]
+1204 silly gunzTarPerm extractEntry lang/gt.js
+1205 silly gunzTarPerm modified mode [ 'lang/gt.js', 420, 438 ]
+1206 silly gunzTarPerm extractEntry lang/lte.js
+1207 silly gunzTarPerm modified mode [ 'lang/lte.js', 420, 438 ]
+1208 silly gunzTarPerm extractEntry lang/eq.js
+1209 silly gunzTarPerm modified mode [ 'lang/eq.js', 420, 438 ]
+1210 silly gunzTarPerm extractEntry lang/toArray.js
+1211 silly gunzTarPerm modified mode [ 'lang/toArray.js', 420, 438 ]
+1212 silly gunzTarPerm extractEntry lang/cloneDeep.js
+1213 silly gunzTarPerm modified mode [ 'lang/cloneDeep.js', 420, 438 ]
+1214 silly gunzTarPerm extractEntry lang/toPlainObject.js
+1215 silly gunzTarPerm modified mode [ 'lang/toPlainObject.js', 420, 438 ]
+1216 silly gunzTarPerm extractEntry lang/isMatch.js
+1217 silly gunzTarPerm modified mode [ 'lang/isMatch.js', 420, 438 ]
+1218 verbose write writing to e:\TaskManager\node_modules\react-btn-checkbox\node_modules\lodash\package.json
+1219 info preinstall lodash@3.10.1
+1220 verbose readDependencies loading dependencies from e:\TaskManager\node_modules\react-btn-checkbox\node_modules\lodash\package.json
+1221 verbose readDependencies loading dependencies from e:\TaskManager\node_modules\react-btn-checkbox\node_modules\lodash\package.json
+1222 silly install resolved []
+1223 verbose about to build e:\TaskManager\node_modules\react-btn-checkbox\node_modules\lodash
+1224 info build e:\TaskManager\node_modules\react-btn-checkbox\node_modules\lodash
+1225 info linkStuff lodash@3.10.1
+1226 silly linkStuff lodash@3.10.1 has e:\TaskManager\node_modules\react-btn-checkbox\node_modules as its parent node_modules
+1227 verbose linkBins lodash@3.10.1
+1228 verbose linkMans lodash@3.10.1
+1229 verbose rebuildBundles lodash@3.10.1
+1230 info install lodash@3.10.1
+1231 info postinstall lodash@3.10.1
+1232 verbose unlock done using C:\Users\user\AppData\Roaming\npm-cache\_locks\lodash-43bcceeebb748825.lock for e:\TaskManager\node_modules\react-btn-checkbox\node_modules\lodash
+1233 verbose about to build e:\TaskManager\node_modules\react-btn-checkbox
+1234 info build e:\TaskManager\node_modules\react-btn-checkbox
+1235 info linkStuff react-btn-checkbox@0.0.2
+1236 silly linkStuff react-btn-checkbox@0.0.2 has e:\TaskManager\node_modules as its parent node_modules
+1237 verbose linkBins react-btn-checkbox@0.0.2
+1238 verbose linkMans react-btn-checkbox@0.0.2
+1239 verbose rebuildBundles react-btn-checkbox@0.0.2
+1240 verbose rebuildBundles [ 'classnames', 'lodash', 'object-assign' ]
+1241 info install react-btn-checkbox@0.0.2
+1242 info postinstall react-btn-checkbox@0.0.2
+1243 verbose unlock done using C:\Users\user\AppData\Roaming\npm-cache\_locks\react-btn-checkbox-02e30ebd6b4cb900.lock for e:\TaskManager\node_modules\react-btn-checkbox
+1244 info build e:\TaskManager
+1245 info linkStuff TaskManager@0.0.0
+1246 silly linkStuff TaskManager@0.0.0 has e:\ as its parent node_modules
+1247 verbose linkBins TaskManager@0.0.0
+1248 verbose linkMans TaskManager@0.0.0
+1249 verbose rebuildBundles TaskManager@0.0.0
+1250 verbose rebuildBundles [ 'async',
+1250 verbose rebuildBundles   'body-parser',
+1250 verbose rebuildBundles   'connect-mongo',
+1250 verbose rebuildBundles   'cookie-parser',
+1250 verbose rebuildBundles   'crypto',
+1250 verbose rebuildBundles   'debug',
+1250 verbose rebuildBundles   'ejs',
+1250 verbose rebuildBundles   'express',
+1250 verbose rebuildBundles   'express-session',
+1250 verbose rebuildBundles   'jquery',
+1250 verbose rebuildBundles   'jsx-loader',
+1250 verbose rebuildBundles   'mongoose',
+1250 verbose rebuildBundles   'mongoose-auto-increment',
+1250 verbose rebuildBundles   'nconf',
+1250 verbose rebuildBundles   'node-jsx',
+1250 verbose rebuildBundles   'path',
+1250 verbose rebuildBundles   'react',
+1250 verbose rebuildBundles   'react-bootstrap',
+1250 verbose rebuildBundles   'react-btn-checkbox',
+1250 verbose rebuildBundles   'react-router',
+1250 verbose rebuildBundles   'react-router-bootstrap',
+1250 verbose rebuildBundles   'reflux',
+1250 verbose rebuildBundles   'serve-favicon' ]
+1251 info install TaskManager@0.0.0
+1252 info postinstall TaskManager@0.0.0
+1253 info prepublish TaskManager@0.0.0
+1254 verbose validateInstall loading e:\TaskManager\package.json for validation
+1255 verbose stack Error: The package mongoose does not satisfy its siblings' peerDependencies requirements!
+1255 verbose stack     at C:\Program Files\nodejs\node_modules\npm\lib\install.js:125:32
+1255 verbose stack     at C:\Program Files\nodejs\node_modules\npm\lib\install.js:267:7
+1255 verbose stack     at C:\Program Files\nodejs\node_modules\npm\node_modules\read-installed\read-installed.js:138:5
+1255 verbose stack     at C:\Program Files\nodejs\node_modules\npm\node_modules\read-installed\read-installed.js:251:14
+1255 verbose stack     at cb (C:\Program Files\nodejs\node_modules\npm\node_modules\slide\lib\async-map.js:47:24)
+1255 verbose stack     at C:\Program Files\nodejs\node_modules\npm\node_modules\read-installed\read-installed.js:251:14
+1255 verbose stack     at cb (C:\Program Files\nodejs\node_modules\npm\node_modules\slide\lib\async-map.js:47:24)
+1255 verbose stack     at C:\Program Files\nodejs\node_modules\npm\node_modules\read-installed\read-installed.js:251:14
+1255 verbose stack     at cb (C:\Program Files\nodejs\node_modules\npm\node_modules\slide\lib\async-map.js:47:24)
+1255 verbose stack     at C:\Program Files\nodejs\node_modules\npm\node_modules\read-installed\read-installed.js:251:14
+1256 verbose cwd e:\TaskManager
+1257 error Windows_NT 6.1.7601
+1258 error argv "C:\\Program Files\\nodejs\\\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install"
+1259 error node v0.12.7
+1260 error npm  v2.11.3
+1261 error code EPEERINVALID
+1262 error peerinvalid The package mongoose does not satisfy its siblings' peerDependencies requirements!
+1262 error peerinvalid Peer mongoose-auto-increment@4.0.0 wants mongoose@~4.0.0
+1263 verbose exit [ 1, true ]

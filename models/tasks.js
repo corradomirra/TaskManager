@@ -7,7 +7,6 @@ var schema = new Schema();
 schema.add({
     name: {
         type: String,
-        unique: true,
         require: true
     },
     description: {

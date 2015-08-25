@@ -27,6 +27,7 @@
     "react-router-bootstrap": "*",
     "reflux":"*",
     "jquery":"*",
-    "async": "*"
+    "async": "*",
+    "react-btn-checkbox": "*"
   }
 }

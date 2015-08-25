@@ -7,13 +7,63 @@ var Tasks = require("./models/tasks");
 //    console.log(data);
 //
 //});
-
-
-Projects.findOne({name:"league of legend"},function(err,data){
-
-    console.log(data);
-
+//Developers.remove({},function(err,data){
+//    console.log(err);
+//    console.log(data);
+//
+//});
+//Tasks.remove({},function(err,data){
+//    console.log(err);
+//    console.log(data);
+//});
+//
+//
+//Projects.collection.dropAllIndexes(function (err, results) {
+//    console.log(err);
+//    console.log(results);
+//});
+//
+//Developers.collection.dropAllIndexes(function (err, results) {
+//    console.log(err);
+//    console.log(results);
+//});
+//
+//Tasks.collection.dropAllIndexes(function (err, results) {
+//    console.log(err);
+//    console.log(results);
+//});
+//Projects.update({name:'ddd'},
+//    {$push: {developers: {
+//        username: 'df',
+//        password: 'df',
+//        projects:[{
+//            name: undefined,
+//            description: undefined,
+//            tasks: undefined,
+//            developers: undefined
+//        }]
+//    } }},
+//    {upsert:true},function(err,data){
+//        if(err) console.log(err);
+//    });
+//
+//
+//
+Projects.findOne({name:'sss'},function(err,data){
+   console.log(data);
 });
+
+Developers.findOne({username:'A'},function(err,data){
+    console.log(data.projects);
+});
+
+
+
+//Projects.findOne({name:"league of legend"},function(err,data){
+//
+//    console.log(data);
+//
+//});
 //Developers.find({},function(err,data){
 //    console.log(data);
 //});

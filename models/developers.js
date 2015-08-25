@@ -12,7 +12,6 @@ var schema = new Schema();
 schema.add({
     username: {
         type: String,
-        unique: true,
         require: true
     },
     hashedPassword: {

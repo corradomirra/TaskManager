@@ -108,7 +108,6 @@ router.post('/task',function(req,res,next){
                     callback(null,null);
                 });
 
-
         }],
         function(err,result) {
             if(err) throw err;
@@ -117,9 +116,60 @@ router.post('/task',function(req,res,next){
 
 });
 router.post('/developer',function(req,res,next){
-    async.series([
-            function(callback){
+    async.waterfall([
+        function(callback) {
+            Developers.findOne({username:req.body.name},function(err,data){
+                if(err) callback(err,null);
+                console.log(data);
+                if(data){
+                    callback(null, data);
+                } else callback(null,null);
+            });
+        },
+        function(developer, callback) {
+            if(developer !== null){
+                callback(null,developer);
+            } else {
                 var newDev = new Developers({
+                    username: req.body.name,
+                    password: req.body.password,
+                    projects: [{
+                        name: req.body.project,
+                        description: undefined,
+                        tasks: undefined,
+                        developers: undefined
+                    }]
+                });
+                newDev.save(function (err, data) {
+                    if (err) callback(err, null);
+                    console.log(data);
+                    callback(null, null);
+                })
+            }
+        },
+        function(developer,callback){
+            if(developer === null){
+                callback(null,null);
+            } else {
+                Developers.update({username:req.body.name},
+                    {$push:{
+                        projects:{
+                            name: req.body.project,
+                            description: undefined,
+                            tasks: undefined,
+                            developers: undefined
+                        }
+                    }},
+                    {upsert:true}, function(err,data){
+                        if(err) callback(err,null);
+                        callback(null,null);
+                    }
+                )
+            }
+        },
+        function(developer, callback) {
+            Projects.update({name:req.body.project},
+                {$push: {developers: {
                     username: req.body.name,
                     password: req.body.password,
                     projects:[{
@@ -127,34 +177,130 @@ router.post('/developer',function(req,res,next){
                         description: undefined,
                         tasks: undefined,
                         developers: undefined
-                    }]});
-                newDev.save(function(err,data){
+                    }]
+                } }},
+                {upsert:true},function(err,data){
                     if(err) callback(err,null);
-                    console.log(data);
-                    callback(null,null);
+                    callback(null,'done');
+                });
+        }
+    ], function (err, result) {
+        if(err)console.log(err);
+        res.send({devName:req.body.name});
+    });
+    //async.series([
+    //        function(callback){
+    //            var newDev = new Developers({
+    //                username: req.body.name,
+    //                password: req.body.password,
+    //                projects:[{
+    //                    name: req.body.project,
+    //                    description: undefined,
+    //                    tasks: undefined,
+    //                    developers: undefined
+    //                }]});
+    //            newDev.save(function(err,data){
+    //                if(err) callback(err,null);
+    //                callback(null,null);
+    //            })
+    //        },function(callback){
+    //            Projects.update({name:req.body.project},
+    //                {$push: {developers: {
+    //                    username: req.body.name,
+    //                    password: req.body.password,
+    //                    projects:[{
+    //                        name: req.body.project,
+    //                        description: undefined,
+    //                        tasks: undefined,
+    //                        developers: undefined
+    //                    }]
+    //                } }},
+    //                {upsert:true},function(err,data){
+    //                    if(err) callback(err,null);
+    //                    callback(null,null);
+    //                });
+    //        }],
+    //    function(err,result) {
+    //        if(err)console.log(err);
+    //        res.send({devName:req.body.name});
+    //    });
+});
+router.get('/project/:name/task/:taskName',function(req,res,next){
+    Tasks.findOne({name:req.params.taskName,project:req.params.name},function(err,task){
+        if(err) throw err;
+        res.send({
+            name:task.name,
+                description:task.description,
+                comments:task.comments,
+                status:task.status
+        });
+
+    });
+});
+router.put('/project/:name/task/:taskName',function(req,res,next){
+    async.series([
+            function(callback){
+                Projects.findOne({name:req.params.name},function(err,project){
+                    var i = 0;
+                    for( i =0;i<project.tasks.length;i++){
+                        if(project.tasks[i].name == req.params.taskName)
+                            break;
+                    }
+                    project.tasks[i].status = req.body.status;
+                    project.save(function(err,data){
+                       if(err) callback(err,null);
+                        console.log(data);
+                        callback(null,null);
+                    });
                 })
             },function(callback){
-                Projects.update({name:req.body.project},
-                    {$push: {developers: {
-                        username: req.body.name,
-                        password: req.body.password,
-                        projects:[{
-                            name: req.body.project,
-                            description: undefined,
-                            tasks: undefined,
-                            developers: undefined
-                        }]
-                    } }},
+                Tasks.update({name:req.params.taskName},
+                    {$set: {
+                        status: req.body.status
+                    }},
                     {upsert:true},function(err,data){
                         if(err) callback(err,null);
                         callback(null,null);
                     });
             }],
         function(err,result) {
-            if(err) throw err;
-            res.send({devName:req.body.name});
+            if(err)console.log(err);
+            res.send({newStatus:req.body.status});
         });
 
+});
+
+router.post('/comment',function(req,res,next){
+    Tasks.update({name:req.body.task,project:req.body.project},
+        {$push: {
+            comments:{
+                date:req.body.date,
+                text:req.body.text,
+                author:req.body.author
+            }
+        }},
+        {upsert:true},function(err,data){
+            if(err) console.log(err);
+            console.log(data);
+            res.send({comments:{
+                date:req.body.date,
+                text:req.body.text,
+                author:req.body.author
+            }});
+
+        }
+    );
+
+});
+router.get('/developer/:devName',function(req,res,next){
+    Developers.findOne({username:req.params.devName},function(err,dev){
+        if(err) throw err;
+        res.send({
+            name:dev.username,
+            projects:dev.projects
+        });
+
+    });
 });
 
 

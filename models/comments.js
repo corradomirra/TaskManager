@@ -4,7 +4,7 @@ var mongoose = require('../libs/mongoose'),
 
 var schema = new Schema({
     date:{
-        type: Date,
+        type: String,
         require: true
     },
     text:{
