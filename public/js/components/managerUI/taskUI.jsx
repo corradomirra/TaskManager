@@ -23,12 +23,14 @@ var taskUI = React.createClass({
                 inProgress: true,
                 Finished: false
             },
-            currComment:""
+            currComment:"",
+            addedTask:{}
 
         }
     },
     componentWillMount(){
         this.listenTo(TaskUIStore,this.onLoad);
+
         //TaskUIAction.load({project:this.props.params.name,task:this.props.params.taskName});
 
     },
@@ -60,6 +62,9 @@ var taskUI = React.createClass({
                 status:status
             });
         }
+        if(!this.props.hasOwnProperty('devName')){
+            this.setState({addedTask:<h2><strong>Task:   </strong> {this.state.name}</h2>});
+        } else this.setState({addedTask:<Row><Col md={10}><strong>Task:   </strong> {this.state.name}</Col><Col md={2}><Button bsSize='small'>+</Button></Col></Row>});
     },
     onCheck(status){
         if (status.Finished) {
@@ -96,9 +101,6 @@ var taskUI = React.createClass({
         });
     },
     render(){
-        if(this.state.status){
-            statusLabel = "finished";
-        }
         if(this.state.comments.length){
             var comments = this.state.comments.map(function (comment,index) {
                 return (
@@ -111,7 +113,7 @@ var taskUI = React.createClass({
         return(
             <Row>
                 <Col md={12}>
-                    <Panel header={<h2><strong>Task:   </strong> {this.state.name}</h2>}
+                    <Panel header={this.state.addedTask}
                            footer={<Radio onChange={this.onCheck}  options={this.state.status} bootstrap />}>
                         {this.state.description}
                     </Panel>
@@ -127,3 +129,4 @@ var taskUI = React.createClass({
 
 });
 module.exports = taskUI;
+//<h2><strong>Task:   </strong> {this.state.name}</h2>

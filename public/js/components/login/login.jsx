@@ -32,9 +32,11 @@ var Login = React.createClass({
         });
     },
     onResponse(data){
-        if(data.text == ''){
+        if(data.text == 'manager'){
             this.transitionTo('manager');
-        } else this.setState({errorText:data.text});
+        } else if(data.text == 'developer' && data.name!= ''){
+                    this.transitionTo('dev',{devName:data.name});
+                } else this.setState({errorText:data.text});
     },
     onLogin(e){
         if(this.state.login.length == 0){

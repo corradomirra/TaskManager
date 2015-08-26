@@ -17,15 +17,39 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/login',function(req,res,next){
-    Managers.findOne({username:req.body.user},function(err,user){
-        if(err) throw err;
-        if(user) {
-            if (user.checkPassword(req.body.password)) {
-                res.send({text:""});
+    async.waterfall([
+        function(callback){
+            Managers.findOne({username:req.body.user},function(err,user){
+                if(err) callback(err,null);
+                if(user){
+                    callback(null,user);
+                } else callback(null,null);
+            });
+         },
+        function(user,callback){
+            if(user !== null){
+                callback(null,user);
+            } else {
+                Developers.findOne({username:req.body.user},function(err,user){
+                   if(err) callback(err,null);
+                    if(user){
+                        callback(null,user)
+                    } else callback(null,null);
+                });
+            }
+        }],
+        function(err,user){
+            if(user) {
+                if (user.checkPassword(req.body.password)) {
+                    req.session.user = user._id;
+                    if(user.projects){
+                        res.send({text:"developer",name: user.username});
+                        return;
+                    }
+                    res.send({text:"manager"});
+                } else res.send({text:"login or password is invalid"});
             } else res.send({text:"login or password is invalid"});
-        } else res.send({text:"login or password is invalid"});
-
-    });
+        });
 });
 
 router.get('/project',function(req,res,next){
@@ -188,42 +212,7 @@ router.post('/developer',function(req,res,next){
         if(err)console.log(err);
         res.send({devName:req.body.name});
     });
-    //async.series([
-    //        function(callback){
-    //            var newDev = new Developers({
-    //                username: req.body.name,
-    //                password: req.body.password,
-    //                projects:[{
-    //                    name: req.body.project,
-    //                    description: undefined,
-    //                    tasks: undefined,
-    //                    developers: undefined
-    //                }]});
-    //            newDev.save(function(err,data){
-    //                if(err) callback(err,null);
-    //                callback(null,null);
-    //            })
-    //        },function(callback){
-    //            Projects.update({name:req.body.project},
-    //                {$push: {developers: {
-    //                    username: req.body.name,
-    //                    password: req.body.password,
-    //                    projects:[{
-    //                        name: req.body.project,
-    //                        description: undefined,
-    //                        tasks: undefined,
-    //                        developers: undefined
-    //                    }]
-    //                } }},
-    //                {upsert:true},function(err,data){
-    //                    if(err) callback(err,null);
-    //                    callback(null,null);
-    //                });
-    //        }],
-    //    function(err,result) {
-    //        if(err)console.log(err);
-    //        res.send({devName:req.body.name});
-    //    });
+
 });
 router.get('/project/:name/task/:taskName',function(req,res,next){
     Tasks.findOne({name:req.params.taskName,project:req.params.name},function(err,task){
@@ -271,26 +260,49 @@ router.put('/project/:name/task/:taskName',function(req,res,next){
 });
 
 router.post('/comment',function(req,res,next){
-    Tasks.update({name:req.body.task,project:req.body.project},
-        {$push: {
-            comments:{
-                date:req.body.date,
-                text:req.body.text,
-                author:req.body.author
-            }
-        }},
-        {upsert:true},function(err,data){
-            if(err) console.log(err);
-            console.log(data);
-            res.send({comments:{
-                date:req.body.date,
-                text:req.body.text,
-                author:req.body.author
-            }});
+    async.waterfall([
+            function(callback){
+                Managers.findById(req.session.user,function(err,user){
+                    if(err) callback(err,null);
+                    if(user){
+                        callback(null,user);
+                    } else callback(null,null);
+                });
+            },
+            function(user,callback){
+                if(user !== null){
+                    callback(null,user);
+                } else {
+                    Developers.findById(req.session.user,function(err,user){
+                        if(err) callback(err,null);
+                        if(user){
+                            callback(null,user)
+                        } else callback(null,null);
+                    });
+                }
+            }],
+        function(err,user){
+            Tasks.update({name:req.body.task,project:req.body.project},
+                {$push: {
+                    comments:{
+                        date:req.body.date,
+                        text:req.body.text,
+                        author:user.username
+                    }
+                }},
+                {upsert:true},function(err,data){
+                    if(err) console.log(err);
+                    console.log(data);
+                    res.send({comments:{
+                        date:req.body.date,
+                        text:req.body.text,
+                        author:req.body.author
+                    }});
 
-        }
-    );
+                }
+            );
 
+        });
 });
 router.get('/developer/:devName',function(req,res,next){
     Developers.findOne({username:req.params.devName},function(err,dev){

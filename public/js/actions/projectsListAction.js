@@ -4,7 +4,8 @@ var ProjectActions = Reflux.createActions([
     "load",
     "update",
     "create",
-    "delete"
+    "delete",
+    "loadDevProjects"
 ]);
 
 module.exports = ProjectActions;
