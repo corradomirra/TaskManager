@@ -296,7 +296,7 @@ router.post('/comment',function(req,res,next){
                     res.send({comments:{
                         date:req.body.date,
                         text:req.body.text,
-                        author:req.body.author
+                        author:user.username
                     }});
 
                 }

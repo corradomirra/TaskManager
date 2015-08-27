@@ -47066,13 +47066,9 @@
 	        var today = new Date();
 	        var date = today.getHours() + ":" + today.getMinutes() +
 	            "       " +today.getDay() + '.' +today.getMonth() + '.' +today.getFullYear();
-	        var author = '';
-	        if(/\/manager\//.test(window.location.href ))
-	            author = 'manager';
 	        this.setState({currComment:""});
 	        TaskUIAction.createComment({date:date,
 	            text:this.state.currComment,
-	            author:author,
 	            project:this.props.params.name,
 	            task:this.props.params.taskName
 	        });
